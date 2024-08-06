@@ -207,7 +207,7 @@ animation: ping 1s cubic-bezier(0,0,.2,1) infinite;
 	.LogoBlock{transform: inherit;height: 60px;}
 	.Nav{margin: auto;display: none;}
 	.Activity .Nav{ display: block;}
-	#Intro .Bg{ background-size:cover; height: 100vh;}
+	#Intro .Bg{ #Intro .Bg{ background:url(../images/splash_m.png) ; height: 100vh;}
 	#Intro .IntroArea{width: 100%;margin: 0;padding: 33% 19%;text-align: center;}
 	#Intro .TitleBlock h3{text-align: center;margin-bottom: 1%;margin-top: 28%;font-size: 3rem;}
 	#Intro .TitleBlock{text-align: center;}
