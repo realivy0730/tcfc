@@ -191,8 +191,7 @@ animation: ping 1s cubic-bezier(0,0,.2,1) infinite;
 
 	.Header{background-color: #000;padding: 1% 0;}
 	.open2{bottom:0;}
-	.LogoBlock .Logo a{background-image: url(../images/my_w.gif);}
-	
+	.LogoBlock .Logo a{top: 21px;position: relative;width: 50px;height: 55px;}
 	.Nav ul{flex-direction: column;}
 	.Nav ul li{display: block;width:100%;}
 	.Nav ul li a{display: block;padding: 3% 3%;width: 100%}
