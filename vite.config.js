@@ -4,7 +4,7 @@ import { fileURLToPath, URL } from 'node:url'
 import path from 'node:path'
 
 export default defineConfig({
-    base: '/tcfc/',
+    base: '/',
     plugins: [vue()],
     server: {
         port: 3000,
