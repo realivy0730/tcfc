@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { fileURLToPath, URL } from 'node:url'
+import path from 'node:path' // 加入這行
 
 export default defineConfig({
     // 設定為您的儲存庫名稱
@@ -16,7 +17,7 @@ export default defineConfig({
     // 設定路徑別名
     resolve: {
         alias: {
-            '@': path.resolve(__dirname, './src'),
+            '@': fileURLToPath(new URL('./src', import.meta.url)) // 使用 fileURLToPath
         },
     },
     // 設定建構選項
