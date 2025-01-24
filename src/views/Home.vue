@@ -1,11 +1,6 @@
 <template>
     <div class="home">
-        <!-- 主視覺區域 -->
-        <section class="hero">
-
-        </section>
-
-        <!-- 其他內容區域 -->
+        <section class="hero"></section>
         <section class="content">
             <div class="container">
                 <h2>最新消息</h2>
@@ -16,14 +11,14 @@
 </template>
 
 <script setup>
-// 首頁組件
+import splashImage from '@/assets/images/splash.png'
+import splashImageMobile from '@/assets/images/splash_m.png'
 </script>
 
 <style scoped>
 .hero {
     height: 100vh;
-    background-image: url('../assets/images/splash.png');
-    /* 請將圖片放在 assets 目錄下 */
+    background-image: v-bind('`url(${splashImage})`');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -78,7 +73,7 @@
 @media (max-width: 768px) {
     .hero {
         height: 100vh;
-        background-image: url('../assets/images/splash_m.png');
+        background-image: v-bind('`url(${splashImageMobile})`');
         background-position: top right
     }
 
