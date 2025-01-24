@@ -7,10 +7,22 @@ on:
     branches:
       - main
 
-# 工作項目
+# 設定 GITHUB_TOKEN 的權限
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 確保只有一個部署流程在運行
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
   build-and-deploy:
-    # 運行環境
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
 
     steps:
@@ -18,7 +30,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # 步驟二：設定 Node.js 環境
+      # 步驟二：設定 Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -32,9 +44,17 @@ jobs:
       - name: Build Project
         run: npm run build
 
-      # 步驟五：部署到 GitHub Pages
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+      # 步驟五：設定 Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      # 步驟六：上傳產物
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          folder: dist
-          branch: gh-pages
+          path: dist
+
+      # 步驟七：部署到 GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
