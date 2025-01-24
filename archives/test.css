@@ -1,0 +1,195 @@
+.rectangle {
+  
+        position: relative;
+        width: 400px;
+        height: 250px;
+        margin: 50px auto;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 100px;
+
+    
+        /* 背景設置為 SVG 四角形圖像 */
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="150"><path fill="transparent" stroke="%23000" stroke-width="4" d="M10 10h280v130H10z"/><path stroke="%23000" stroke-width="4" d="m10 10 280 130M290 10 10 140"/></svg>') no-repeat center center;
+        background-size: 100%;
+
+}
+.rectangle .team {
+    position: absolute;
+    font-size: 14px;
+    text-align: center;
+}
+.rectangle .team.top-left {
+    top: -40px;
+    left: -50px;
+}
+.rectangle .team.top-right {
+    top: -40px;
+    right: -50px;
+}
+.rectangle .team.bottom-left {
+    bottom: -40px;
+    left: -50px;
+}
+.rectangle .team.bottom-right {
+    bottom: -40px;
+    right: -50px;
+}
+.rectangle .team.center-left {
+    left: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+}
+.rectangle .team.center-right {
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column-reverse;
+}
+.rectangle .team.center-top {
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.rectangle .team.center-bottom {
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.rectangle .team.topscore-left {
+    right: -52%;
+    top: 44%;
+    transform: translate(-50%, -50%) rotate(32deg);
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+}
+.rectangle .team.topscore-left span{
+    width: 50%;
+    display: inline-block;
+
+}
+.rectangle .team.topscore-right {
+    left: 48%;
+    top: 47%;
+    transform: translate(-50%, -50%) rotate(-32deg);
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+
+}
+.rectangle .team.topscore-right span{
+    width: 50%;
+    display: inline-block;
+
+}
+
+.rectangle .team.middle {
+    font-size: 36px;
+}
+
+/* 對角線樣式 */
+.rectangle .diagonal {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.rectangle .diagonal.left {
+    border-left: 5px solid black;
+}
+.rectangle .diagonal.right {
+    border-right: 5px solid black;
+}
+
+/* 新增對角線 左上到右下 */
+.rectangle .line-left-to-right {
+    position: absolute;
+    width: 118%;
+    height: 2px;
+    background-color: black;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(32deg);
+}
+
+/* 新增對角線 右上到左下 */
+.rectangle .line-right-to-left {
+    position: absolute;
+    width: 118%;
+    height: 2px;
+    background-color: black;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-32deg);
+}
+
+/* 三角形容器 */
+.triangle {
+    position: relative;
+    width: 300px;
+    height: 250px;
+    margin: 50px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    margin-bottom: 100px;
+    
+    /* 使用 SVG 背景繪製三角形 */
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="250"><polygon points="150,10 290,230 10,230" fill="transparent" stroke="%23000" stroke-width="4"/></svg>') no-repeat center center;
+    background-size: 100%;
+}
+
+/* 三角形隊伍位置 */
+.triangle .team.top {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.triangle .team.left {
+    position: absolute;
+    bottom: -40px;
+    left: -30px;
+    transform: translateX(-50%);
+}
+
+.triangle .team.right {
+    position: absolute;
+    bottom: -40px;
+    right: -30px;
+    transform: translateX(50%);
+}
+
+/* 三角形比分位置 */
+.triangle .score.top {
+    position: absolute;
+    left: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+}
+
+.triangle .score.left {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.triangle .score.right {
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column-reverse;
+}
