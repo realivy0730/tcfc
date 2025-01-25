@@ -175,44 +175,40 @@ $border-radius: 12px;     // 圓角
 
 // RWD 設計
 @media (max-width: 1200px) {
-    .section {
-        .d-flex {
-            grid-template-columns: repeat(2, 1fr);
+    .vision-section {
+        .contanter {
+            .d-flex {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     }
 }
 
 @media (max-width: 768px) {
-    .section {
-        .d-flex {
-            grid-template-columns: 1fr;
-        }
-
-        .title {
-            font-size: 2.2rem;
-
-            i {
-                font-size: 2rem;
-            }
-        }
-
-        .block {
-            padding: 1.5rem;
-
-            .subtitle {
-                font-size: 1.5rem;
+    .vision-section {
+        .contanter {
+            .d-flex {
+                grid-template-columns: 1fr;
             }
 
-            .content {
-                font-size: 1rem;
+            .block {
+                padding: 1.5rem;
+
+                .subtitle {
+                    font-size: 1.5rem;
+                }
+
+                .content {
+                    font-size: 1rem;
+                }
             }
-        }
 
-        .summary-block {
-            padding: 2rem;
+            .summary-block {
+                padding: 2rem;
 
-            .content {
-                font-size: 1.1rem;
+                .content {
+                    font-size: 1.1rem;
+                }
             }
         }
     }
