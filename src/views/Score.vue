@@ -8,7 +8,3 @@
 <script setup>
 // 元件邏輯
 </script>
-
-<style scoped>
-/* 元件樣式 */
-</style>

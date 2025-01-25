@@ -32,6 +32,11 @@ export default defineConfig({
         },
     },
     css: {
+        preprocessorOptions: {
+            scss: {
+                additionalData: `@import "@/assets/styles/base/_variables.scss";`
+            }
+        },
         devSourcemap: true
     }
 })
