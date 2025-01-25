@@ -1,13 +1,32 @@
+// 主要變數
+$transition-time: 0.3s;
+$border-radius: 15px;
+$box-shadow: 0 10px 30px rgba($primary-color, 0.1);
+$primary-light: lighten($primary-color, 15%);  // 較亮的主色
+$primary-dark: darken($primary-color, 10%);    // 較暗的主色
+$accent-color: #fff;      // 輔助色（白色）
+$text-light: #e6e6e6;    // 淺色文字
+$border-radius: 12px;     // 圓角
+
+// Hero 區塊
 .hero {
     position: relative;
     height: 100vh;
     width: 100%;
     background: url('@/assets/images/splash.png') no-repeat center center;
     background-size: cover;
-    margin-top: 0; // 移除上方間距
+    margin-top: 0;
 
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 150px;
+        background: linear-gradient(to top, #fff, transparent);
+    }
 
-    // RWD 設計
     @media (max-width: $mobile-width) {
         background-image: url('@/assets/images/splash_m.png');
         height: 80vh;
@@ -17,222 +36,475 @@
 // 共用的區塊樣式
 .section-common {
     padding: 6rem 2rem;
-    max-width: $container-width;
     margin: 0 auto;
+    .contanter{
+        max-width: 1200px;
+        .title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 4rem;
+            color: $primary-color;
+            position: relative;
+            font-weight: 600;
+            span{
+                margin: auto;
+                position: relative;
+            &::after,
+            &::before {
+                content: "";
+                width: 86px;
+                height: 4px;
+                background-color: $primary-color;
+                position: absolute;
+                top: 50%;
+                transform: translateX(-50%);
+            }
+            &::after {
+                right: 100% // Moves the line below the text
+            }
 
-    &-title {
-        text-align: center;
-        font-size: 2.8rem;
-        margin-bottom: 4rem;
-        color: $primary-color;
-        position: relative;
+            &::before {
+                right: -100% // Moves the line above the text
+            }
 
-        &::after {
-            content: '';
-            position: absolute;
-            bottom: -1rem;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: $primary-color;
-            border-radius: 2px;
+            }
+
         }
+
     }
+
 }
 
 // 願景區塊樣式
 .vision-section {
     @extend .section-common;
-    .vision-block {
-        margin-bottom: 3.5rem;
-        padding: 2.5rem;
-        background-color: $white;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        transition: all 0.3s ease;
+    padding: 4rem 2rem;
+    margin: 0 auto;
+    background-color: $primary-color;
+    .contanter{
+        .title {
+            color: $white;
+            span{
+                &::after,
+                &::before {
+                    background-color: $white;
+                }
+            }
+        }
+        .d-flex {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .block {
+            background-color: $white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
 
-        &:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            &:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            }
+
+            .subtitle {
+                color: $primary-color;
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+                padding-bottom: 0.8rem;
+                border-bottom: 2px solid rgba($primary-color, 0.2);
+                display: flex;
+                align-items: center;
+
+                &::before {
+                    font-family: 'Font Awesome 5 Free';
+                    font-weight: 900;
+                    margin-right: 1rem;
+                }
+
+                // 為每個標題加入對應的圖示
+                &.core::before { content: '\f05b'; }         // 核心定位
+                &.promote::before { content: '\f0ac'; }      // 推廣與國際化
+                &.infra::before { content: '\f1ad'; }        // 基礎建設
+                &.coop::before { content: '\f2b5'; }         // 合作發展
+                &.sustain::before { content: '\f06c'; }      // 永續發展
+                &.social::before { content: '\f0c0'; }       // 社會影響
+            }
+
+            .content {
+                line-height: 1.8;
+                color: $text-color;
+                font-size: 1.1rem;
+                text-align: justify;
+            }
         }
 
-        .vision-subtitle {
-            color: $primary-color;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.8rem;
-            border-bottom: 2px solid rgba($primary-color, 0.2);
-            display: flex;
-            align-items: center;
+        .summary-block {
+            background-color: $primary-dark;
+            color: $white;
+            padding: 3rem;
+            border-radius: 12px;
+            margin-top: 4rem;
+            position: relative;
 
             &::before {
-                content: '■';
-                color: $primary-color;
-                margin-right: 0.8rem;
-                font-size: 1rem;
+                content: '\f058'; // 打勾圖示
+                font-family: 'Font Awesome 5 Free';
+                font-weight: 900;
+                font-size: 2rem;
+                position: absolute;
+                top: -1rem;
+                left: 2rem;
+                background-color: $primary-dark;
+                padding: 0.5rem;
+                border-radius: 50%;
+                color: $white;
+            }
+
+            .content {
+                color: $white;
+                font-size: 1.2rem;
+                line-height: 1.8;
+                text-align: justify;
             }
         }
-
-        .vision-content {
-            line-height: 1.8;
-            color: $text-color;
-            font-size: 1.1rem;
-            text-align: justify;
-        }
-    }
-}
-
-// 使命區塊樣式
-.mission-section {
-    @extend .section-common;
-    background-color: $white;
-
-    .mission-block {
-        margin-bottom: 3.5rem;
-        padding: 2.5rem;
-        border-left: 4px solid $primary-color;
-        background: linear-gradient(to right, rgba($primary-color, 0.05), transparent);
-        border-radius: 0 12px 12px 0;
-        transition: all 0.3s ease;
-
-        &:hover {
-            background: linear-gradient(to right, rgba($primary-color, 0.1), transparent);
-            transform: translateX(5px);
-        }
-
-        .mission-subtitle {
-            color: darken($primary-color, 10%);
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .mission-content {
-            line-height: 1.8;
-            color: $text-color;
-            font-size: 1.1rem;
-            text-align: justify;
-        }
-
-        &.primary-mission {
-            background-color: rgba($primary-color, 0.1);
-            border-left: none;
-            border-radius: 12px;
-            font-size: 1.2rem;
-            font-weight: 500;
-        }
-    }
-}
-
-// 價值觀區塊樣式
-.values-section {
-    @extend .section-common;
-    background-color: #f8f9fa;
-
-    .values-block {
-        margin-bottom: 3.5rem;
-        padding: 2.5rem;
-        background-color: $white;
-        border-radius: 12px;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        transition: all 0.3s ease;
-
-        &::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background-color: $primary-color;
-        }
-
-        &:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .values-subtitle {
-            color: $primary-color;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-
-            &::after {
-                content: '';
-                flex: 1;
-                height: 1px;
-                background-color: rgba($primary-color, 0.2);
-                margin-left: 1rem;
-            }
-        }
-
-        .values-content {
-            line-height: 1.8;
-            color: $text-color;
-            font-size: 1.1rem;
-            text-align: justify;
-        }
-    }
-
-    .values-intro,
-    .values-conclusion {
-        padding: 2.5rem;
-        margin-bottom: 3.5rem;
-        background-color: rgba($primary-color, 0.1);
-        border-radius: 12px;
-        text-align: center;
-        font-size: 1.2rem;
-        line-height: 1.8;
     }
 }
 
 // RWD 設計
-@media (max-width: $mobile-width) {
-    .section-common {
-        padding: 4rem 1rem;
-
-        &-title {
-            font-size: 2.2rem;
-            margin-bottom: 3rem;
-        }
-    }
-
-    .vision-section,
-    .mission-section,
-    .values-section {
-        .vision-block,
-        .mission-block,
-        .values-block {
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-
-            .vision-subtitle,
-            .mission-subtitle,
-            .values-subtitle {
-                font-size: 1.5rem;
-                margin-bottom: 1rem;
-            }
-
-            .vision-content,
-            .mission-content,
-            .values-content {
-                font-size: 1rem;
-            }
-        }
-    }
-
-    .values-section {
-        .values-intro,
-        .values-conclusion {
-            padding: 1.5rem;
-            font-size: 1.1rem;
+@media (max-width: 1200px) {
+    .section {
+        .d-flex {
+            grid-template-columns: repeat(2, 1fr);
         }
     }
 }
+
+@media (max-width: 768px) {
+    .section {
+        .d-flex {
+            grid-template-columns: 1fr;
+        }
+
+        .title {
+            font-size: 2.2rem;
+
+            i {
+                font-size: 2rem;
+            }
+        }
+
+        .block {
+            padding: 1.5rem;
+
+            .subtitle {
+                font-size: 1.5rem;
+            }
+
+            .content {
+                font-size: 1rem;
+            }
+        }
+
+        .summary-block {
+            padding: 2rem;
+
+            .content {
+                font-size: 1.1rem;
+            }
+        }
+    }
+}
+
+
+
+// 使命區塊樣式
+.mission-section {
+    @extend .section-common;
+    padding: 4rem 2rem;
+    margin: 0 auto;
+    background-color: $white;
+
+    .contanter {
+        .title {
+            color: $primary-color;
+            span {
+                &::after,
+                &::before {
+                    background-color: $primary-color;
+                }
+            }
+        }
+
+        .d-flex {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .block {
+            background-color: $white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba($primary-color, 0.1);
+            transition: all 0.3s ease;
+
+            &:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            }
+
+            .subtitle {
+                color: $primary-color;
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+                padding-bottom: 0.8rem;
+                border-bottom: 2px solid rgba($primary-color, 0.2);
+                display: flex;
+                align-items: center;
+
+                &::before {
+                    font-family: 'Font Awesome 5 Free';
+                    font-weight: 900;
+                    margin-right: 1rem;
+                }
+
+                // 為每個標題加入對應的圖示
+                &.core::before { content: '\f521'; }      // 核心使命
+                &.edu::before { content: '\f549'; }       // 文化與教育
+                &.community::before { content: '\f0c0'; }  // 社區發展
+                &.global::before { content: '\f0ac'; }     // 國際化發展
+                &.talent::before { content: '\f501'; }     // 專業人才
+                &.industry::before { content: '\f54f'; }   // 產業發展
+            }
+
+            .content {
+                line-height: 1.8;
+                color: $text-color;
+                font-size: 1.1rem;
+                text-align: justify;
+            }
+        }
+
+        .summary-block {
+            background-color: $primary-color;
+            color: $white;
+            padding: 3rem;
+            border-radius: 12px;
+            margin-top: 4rem;
+            position: relative;
+
+            &::before {
+                content: '\f058';
+                font-family: 'Font Awesome 5 Free';
+                font-weight: 900;
+                font-size: 2rem;
+                position: absolute;
+                top: -1rem;
+                left: 2rem;
+                background-color: $primary-color;
+                padding: 0.5rem;
+                border-radius: 50%;
+                color: $white;
+            }
+
+            .content {
+                color: $white;
+                font-size: 1.2rem;
+                line-height: 1.8;
+                text-align: justify;
+            }
+        }
+    }
+}
+
+// RWD 設計
+@media (max-width: 1200px) {
+    .mission-section {
+        .contanter {
+            .d-flex {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .mission-section {
+        .contanter {
+            .d-flex {
+                grid-template-columns: 1fr;
+            }
+
+            .block {
+                padding: 1.5rem;
+
+                .subtitle {
+                    font-size: 1.5rem;
+                }
+
+                .content {
+                    font-size: 1rem;
+                }
+            }
+
+            .summary-block {
+                padding: 2rem;
+
+                .content {
+                    font-size: 1.1rem;
+                }
+            }
+        }
+    }
+}
+
+
+.values-section {
+    @extend .section-common;
+    padding: 4rem 2rem;
+    margin: 0 auto;
+    background-color: #f8f9fa; // 淺灰色背景
+
+    .contanter {
+        .title {
+            color: $primary-color;
+            span {
+                &::after,
+                &::before {
+                    background-color: $primary-color;
+                }
+            }
+        }
+
+        .d-flex {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .block {
+            background-color: $white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+
+            &:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            }
+
+            .subtitle {
+                color: $primary-color;
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+                padding-bottom: 0.8rem;
+                border-bottom: 2px solid rgba($primary-color, 0.2);
+                display: flex;
+                align-items: center;
+
+                &::before {
+                    font-family: 'Font Awesome 5 Free';
+                    font-weight: 900;
+                    margin-right: 1rem;
+                }
+
+                // 為每個標題加入對應的圖示
+                &.integrity::before { content: '\f64f'; }    // 誠信
+                &.unity::before { content: '\f0c0'; }       // 團結
+                &.innovation::before { content: '\f0eb'; }   // 創新
+                &.sustainability::before { content: '\f06c'; } // 永續
+                &.inclusivity::before { content: '\f500'; }  // 社會共融
+                &.development::before { content: '\f19d'; }  // 教育與成長
+            }
+
+            .content {
+                line-height: 1.8;
+                color: $text-color;
+                font-size: 1.1rem;
+                text-align: justify;
+            }
+        }
+
+        .summary-block {
+            background-color: $primary-color;
+            color: $white;
+            padding: 3rem;
+            border-radius: 12px;
+            margin-top: 4rem;
+            position: relative;
+
+            &::before {
+                content: '\f058';
+                font-family: 'Font Awesome 5 Free';
+                font-weight: 900;
+                font-size: 2rem;
+                position: absolute;
+                top: -1rem;
+                left: 2rem;
+                background-color: $primary-color;
+                padding: 0.5rem;
+                border-radius: 50%;
+                color: $white;
+            }
+
+            .content {
+                color: $white;
+                font-size: 1.2rem;
+                line-height: 1.8;
+                text-align: justify;
+            }
+        }
+    }
+}
+
+// RWD 設計
+@media (max-width: 1200px) {
+    .values-section {
+        .contanter {
+            .d-flex {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .values-section {
+        .contanter {
+            .d-flex {
+                grid-template-columns: 1fr;
+            }
+
+            .block {
+                padding: 1.5rem;
+
+                .subtitle {
+                    font-size: 1.5rem;
+                }
+
+                .content {
+                    font-size: 1rem;
+                }
+            }
+
+            .summary-block {
+                padding: 2rem;
+
+                .content {
+                    font-size: 1.1rem;
+                }
+            }
+        }
+    }
+}
+
 
 // 動畫效果
 .fade-in {
@@ -241,6 +513,18 @@
     transition: all 0.6s ease;
 
     &.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// 滾動顯示動畫
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+
+    &.revealed {
         opacity: 1;
         transform: translateY(0);
     }
