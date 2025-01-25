@@ -1,0 +1,247 @@
+.hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background: url('@/assets/images/splash.png') no-repeat center center;
+    background-size: cover;
+    margin-top: 0; // 移除上方間距
+
+
+    // RWD 設計
+    @media (max-width: $mobile-width) {
+        background-image: url('@/assets/images/splash_m.png');
+        height: 80vh;
+    }
+}
+
+// 共用的區塊樣式
+.section-common {
+    padding: 6rem 2rem;
+    max-width: $container-width;
+    margin: 0 auto;
+
+    &-title {
+        text-align: center;
+        font-size: 2.8rem;
+        margin-bottom: 4rem;
+        color: $primary-color;
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: $primary-color;
+            border-radius: 2px;
+        }
+    }
+}
+
+// 願景區塊樣式
+.vision-section {
+    @extend .section-common;
+    .vision-block {
+        margin-bottom: 3.5rem;
+        padding: 2.5rem;
+        background-color: $white;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .vision-subtitle {
+            color: $primary-color;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid rgba($primary-color, 0.2);
+            display: flex;
+            align-items: center;
+
+            &::before {
+                content: '■';
+                color: $primary-color;
+                margin-right: 0.8rem;
+                font-size: 1rem;
+            }
+        }
+
+        .vision-content {
+            line-height: 1.8;
+            color: $text-color;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+    }
+}
+
+// 使命區塊樣式
+.mission-section {
+    @extend .section-common;
+    background-color: $white;
+
+    .mission-block {
+        margin-bottom: 3.5rem;
+        padding: 2.5rem;
+        border-left: 4px solid $primary-color;
+        background: linear-gradient(to right, rgba($primary-color, 0.05), transparent);
+        border-radius: 0 12px 12px 0;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background: linear-gradient(to right, rgba($primary-color, 0.1), transparent);
+            transform: translateX(5px);
+        }
+
+        .mission-subtitle {
+            color: darken($primary-color, 10%);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mission-content {
+            line-height: 1.8;
+            color: $text-color;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+
+        &.primary-mission {
+            background-color: rgba($primary-color, 0.1);
+            border-left: none;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+    }
+}
+
+// 價值觀區塊樣式
+.values-section {
+    @extend .section-common;
+    background-color: #f8f9fa;
+
+    .values-block {
+        margin-bottom: 3.5rem;
+        padding: 2.5rem;
+        background-color: $white;
+        border-radius: 12px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: $primary-color;
+        }
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .values-subtitle {
+            color: $primary-color;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+
+            &::after {
+                content: '';
+                flex: 1;
+                height: 1px;
+                background-color: rgba($primary-color, 0.2);
+                margin-left: 1rem;
+            }
+        }
+
+        .values-content {
+            line-height: 1.8;
+            color: $text-color;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+    }
+
+    .values-intro,
+    .values-conclusion {
+        padding: 2.5rem;
+        margin-bottom: 3.5rem;
+        background-color: rgba($primary-color, 0.1);
+        border-radius: 12px;
+        text-align: center;
+        font-size: 1.2rem;
+        line-height: 1.8;
+    }
+}
+
+// RWD 設計
+@media (max-width: $mobile-width) {
+    .section-common {
+        padding: 4rem 1rem;
+
+        &-title {
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+        }
+    }
+
+    .vision-section,
+    .mission-section,
+    .values-section {
+        .vision-block,
+        .mission-block,
+        .values-block {
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+
+            .vision-subtitle,
+            .mission-subtitle,
+            .values-subtitle {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .vision-content,
+            .mission-content,
+            .values-content {
+                font-size: 1rem;
+            }
+        }
+    }
+
+    .values-section {
+        .values-intro,
+        .values-conclusion {
+            padding: 1.5rem;
+            font-size: 1.1rem;
+        }
+    }
+}
+
+// 動畫效果
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+
+    &.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
