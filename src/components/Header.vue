@@ -17,13 +17,13 @@
 
                 <!-- 社群媒體連結 -->
                 <div class="social-links">
-                    <a href="https://www.facebook.com/yourpage" target="_blank" class="social-link">
+                    <a href="https://www.facebook.com/groups/576604161850781" target="_blank" class="social-link">
                         <i class="fab fa-facebook-f" aria-label="Facebook"></i>
                     </a>
-                    <a href="https://line.me/yourpage" target="_blank" class="social-link">
+                    <a href="https://line.me/ti/p/@677ciirx" target="_blank" class="social-link">
                         <i class="fab fa-line" aria-label="Line"></i>
                     </a>
-                    <a href="mailto:your@email.com" class="social-link">
+                    <a href="mailto:service@tcfc.org.tw" class="social-link">
                         <i class="fas fa-envelope" aria-label="Email"></i>
                     </a>
                 </div>
