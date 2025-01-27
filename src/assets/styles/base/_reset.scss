@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: "Noto Sans TC","微軟正黑體", 'Libre Baskerville','Century Gothic', Arial;
+    font-family: "Noto Sans TC", 'Libre Baskerville','Century Gothic', Arial;
     line-height: 1.6;
     color: $white;
 }
@@ -15,7 +15,7 @@ body {
 .main-content {
     margin-top: 72px;
     @media (max-width: $mobile-width) {
-        margin-top:48px;
+        margin-top:43px;
     }
 }
 
