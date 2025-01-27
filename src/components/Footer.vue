@@ -56,9 +56,10 @@
                 <h2>Contact Information</h2>
                 <div class="green-line"></div>
                 <div class="contact-info">
-                    <p><i class="fas fa-phone gold-icon"></i> (04) 1234-5678</p>
-                    <p><i class="fas fa-envelope gold-icon"></i> service@tcfc.org.tw</p>
-                    <p><i class="fas fa-map-marker-alt gold-icon"></i> 臺中市北區雙十路一段 1 號</p>
+                    <p><i class="fas fa-phone gold-icon"></i><a href="tel:+88422588185"> 2258 8185</a></p>
+                    <p><i class="fas fa-envelope gold-icon"></i><a
+                            href="mailto:service@tcfc.org.tw">service@tcfc.org.tw</a></p>
+                    <p><i class="fas fa-map-marker-alt gold-icon"></i>407027台中市西屯區朝馬路108號</p>
                 </div>
 
             </div>
@@ -66,156 +67,6 @@
 
         <div class="footer-bottom">
             <p>&copy; 2025© TCFC 臺中市體育總會足球委員會</p>
-
         </div>
     </footer>
 </template>
-
-<style scoped>
-.footer {
-    background-color: #1f1f17;
-    padding: 60px 0 20px;
-    color: #ffffff;
-}
-
-.footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 40px;
-    padding: 0 20px;
-}
-
-.footer-section h2 {
-    font-size: 24px;
-    margin-bottom: 15px;
-    color: #ffffff;
-}
-
-.green-line {
-    width: 40px;
-    height: 3px;
-    background-color: #1ABC9C;
-    margin-bottom: 20px;
-}
-
-.about-text {
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
-
-.social-links {
-    display: flex;
-    gap: 15px;
-}
-
-.social-icon {
-    background-color: #1ABC9C;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    transition: background-color 0.3s;
-}
-
-.social-icon:hover {
-    background-color: #1ABC9C;
-}
-
-.footer-links {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-links li {
-    margin-bottom: 12px;
-}
-
-.footer-links a {
-    color: #ffffff;
-    text-decoration: none;
-    transition: color 0.3s;
-    display: flex;
-    align-items: center;
-}
-
-.footer-links a:before {
-    content: "›";
-    margin-right: 10px;
-    color: #1ABC9C;
-}
-
-.footer-links a:hover {
-    color: #1ABC9C;
-}
-
-.contact-info p {
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-}
-
-.gold-icon {
-    color: #ffd700;
-    margin-right: 10px;
-    width: 20px;
-}
-
-.newsletter {
-    display: flex;
-    margin-top: 20px;
-}
-
-.email-input {
-    flex: 1;
-    padding: 10px;
-    border: none;
-    border-radius: 25px 0 0 25px;
-}
-
-.submit-btn {
-    background-color: #1ABC9C;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 0 25px 25px 0;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.submit-btn:hover {
-    background-color: #1ABC9C;
-}
-
-.footer-bottom {
-    max-width: 1200px;
-    margin: 40px auto 0;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-}
-
-@media (max-width: 1024px) {
-    .footer-content {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    .footer-content {
-        grid-template-columns: 1fr;
-    }
-
-    .footer-bottom {
-        flex-direction: column;
-        text-align: center;
-        gap: 10px;
-    }
-}
-</style>

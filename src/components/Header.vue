@@ -4,6 +4,7 @@
             <!-- Logo -->
             <router-link to="/" class="logo">
                 <img src="@/assets/images/logo.png" alt="TCFC Logo" />
+                <span class="logo-text">臺中市體育總會足球委員會</span>
             </router-link>
 
             <!-- 右側選單群組 -->
