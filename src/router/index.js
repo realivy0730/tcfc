@@ -18,12 +18,20 @@ const routes = [
             title: '計分板'
         }
     },
+    // {
+    //     path: '/u10',
+    //     name: 'U10',
+    //     component: () => import('@/views/U10.vue'),
+    //     meta: {
+    //         title: 'U10賽程'
+    //     }
+    // },
     {
-        path: '/u10',
-        name: 'U10',
-        component: () => import('@/views/U10.vue'),
+        path: '/schedule',
+        name: 'Schedule',
+        component: () => import('@/views/Schedule.vue'),
         meta: {
-            title: 'U10賽程'
+            title: '賽程'
         }
     },
     {
