@@ -1,177 +1,146 @@
+<!-- src/views/SchoolU10View.vue -->
 <template>
-    <div class="u10-school-schedule">
-        <h1 class="page-title">{{ sheetInfo.displayName }} ({{ sheetInfo.ageGroup }})</h1>
+    <div class="schedule-container">
+        <h2 class="schedule-title">U10 學校組賽程</h2>
 
-        <!-- 載入中狀態 -->
-        <div v-if="isLoading" class="loading-container">
-            <div class="loading-spinner"></div>
-            <p>載入中...</p>
+        <div v-if="isLoading" class="loading-state">
+            載入賽程資料中...
         </div>
 
-        <!-- 錯誤訊息 -->
         <div v-else-if="error" class="error-message">
             {{ error }}
         </div>
 
-        <!-- 賽程表 -->
-        <div v-else class="schedule-table-container">
-            <table class="schedule-table">
-                <thead>
-                    <tr>
-                        <th>日期</th>
-                        <th>場次</th>
-                        <th>組別</th>
-                        <th>時間</th>
-                        <th>主場球隊</th>
-                        <th>主場PK</th>
-                        <th>主場比分</th>
-                        <th>客場比分</th>
-                        <th>客場PK</th>
-                        <th>客場球隊</th>
-                        <th>比賽場地</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="game in scheduleData" :key="game.gameNumber">
-                        <td>{{ game.date }}</td>
-                        <td>{{ game.gameNumber }}</td>
-                        <td>{{ game.group }}</td>
-                        <td>{{ game.time }}</td>
-                        <td>{{ game.homeTeam }}</td>
-                        <td>{{ game.homePK }}</td>
-                        <td>{{ game.homeScore }}</td>
-                        <td>{{ game.awayScore }}</td>
-                        <td>{{ game.awayPK }}</td>
-                        <td>{{ game.awayTeam }}</td>
-                        <td>{{ game.venue }}</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div v-else class="schedule-content">
+            <template v-for="(groupData, index) in sortedGroups" :key="index">
+                <ScoreboardTable :games="groupData.games" :group="groupData.name" :stage="groupData.stage" />
+            </template>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import { getU10SchoolApi } from '@/api/services/schoolGameService';
+import { ref, onMounted, computed } from 'vue';
+import { getU12SchoolApi } from '@/api/services/schoolGameService';
 import type { GameSchedule } from '@/api/types/gameSchedule';
-import { SHEET_INFO } from '@/api/config/sheetConfig';
+import ScoreboardTable from '@/components/scoreboard/ScoreboardTable.vue';
 
-// 響應式狀態
-const scheduleData = ref<GameSchedule[]>([]);
+const games = ref<GameSchedule[]>([]);
 const isLoading = ref(true);
 const error = ref<string | null>(null);
 
-// 使用正確的 SheetInfo 物件
-const sheetInfo = SHEET_INFO.U10_SCHOOL;
+/**
+ * 判斷比賽階段
+ * @param groupName - 組別名稱
+ * @returns 比賽階段
+ */
+const getStageByGroupName = (groupName: string): 'group' | 'eight' | 'semi' | 'final' => {
+    // 使用正則表達式判斷是否為字母組別
+    if (/^[A-Z]$/.test(groupName)) return 'group';
 
-// 載入資料方法
-const loadScheduleData = async () => {
+    // 根據組別名稱判斷階段
+    if (groupName.includes('強')) return 'eight';
+    if (groupName.includes('四強') || groupName.includes('季殿')) return 'semi';
+    if (groupName.includes('決賽')) return 'final';
+
+    return 'group';
+};
+
+/**
+ * 取得組別排序權重
+ * @param groupName - 組別名稱
+ * @returns 排序權重
+ */
+const getGroupWeight = (groupName: string): number => {
+    // 字母組別權重 (A=1, B=2, ...)
+    if (/^[A-Z]$/.test(groupName)) {
+        return groupName.charCodeAt(0) - 64;
+    }
+
+    // 其他階段權重
+    const stageWeights: Record<string, number> = {
+        '十六強': 100,
+        '八強': 200,
+        '四強': 300,
+        '季殿': 400,
+        '決賽': 500
+    };
+
+    return stageWeights[groupName] || 999;
+};
+
+/**
+ * 整理並排序組別資料
+ */
+const sortedGroups = computed(() => {
+    // 依組別分組
+    const groupMap = games.value.reduce((acc, game) => {
+        if (!acc.has(game.group)) {
+            acc.set(game.group, {
+                name: game.group,
+                games: [],
+                stage: getStageByGroupName(game.group)
+            });
+        }
+        acc.get(game.group).games.push(game);
+        return acc;
+    }, new Map());
+
+    // 轉換為陣列並排序
+    return Array.from(groupMap.values()).sort((a, b) =>
+        getGroupWeight(a.name) - getGroupWeight(b.name)
+    );
+});
+
+/**
+ * 載入賽程資料
+ */
+const loadGames = async () => {
     try {
         isLoading.value = true;
-        scheduleData.value = await getU10SchoolApi();
+        error.value = null;
+        games.value = await getU12SchoolApi();
     } catch (err) {
-        error.value = '載入賽程表時發生錯誤，請稍後再試';
-        console.error('載入賽程表錯誤:', err);
+        error.value = '載入賽程資料失敗，請稍後再試';
+        console.error('載入賽程資料失敗:', err);
     } finally {
         isLoading.value = false;
     }
 };
 
-// 組件掛載時載入資料
-onMounted(() => {
-    loadScheduleData();
-});
+onMounted(loadGames);
 </script>
 
 <style scoped>
-.u10-school-schedule {
-    padding: 20px;
+.schedule-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
 }
 
-.page-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #333;
+.schedule-title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 2rem;
 }
 
-.loading-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 40px;
-}
-
-.loading-spinner {
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #3498db;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 1s linear infinite;
-    margin-bottom: 10px;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
+.loading-state {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
 }
 
 .error-message {
-    color: #dc3545;
     text-align: center;
-    padding: 20px;
+    padding: 2rem;
+    color: #dc3545;
     background-color: #f8d7da;
     border-radius: 4px;
-    margin: 20px 0;
 }
 
-.schedule-table-container {
-    overflow-x: auto;
-}
-
-.schedule-table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 1000px;
-}
-
-.schedule-table th,
-.schedule-table td {
-    padding: 12px;
-    text-align: center;
-    border: 1px solid #ddd;
-}
-
-.schedule-table th {
-    background-color: #f8f9fa;
-    font-weight: bold;
-    white-space: nowrap;
-}
-
-.schedule-table tr:nth-child(even) {
-    background-color: #f8f9fa;
-}
-
-.schedule-table tr:hover {
-    background-color: #f2f2f2;
-}
-
-@media (max-width: 768px) {
-    .page-title {
-        font-size: 20px;
-    }
-
-    .schedule-table-container {
-        margin: 0 -20px;
-        padding: 0 20px;
-    }
+.schedule-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 </style>
