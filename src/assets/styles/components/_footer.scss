@@ -1,3 +1,6 @@
+@use "sass:color";
+@use '../settings' as *;
+
 .footer {
     background-color:#1f1f17;
     padding: 60px 0 20px;
@@ -87,7 +90,7 @@
         transition: background-color 0.3s;
 
         &:hover {
-            background-color: darken($accent-green, 10%);
+            background-color: color.adjust($accent-green, $lightness: -10%);
             text-decoration: none;
         }
     }
@@ -132,7 +135,7 @@
     transition: background-color 0.3s;
 
     &:hover {
-        background-color: darken($accent-green, 10%);
+        background-color: color.adjust($accent-green, $lightness: -10%);
     }
 }
 

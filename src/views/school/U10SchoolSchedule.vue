@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue';
-import { getU12SchoolApi } from '@/api/services/schoolGameService';
+import { getU12_SCHOOLApi } from '@/api/services/schoolGameService';
 import type { GameSchedule } from '@/api/types/gameSchedule';
 import ScoreboardTable from '@/components/scoreboard/ScoreboardTable.vue';
 
@@ -99,7 +99,7 @@ const loadGames = async () => {
     try {
         isLoading.value = true;
         error.value = null;
-        games.value = await getU12SchoolApi();
+        games.value = await getU12_SCHOOLApi();
     } catch (err) {
         error.value = '載入賽程資料失敗，請稍後再試';
         console.error('載入賽程資料失敗:', err);

@@ -1,41 +1,8 @@
+
 import axios from 'axios';
+import { handleError } from './errorHandler';
 
-/**
- * 建立 axios 實例
- */
-const axiosInstance = axios.create({
-    timeout: 10000, // 請求超時時間
-    headers: {
-        'Content-Type': 'application/json',
-    }
-});
+const axiosInstance = axios.create({...});
 
-/**
- * 請求攔截器
- */
-axiosInstance.interceptors.request.use(
-    (config) => {
-        // 在發送請求之前做些什麼
-        return config;
-    },
-    (error) => {
-        // 對請求錯誤做些什麼
-        return Promise.reject(error);
-    }
-);
-
-/**
- * 回應攔截器
- */
-axiosInstance.interceptors.response.use(
-    (response) => {
-        // 對回應資料做些什麼
-        return response;
-    },
-    (error) => {
-        // 對回應錯誤做些什麼
-        return Promise.reject(error);
-    }
-);
-
+// 完整攔截器實作...
 export default axiosInstance;

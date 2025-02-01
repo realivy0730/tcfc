@@ -1,8 +1,8 @@
-@import './base/variables';
-@import './base/reset';
-@import './components/header';
-@import './views/index';
-@import './views/score';
-@import './views/u10';
-@import './views/not-found';
-@import './components/footer';
+@use "sass:color";
+
+@use 'settings' as *;
+
+@use 'components/header';
+@use 'components/footer';
+@use 'components/navigation';
+@use 'views/index';
