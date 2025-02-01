@@ -1,4 +1,4 @@
-# 工作流程名稱
+# .github/workflows/deploy.yml
 name: Deploy to GitHub Pages
 
 # 觸發條件：當推送到 main 分支時
@@ -40,21 +40,30 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      # 步驟四：建置專案
+      # 步驟四：建立 404 頁面
+      - name: Create 404 Page
+        run: cp dist/index.html dist/404.html
+
+      # 步驟五：建置專案
       - name: Build Project
         run: npm run build
+        env:
+          VITE_BASE_URL: ${{ secrets.VITE_BASE_URL }}
+          VITE_GOOGLE_SHEETS_API_KEY: ${{ secrets.VITE_GOOGLE_SHEETS_API_KEY }}
+          VITE_SCHOOL_SHEET_ID: ${{ secrets.VITE_SCHOOL_SHEET_ID }}
+          VITE_PUBLIC_SHEET_ID: ${{ secrets.VITE_PUBLIC_SHEET_ID }}
 
-      # 步驟五：設定 Pages
+      # 步驟六：設定 Pages
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      # 步驟六：上傳產物
+      # 步驟七：上傳產物
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
-      # 步驟七：部署到 GitHub Pages
+      # 步驟八：部署到 GitHub Pages
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
