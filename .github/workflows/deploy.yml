@@ -1,19 +1,16 @@
 # .github/workflows/deploy.yml
 name: Deploy to GitHub Pages
 
-# 觸發條件：當推送到 main 分支時
 on:
   push:
     branches:
       - main
 
-# 設定 GITHUB_TOKEN 的權限
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# 確保只有一個部署流程在運行
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -26,25 +23,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 步驟一：檢出程式碼
       - name: Checkout
         uses: actions/checkout@v4
 
-      # 步驟二：設定 Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
 
-      # 步驟三：安裝依賴
       - name: Install Dependencies
         run: npm install
 
-      # 步驟四：建立 404 頁面
-      - name: Create 404 Page
-        run: cp dist/index.html dist/404.html
-
-      # 步驟五：建置專案
       - name: Build Project
         run: npm run build
         env:
@@ -53,17 +42,17 @@ jobs:
           VITE_SCHOOL_SHEET_ID: ${{ secrets.VITE_SCHOOL_SHEET_ID }}
           VITE_PUBLIC_SHEET_ID: ${{ secrets.VITE_PUBLIC_SHEET_ID }}
 
-      # 步驟六：設定 Pages
+      - name: Create 404 Page
+        run: cp dist/index.html dist/404.html
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      # 步驟七：上傳產物
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
-      # 步驟八：部署到 GitHub Pages
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
