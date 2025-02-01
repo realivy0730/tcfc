@@ -1,9 +1,12 @@
+@use "sass:color";
+@use '../settings' as *;
+
 // 主要變數
 $transition-time: 0.3s;
 $border-radius: 15px;
 $box-shadow: 0 10px 30px rgba($primary-color, 0.1);
-$primary-light: lighten($primary-color, 15%);  // 較亮的主色
-$primary-dark: darken($primary-color, 10%);    // 較暗的主色
+$primary-light: color.adjust($primary-color, $lightness: 15%);  // 較亮的主色
+$primary-dark: color.adjust($primary-color, $lightness: -10%);    // 較暗的主色
 $accent-color: #fff;      // 輔助色（白色）
 $text-light: #e6e6e6;    // 淺色文字
 $border-radius: 12px;     // 圓角

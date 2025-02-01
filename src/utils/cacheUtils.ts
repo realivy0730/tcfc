@@ -1,0 +1,3 @@
+
+// 完整快取工具實作...
+export const cachedFetch = (...) => {...};
