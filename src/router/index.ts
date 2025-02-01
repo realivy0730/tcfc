@@ -16,8 +16,8 @@ const routes: RouteRecordRaw[] = [
         name: 'SchoolU10Schedule',
         component: () => import('@/views/school/U10SchoolSchedule.vue'),
         meta: { title: '學校中年級賽程表' }
-    }
-   {
+    },
+    {
         path: '/:pathMatch(.*)*',
         name: 'NotFound',
         component: () => import('@/views/NotFound.vue'),
