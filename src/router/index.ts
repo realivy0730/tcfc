@@ -1,5 +1,5 @@
 // src/router/index.ts
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
 
 const routes: RouteRecordRaw[] = [
     {
@@ -22,7 +22,7 @@ const routes: RouteRecordRaw[] = [
         name: 'NotFound',
         component: () => import('@/views/NotFound.vue'),
         meta: {
-            title: '頁面不存在'
+            title: '很抱歉，頁面不存在!!'
         }
     }
 ];
