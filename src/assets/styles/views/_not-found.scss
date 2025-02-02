@@ -2,6 +2,88 @@
 @use '../settings' as *;
 
 .not-found {
-    text-align: center;
-    padding: 50px;
+    min-height: calc(100vh - 72px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, $primary-color, $accent-blue);
+    padding: 2rem;
+
+    &__container {
+        text-align: center;
+        max-width: 600px;
+        background: rgba($white-color, 0.95);
+        padding: 3rem 2rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+    &__title {
+        font-size: 8rem;
+        font-weight: 700;
+        color: $primary-color;
+        margin: 0;
+        line-height: 1;
+
+        @media (max-width: $mobile-width) {
+            font-size: 6rem;
+        }
+    }
+
+    &__subtitle {
+        font-size: 2rem;
+        color: $accent-blue;
+        margin: 1rem 0 2rem;
+
+        @media (max-width: $mobile-width) {
+            font-size: 1.5rem;
+        }
+    }
+
+    &__text {
+        color: $gray-400-color;
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+
+    &__button {
+        display: inline-block;
+        padding: 1rem 2rem;
+        background-color: $accent-green;
+        color: $white-color;
+        border-radius: 50px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-weight: 500;
+
+        &:hover {
+            background-color: darken($accent-green, 10%);
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// 添加浮動元素動畫
+.floating {
+    animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
 }

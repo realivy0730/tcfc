@@ -19,7 +19,10 @@
         "module": "ESNext",
         "skipLibCheck": true,
         "esModuleInterop": true,
-        "moduleResolution": "bundler",
+        "moduleResolution": "Node",
+        "types": [
+            "vite/client"
+        ],
         "allowImportingTsExtensions": true,
         "resolveJsonModule": true,
         "noUnusedLocals": true,
