@@ -10,13 +10,6 @@ const routes: RouteRecordRaw[] = [
             title: '首頁'
         }
     },
-    // 學校組路由
-    {
-        path: '/school/u10',
-        name: 'SchoolU10Schedule',
-        component: () => import('@/views/school/U10SchoolSchedule.vue'),
-        meta: { title: '學校中年級賽程表' }
-    },
     {
         path: '/:pathMatch(.*)*',
         name: 'NotFound',
