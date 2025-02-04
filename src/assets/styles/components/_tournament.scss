@@ -1,0 +1,332 @@
+// src/assets/styles/components/_tournament.scss
+@use "sass:color";
+@use '../settings' as *;
+
+.tournament-page {
+  min-height: calc(100vh - 72px);
+  padding: 2rem;
+  background-color: $bg-color;
+
+  @media (max-width: $mobile-width) {
+    padding: 1rem;
+    min-height: calc(100vh - 60px);
+  }
+
+  // 頁面標題區塊
+  .page-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba($primary-color, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    @media (max-width: $mobile-width) {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    h1 {
+      color: $primary-color;
+      font-size: 1.8rem;
+      margin: 0;
+
+      @media (max-width: $mobile-width) {
+        font-size: 1.4rem;
+        text-align: center;
+      }
+    }
+  }
+
+  // 組別選擇器
+  .group-selector {
+    position: relative;
+    min-width: 200px;
+
+    @media (max-width: $mobile-width) {
+      width: 100%;
+    }
+
+    .select-input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid rgba($primary-color, 0.2);
+      border-radius: 8px;
+      font-size: 1rem;
+      color: $primary-color;
+      background-color: $white-color;
+      appearance: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:focus {
+        outline: none;
+        border-color: $accent-blue;
+        box-shadow: 0 0 0 2px rgba($accent-blue, 0.1);
+      }
+    }
+
+    &::after {
+      content: '\25BC';
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: $primary-color;
+      pointer-events: none;
+      font-size: 0.8rem;
+    }
+  }
+
+  // 分頁切換區
+  .tab-container {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid rgba($primary-color, 0.1);
+
+    .tab-button {
+      padding: 0.75rem 1.5rem;
+      background: none;
+      border: none;
+      color: $gray-400-color;
+      font-weight: 500;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.3s ease;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: $primary-color;
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+
+      &:hover {
+        color: $primary-color;
+      }
+
+      &.active {
+        color: $primary-color;
+
+        &::after {
+          transform: scaleX(1);
+        }
+      }
+    }
+  }
+
+  // 賽程表格區塊
+  .standings-table {
+    background: $white-color;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    overflow: hidden;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+
+      th, td {
+        padding: 1rem;
+        text-align: center;
+        border-bottom: 1px solid rgba($primary-color, 0.1);
+
+        @media (max-width: $mobile-width) {
+          padding: 0.5rem;
+          font-size: 0.9rem;
+
+          &:nth-child(n+4):nth-child(-n+7) {
+            display: none;
+          }
+        }
+
+        &:first-child {
+          text-align: left;
+          padding-left: 1.5rem;
+        }
+      }
+
+      th {
+        background-color: $primary-color;
+        color: $white-color;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+
+      tbody {
+        tr {
+          &:hover {
+            background-color: rgba($primary-color, 0.05);
+          }
+
+          &:last-child td {
+            border-bottom: none;
+          }
+        }
+      }
+    }
+  }
+
+  // 賽程展開區塊
+  .matches-accordion {
+    .match-item {
+      background: $white-color;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      transition: all 0.3s ease;
+
+      &:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .match-header {
+        padding: 1rem 1.5rem;
+        background-color: rgba($primary-color, 0.05);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 500;
+        color: $primary-color;
+        transition: background-color 0.3s ease;
+
+        @media (max-width: $mobile-width) {
+          padding: 0.75rem 1rem;
+          font-size: 0.9rem;
+        }
+
+        &:hover {
+          background-color: rgba($primary-color, 0.1);
+        }
+      }
+
+      .match-details {
+        padding: 1.5rem;
+        border-top: 1px solid rgba($primary-color, 0.1);
+
+        @media (max-width: $mobile-width) {
+          padding: 1rem;
+        }
+
+        .team {
+          display: flex;
+          align-items: center;
+          padding: 0.5rem 0;
+
+          .team-name {
+            flex: 1;
+          }
+
+          .score {
+            font-weight: bold;
+            min-width: 30px;
+            text-align: center;
+          }
+
+          .pk {
+            color: $accent-orange;
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+          }
+        }
+
+        .venue {
+          margin-top: 1rem;
+          padding-top: 1rem;
+          border-top: 1px solid rgba($primary-color, 0.1);
+          color: $gray-400-color;
+          font-size: 0.9rem;
+
+          &::before {
+            content: '比賽場地：';
+            color: $primary-color;
+          }
+        }
+      }
+    }
+  }
+
+  // 淘汰賽賽程區塊
+  .knockout-matches {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+
+    @media (max-width: $mobile-width) {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .knockout-match {
+      background: $white-color;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+
+      .match-header {
+        background: $primary-color;
+        color: $white-color;
+        padding: 0.75rem 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.9rem;
+      }
+
+      .match-content {
+        padding: 1rem;
+
+        .team {
+          padding: 0.75rem 0;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 1rem;
+          border-bottom: 1px solid rgba($primary-color, 0.1);
+
+          &:last-of-type {
+            border-bottom: none;
+          }
+
+          .team-name {
+            flex: 1;
+          }
+
+          .score {
+            font-weight: bold;
+            min-width: 30px;
+            text-align: center;
+          }
+
+          .pk {
+            color: $accent-orange;
+            font-size: 0.9rem;
+          }
+        }
+
+        .venue {
+          margin-top: 0.75rem;
+          padding-top: 0.75rem;
+          border-top: 1px solid rgba($primary-color, 0.1);
+          color: $gray-400-color;
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}

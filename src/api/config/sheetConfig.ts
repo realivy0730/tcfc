@@ -35,12 +35,12 @@ export const MAYORS_CUP_CONFIG: ApiConfig = {
     API_KEY: import.meta.env.VITE_GOOGLE_SHEETS_API_KEY,
     SHEET_IDS: {
         '2024': {
-            SCHOOL: import.meta.env.VITE_2024_SCHOOL_SHEET_ID,
-            OPEN: import.meta.env.VITE_2024_PUBLIC_SHEET_ID,
+            SCHOOL: "16wHkCtgAsVNnK2O-ZB-8qusmn_aOrZCGYFQhNqxQVIU",
+            OPEN: "1KK7sWlqxWqvzSePBrg6HUDBqnCP-WMuVQzmfhMzcTLA",
         },
         '2025': {
-            SCHOOL: import.meta.env.VITE_2025_SCHOOL_SHEET_ID,
-            OPEN: import.meta.env.VITE_2025_PUBLIC_SHEET_ID,
+            SCHOOL: "16wHkCtgAsVNnK2O-ZB-8qusmn_aOrZCGYFQhNqxQVIU",
+            OPEN: "1KK7sWlqxWqvzSePBrg6HUDBqnCP-WMuVQzmfhMzcTLA",
         }
     },
     RANGE: 'A2:K',
