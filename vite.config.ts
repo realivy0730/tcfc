@@ -16,6 +16,9 @@ export default defineConfig({
             '@': fileURLToPath(new URL('./src', import.meta.url))
         },
     },
+    define: {
+        'process.env.VITE_GOOGLE_SHEETS_API_KEY': JSON.stringify(process.env.VITE_GOOGLE_SHEETS_API_KEY),
+    },
     build: {
         outDir: 'dist',
         assetsDir: 'assets',
@@ -40,3 +43,4 @@ export default defineConfig({
         devSourcemap: true
     }
 })
+console.log("VITE_GOOGLE_SHEETS_API_KEY:", process.env.VITE_GOOGLE_SHEETS_API_KEY);
