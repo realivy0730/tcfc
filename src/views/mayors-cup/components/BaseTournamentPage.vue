@@ -15,10 +15,16 @@
 
         <!-- 賽事類型分頁 -->
         <div v-if="hasKnockoutMatches" class="tournament-tabs">
-            <button :class="['tab-button', { active: activeTab === 'group' }]" @click="activeTab = 'group'">
+            <button
+                :class="['tab-button', { active: activeTab === 'group' }]"
+                @click="activeTab = 'group'"
+            >
                 分組賽
             </button>
-            <button :class="['tab-button', { active: activeTab === 'knockout' }]" @click="activeTab = 'knockout'">
+            <button
+                :class="['tab-button', { active: activeTab === 'knockout' }]"
+                @click="activeTab = 'knockout'"
+            >
                 淘汰賽
             </button>
         </div>
@@ -58,8 +64,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(team, index) in group.standings" :key="team.name"
-                                    :class="{ 'promotion-zone': index < 2 }">
+                                <tr
+                                    v-for="(team, index) in group.standings"
+                                    :key="team.name"
+                                    :class="{ 'promotion-zone': index < 2 }"
+                                >
                                     <td class="rank">{{ index + 1 }}</td>
                                     <td class="team-col">{{ team.name }}</td>
                                     <td>{{ team.played }}</td>
@@ -78,14 +87,25 @@
                     <div class="matches-section">
                         <div class="matches-header" @click="toggleGroupMatches(group.name)">
                             <span>{{ getMatchesHeaderText(group) }}</span>
-                            <i class="fas fa-chevron-down" :class="{ 'rotate': expandedGroups[group.name] }"></i>
+                            <i
+                                class="fas fa-chevron-down"
+                                :class="{ 'rotate': expandedGroups[group.name] }"
+                            ></i>
                         </div>
 
                         <div v-show="expandedGroups[group.name]" class="matches-content">
                             <!-- 賽事卡片 -->
-                            <div v-for="match in group.matches" :key="match.gameNumber" class="match-item"
-                                :class="{ 'no-score': !hasScore(match) }">
-                                <MatchCard :match="match" :show-score="hasScore(match)" :is-winner="isWinner" />
+                            <div
+                                v-for="match in group.matches"
+                                :key="match.gameNumber"
+                                class="match-item"
+                                :class="{ 'no-score': !hasScore(match) }"
+                            >
+                                <MatchCard
+                                    :match="match"
+                                    :show-score="hasScore(match)"
+                                    :is-winner="isWinner"
+                                />
                             </div>
                         </div>
                     </div>
@@ -106,9 +126,18 @@
             </div>
 
             <div class="knockout-matches">
-                <div v-for="match in knockoutMatches" :key="match.gameNumber" class="knockout-match"
-                    :class="{ 'no-score': !hasScore(match) }">
-                    <MatchCard :match="match" :show-score="hasScore(match)" :is-winner="isWinner" layout="knockout" />
+                <div
+                    v-for="match in knockoutMatches"
+                    :key="match.gameNumber"
+                    class="knockout-match"
+                    :class="{ 'no-score': !hasScore(match) }"
+                >
+                    <MatchCard
+                        :match="match"
+                        :show-score="hasScore(match)"
+                        :is-winner="isWinner"
+                        layout="knockout"
+                    />
                 </div>
             </div>
         </div>
@@ -332,6 +361,7 @@ onMounted(() => {
     loadMatches();
 });
 </script>
+
 <style lang="scss" scoped>
 /* 在檔案頂部添加 */
 @use "sass:color";
@@ -426,13 +456,14 @@ onMounted(() => {
 
     // 分頁切換
     .tournament-tabs {
-        display: flex;
-        gap: 1rem;
         margin-bottom: 2rem;
         border-bottom: 2px solid rgba($primary-color, 0.1);
+        display: flex;
+        width: 100%;
 
         .tab-button {
-            padding: 1rem 2rem;
+            flex: 1;
+            padding: 1rem 0;
             background: none;
             border: none;
             color: $gray-400-color;
@@ -441,6 +472,7 @@ onMounted(() => {
             cursor: pointer;
             position: relative;
             transition: all 0.3s ease;
+            text-align: center;
 
             &::after {
                 content: '';
@@ -464,6 +496,11 @@ onMounted(() => {
                 &::after {
                     transform: scaleX(1);
                 }
+            }
+
+            // 移除最後一個按鈕的右邊框
+            &:last-child {
+                border-right: none;
             }
         }
     }
