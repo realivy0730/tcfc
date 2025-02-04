@@ -1,5 +1,6 @@
 // src/router/index.ts
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
+import { mayorsCupRoutes } from './mayors-cup'
 
 const routes: RouteRecordRaw[] = [
     {
@@ -10,6 +11,7 @@ const routes: RouteRecordRaw[] = [
             title: '首頁'
         }
     },
+    ...mayorsCupRoutes,
     {
         path: '/:pathMatch(.*)*',
         name: 'NotFound',

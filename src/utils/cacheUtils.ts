@@ -1,5 +1,5 @@
 // src/utils/cacheUtils.ts
-import { GameSchedule } from '../api/types/gameSchedule';
+import type { GameSchedule } from '../api/types/gameSchedule';
 
 const CACHE_PREFIX = 'GSCHEDULE_';
 const CACHE_TTL = 30 * 60 * 1000; // 30 分鐘

@@ -5,5 +5,7 @@
 @use 'components/header';
 @use 'components/footer';
 @use 'components/navigation';
+@use 'components/tournament';
+
 @use 'views/index';
 @use 'views/not-found';

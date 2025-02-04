@@ -1,6 +1,6 @@
 // src/utils/sheetFetcher.ts
-import { GameSchedule } from '../api/types/gameSchedule';
-import { GOOGLE_SHEET_CONFIG } from '../api/config/sheetConfig';
+import type { GameSchedule } from '../api/types/gameSchedule';
+import { MAYORS_CUP_CONFIG } from '../api/config/sheetConfig';
 import axiosInstance from './axios';
 
 /**
@@ -13,7 +13,7 @@ export const fetchSheetData = async (
     sheetId: string,
     sheetName: string
 ): Promise<GameSchedule[]> => {
-    const { API_KEY, RANGE } = GOOGLE_SHEET_CONFIG;
+    const { API_KEY, RANGE } = MAYORS_CUP_CONFIG;
     const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${encodeURIComponent(sheetName)}!${RANGE}?key=${API_KEY}`;
 
     try {
