@@ -42,6 +42,9 @@ jobs:
         env:
           VITE_GOOGLE_SHEETS_API_KEY: ${{ secrets.VITE_GOOGLE_SHEETS_API_KEY }}
 
+      - name: Debug Environment Variables
+        run: echo "VITE_GOOGLE_SHEETS_API_KEY=${{ secrets.VITE_GOOGLE_SHEETS_API_KEY }}"
+
       - name: Create 404 Page
         run: cp dist/index.html dist/404.html
 
