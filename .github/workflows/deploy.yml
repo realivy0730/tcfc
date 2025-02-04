@@ -34,13 +34,13 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Set environment variables
+        run: echo "VITE_GOOGLE_SHEETS_API_KEY=${{ secrets.VITE_GOOGLE_SHEETS_API_KEY }}" >> $GITHUB_ENV
+
       - name: Build Project
         run: npm run build
         env:
-          VITE_BASE_URL: ${{ secrets.VITE_BASE_URL }}
           VITE_GOOGLE_SHEETS_API_KEY: ${{ secrets.VITE_GOOGLE_SHEETS_API_KEY }}
-          VITE_SCHOOL_SHEET_ID: ${{ secrets.VITE_SCHOOL_SHEET_ID }}
-          VITE_PUBLIC_SHEET_ID: ${{ secrets.VITE_PUBLIC_SHEET_ID }}
 
       - name: Create 404 Page
         run: cp dist/index.html dist/404.html
