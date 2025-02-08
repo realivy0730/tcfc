@@ -15,16 +15,10 @@
 
         <!-- 賽事類型分頁 -->
         <div v-if="hasKnockoutMatches" class="tournament-tabs">
-            <button
-                :class="['tab-button', { active: activeTab === 'group' }]"
-                @click="activeTab = 'group'"
-            >
+            <button :class="['tab-button', { active: activeTab === 'group' }]" @click="activeTab = 'group'">
                 分組賽
             </button>
-            <button
-                :class="['tab-button', { active: activeTab === 'knockout' }]"
-                @click="activeTab = 'knockout'"
-            >
+            <button :class="['tab-button', { active: activeTab === 'knockout' }]" @click="activeTab = 'knockout'">
                 淘汰賽
             </button>
         </div>
@@ -64,11 +58,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr
-                                    v-for="(team, index) in group.standings"
-                                    :key="team.name"
-                                    :class="{ 'promotion-zone': index < 2 }"
-                                >
+                                <tr v-for="(team, index) in group.standings" :key="team.name"
+                                    :class="{ 'promotion-zone': index < 2 }">
                                     <td class="rank">{{ index + 1 }}</td>
                                     <td class="team-col">{{ team.name }}</td>
                                     <td>{{ team.played }}</td>
@@ -87,25 +78,14 @@
                     <div class="matches-section">
                         <div class="matches-header" @click="toggleGroupMatches(group.name)">
                             <span>{{ getMatchesHeaderText(group) }}</span>
-                            <i
-                                class="fas fa-chevron-down"
-                                :class="{ 'rotate': expandedGroups[group.name] }"
-                            ></i>
+                            <i class="fas fa-chevron-down" :class="{ 'rotate': expandedGroups[group.name] }"></i>
                         </div>
 
                         <div v-show="expandedGroups[group.name]" class="matches-content">
                             <!-- 賽事卡片 -->
-                            <div
-                                v-for="match in group.matches"
-                                :key="match.gameNumber"
-                                class="match-item"
-                                :class="{ 'no-score': !hasScore(match) }"
-                            >
-                                <MatchCard
-                                    :match="match"
-                                    :show-score="hasScore(match)"
-                                    :is-winner="isWinner"
-                                />
+                            <div v-for="match in group.matches" :key="match.gameNumber" class="match-item"
+                                :class="{ 'no-score': !hasScore(match) }">
+                                <MatchCard :match="match" :show-score="hasScore(match)" :is-winner="isWinner" />
                             </div>
                         </div>
                     </div>
@@ -126,18 +106,9 @@
             </div>
 
             <div class="knockout-matches">
-                <div
-                    v-for="match in knockoutMatches"
-                    :key="match.gameNumber"
-                    class="knockout-match"
-                    :class="{ 'no-score': !hasScore(match) }"
-                >
-                    <MatchCard
-                        :match="match"
-                        :show-score="hasScore(match)"
-                        :is-winner="isWinner"
-                        layout="knockout"
-                    />
+                <div v-for="match in knockoutMatches" :key="match.gameNumber" class="knockout-match"
+                    :class="{ 'no-score': !hasScore(match) }">
+                    <MatchCard :match="match" :show-score="hasScore(match)" :is-winner="isWinner" layout="knockout" />
                 </div>
             </div>
         </div>
@@ -466,7 +437,7 @@ onMounted(() => {
             padding: 1rem 0;
             background: none;
             border: none;
-            color: $gray-400-color;
+            color: $gray-400;
             font-size: 1.1rem;
             font-weight: 500;
             cursor: pointer;
@@ -517,8 +488,8 @@ onMounted(() => {
         gap: 0.75rem;
 
         &.empty {
-            background: rgba($gray-400-color, 0.1);
-            color: $gray-400-color;
+            background: rgba($gray-400, 0.1);
+            color: $gray-400;
         }
 
         i {
@@ -558,7 +529,7 @@ onMounted(() => {
 
                         &.rank {
                             width: 60px;
-                            color: $gray-400-color;
+                            color: $gray-400;
                         }
 
                         &.team-col {
@@ -630,7 +601,7 @@ onMounted(() => {
                     }
 
                     i {
-                        color: $gray-400-color;
+                        color: $gray-400;
                         transition: transform 0.3s ease;
 
                         &.rotate {

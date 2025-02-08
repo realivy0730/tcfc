@@ -168,6 +168,8 @@ const getMedalLabel = (index: number) => {
 </script>
 
 <style lang="scss" scoped>
+@use "sass:color";
+
 .welcome-page {
     min-height: 100vh;
     background-color: $bg-color;
@@ -182,7 +184,7 @@ const getMedalLabel = (index: number) => {
     h1 {
         font-size: 2.5rem;
         margin-bottom: 1rem;
-        text-shadow: 0 2px 4px rgba($gray-500-color, 0.2);
+        text-shadow: 0 2px 4px rgba($gray-500, 0.2);
 
         @media (max-width: $mobile-width) {
             font-size: 1.8rem;
@@ -192,7 +194,7 @@ const getMedalLabel = (index: number) => {
     .subtitle {
         font-size: 1.4rem;
         opacity: 0.9;
-        color: $white-100-color;
+        color: $white-100;
 
         @media (max-width: $mobile-width) {
             font-size: 1.1rem;
@@ -224,7 +226,7 @@ const getMedalLabel = (index: number) => {
 .tabs-wrapper {
     position: relative;
     display: flex;
-    background: $white-100-color;
+    background: $white-100;
     border-radius: 8px;
     padding: 0.25rem;
     height: 56px;
@@ -240,7 +242,7 @@ const getMedalLabel = (index: number) => {
         background: none;
         padding: 0.75rem;
         cursor: pointer;
-        color: $gray-300-color;
+        color: $gray-300;
         font-weight: 500;
         transition: color 0.3s ease;
         z-index: 2;
@@ -258,7 +260,7 @@ const getMedalLabel = (index: number) => {
             padding: 0.25rem 0.75rem;
             border-radius: 12px;
             font-size: 0.9rem;
-            color: $gray-400-color;
+            color: $gray-400;
         }
 
         @media (max-width: $mobile-width) {
@@ -305,7 +307,7 @@ const getMedalLabel = (index: number) => {
         transition: all 0.3s ease;
 
         &:hover {
-            background: darken($accent-green, 5%);
+            background: color.adjust($accent-green, $lightness: -5%);
             transform: translateY(-2px);
         }
 
@@ -361,7 +363,7 @@ const getMedalLabel = (index: number) => {
         justify-content: space-between;
         align-items: center;
         padding: 1.25rem;
-        background: $white-100-color;
+        background: $white-100;
         border-bottom: 1px solid rgba($primary-color, 0.1);
 
         h3 {
@@ -378,9 +380,17 @@ const getMedalLabel = (index: number) => {
             .fa-medal {
                 font-size: 1.2rem;
 
-                &.gold { color: $accent-orange; }
-                &.silver { color: $gray-200-color; }
-                &.bronze { color: $second-color; }
+                &.gold {
+                    color: $accent-orange;
+                }
+
+                &.silver {
+                    color: $gray-200;
+                }
+
+                &.bronze {
+                    color: $second-color;
+                }
             }
         }
     }
@@ -390,7 +400,7 @@ const getMedalLabel = (index: number) => {
             display: flex;
             align-items: center;
             padding: 1rem 1.25rem;
-            border-bottom: 1px solid $white-100-color;
+            border-bottom: 1px solid $white-100;
 
             &:last-child {
                 border-bottom: none;
@@ -399,7 +409,7 @@ const getMedalLabel = (index: number) => {
             .rank {
                 width: 2rem;
                 font-weight: 600;
-                color: $gray-300-color;
+                color: $gray-300;
             }
 
             .name {
@@ -416,15 +426,15 @@ const getMedalLabel = (index: number) => {
             }
 
             &.gold .medal-label {
-                background: linear-gradient(45deg, $accent-orange, lighten($accent-orange, 10%));
+                background: linear-gradient(45deg, $accent-orange, color.adjust($accent-orange, $lightness: 10%));
             }
 
             &.silver .medal-label {
-                background: linear-gradient(45deg, $gray-200-color, $gray-100-color);
+                background: linear-gradient(45deg, $gray-200, $gray-100);
             }
 
             &.bronze .medal-label {
-                background: linear-gradient(45deg, $second-color, lighten($second-color, 10%));
+                background: linear-gradient(45deg, $second-color, color.adjust($second-color, $lightness: 10%));
             }
         }
     }
@@ -495,12 +505,14 @@ const getMedalLabel = (index: number) => {
         }
     }
 }
+
 // 補充動畫效果
 @keyframes slideIn {
     from {
         opacity: 0;
         transform: translateY(-10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -523,7 +535,8 @@ const getMedalLabel = (index: number) => {
             pointer-events: none;
         }
 
-        h1, .subtitle {
+        h1,
+        .subtitle {
             animation: slideIn 0.6s ease-out forwards;
         }
 
@@ -581,12 +594,10 @@ const getMedalLabel = (index: number) => {
                     left: -100%;
                     width: 100%;
                     height: 100%;
-                    background: linear-gradient(
-                        90deg,
-                        transparent,
-                        rgba($white-color, 0.2),
-                        transparent
-                    );
+                    background: linear-gradient(90deg,
+                            transparent,
+                            rgba($white-color, 0.2),
+                            transparent);
                     transition: left 0.5s ease-out;
                 }
 
@@ -649,7 +660,7 @@ const getMedalLabel = (index: number) => {
             }
 
             &.silver:hover::before {
-                background: $gray-200-color;
+                background: $gray-200;
             }
 
             &.bronze:hover::before {
@@ -670,12 +681,10 @@ const getMedalLabel = (index: number) => {
                 left: -100%;
                 width: 100%;
                 height: 100%;
-                background: linear-gradient(
-                    90deg,
-                    transparent,
-                    rgba($white-color, 0.2),
-                    transparent
-                );
+                background: linear-gradient(90deg,
+                        transparent,
+                        rgba($white-color, 0.2),
+                        transparent);
                 transition: left 0.5s ease-out;
             }
 
@@ -696,6 +705,7 @@ const getMedalLabel = (index: number) => {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }

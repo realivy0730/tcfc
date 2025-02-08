@@ -1,3 +1,26 @@
 @use "sass:color";
+@forward 'base/variables' show
+$primary-color,
+$second-color,
+$text-color,
+$gray-500,
+$gray-400,
+$gray-300,
+$gray-200,
+$gray-100,
+$white,
+$white-100,
+$white-color,
+$bg-color,
+$accent,
+$accent-blue,
+$accent-green,
+$accent-orange,
+$breakpoints,
+$spacing-unit,
+$container-width,
+$mobile-width,
+get-accent,
+get-breakpoint,
+color-variant;
 
-@forward 'base/variables';

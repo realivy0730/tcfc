@@ -1,3 +1,4 @@
+@use '../settings' as *;
 /* 重置樣式 */
 * {
     margin: 0;
@@ -8,13 +9,13 @@
 body {
     font-family: "Noto Sans TC", "Rubik",'Libre Baskerville','Century Gothic', Arial;
     line-height: 1.6;
-
+    margin: 0;
 }
 
 /* 主要內容區域樣式 */
 .main-content {
     margin-top: 72px;
-    @media (max-width: $mobile-width) {
+    @media (max-width: get-breakpoint("mobile"))  {
         margin-top:43px;
     }
 }

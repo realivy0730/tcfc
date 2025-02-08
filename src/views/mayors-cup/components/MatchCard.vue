@@ -132,7 +132,7 @@ const getMatchStatus = (match: GameSchedule): string => {
         }
 
         .time {
-            color: $gray-400-color;
+            color: $gray-400;
         }
 
         .number {
@@ -141,7 +141,7 @@ const getMatchStatus = (match: GameSchedule): string => {
     }
 
     .venue {
-        color: $gray-400-color;
+        color: $gray-400;
         font-size: 0.9rem;
         display: flex;
         align-items: center;
@@ -195,9 +195,9 @@ const getMatchStatus = (match: GameSchedule): string => {
 
             .match-status {
                 font-size: 0.9rem;
-                color: $gray-400-color;
+                color: $gray-400;
                 padding: 0.2rem 0.5rem;
-                background-color: rgba($gray-400-color, 0.1);
+                background-color: rgba($gray-400, 0.1);
                 border-radius: 4px;
             }
         }

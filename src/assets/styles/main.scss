@@ -1,11 +1,15 @@
-@use "sass:color";
+// src/assets/styles/main.scss
 
 @use 'settings' as *;
+// 基礎樣式
+@use 'base/reset';
 
+// 元件樣式
 @use 'components/header';
 @use 'components/footer';
 @use 'components/navigation';
 @use 'components/tournament';
 
+// 頁面樣式
 @use 'views/index';
 @use 'views/not-found';

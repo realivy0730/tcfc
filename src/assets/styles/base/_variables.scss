@@ -1,26 +1,75 @@
 @use "sass:color";
-// 顏色
-$primary-color: #103c5d;
-$text-color: #333;
-$white: #ffffff;
+@use "sass:map";
 
+// === 主要色系 ===
+$primary-color: #103c5d;
 $second-color: #870D0E;
-$gray-500-color: #272828;
-$gray-400-color: #5f5f5f;
-$gray-300-color: #929292;
-$gray-200-color: #D1D1D1;
-$gray-100-color: #BFBFBF;
-$white-color: #fff;
-$white-100-color: #F8F0E5;
+$accent-blue: #4A90E2;  // 新增
+$accent-green: #50B794; // 新增
+$accent-orange: #F5A623; // 新增
+// === 文字色系 ===
+$text-color: #333;
+$white-color: #ffffff;  // 新增
+
+// === 灰階色系 ===
+$gray-500: #272828;
+$gray-400: #5f5f5f;
+$gray-300: #929292;
+$gray-200: #D1D1D1;
+$gray-100: #BFBFBF;
+
+// === 白色系列 ===
+$white: #ffffff;
+$white-100: #F8F0E5;
+
+// === 背景色系 ===
 $bg-color: #F9F6F0;
 
-// 尺寸
+// === 輔助色系 ===
+$accent: (
+  "blue": #4A90E2,
+  "green": #50B794,
+  "orange": #F5A623
+);
+
+// === 響應式斷點 ===
+// 先定義 breakpoints map
+$breakpoints: (
+  "mobile": 768px,
+  "tablet": 992px,
+  "desktop": 1200px
+);
+
+// 再定義基於 breakpoints 的變數
 $mobile-width: 768px;
+$tablet-width: 992px;
+$desktop-width: 1200px;
 $container-width: 1200px;
+
+// === 間距單位 ===
 $spacing-unit: 1rem;
 
+// === 輔助函數 ===
+@function get-accent($color) {
+  @return map.get($accent, $color);
+}
 
-// 輔助色系
-$accent-blue: #4A90E2;
-$accent-green: #50B794;
-$accent-orange: #F5A623;
+@function get-breakpoint($point) {
+  @return map.get($breakpoints, $point);
+}
+
+// === 顏色調整輔助混入 ===
+@mixin color-variant($color, $lightness: 10%) {
+    background: linear-gradient(45deg, $color, color.adjust($color, $lightness: $lightness));
+  }
+
+  // === 響應式設計混入 ===
+  @mixin respond-to($breakpoint) {
+      @if map.has-key($breakpoints, $breakpoint) {
+          @media (max-width: map.get($breakpoints, $breakpoint)) {
+              @content;
+          }
+      } @else {
+          @warn "無效的斷點: #{$breakpoint}。可用的斷點是: #{map.keys($breakpoints)}";
+      }
+  }
