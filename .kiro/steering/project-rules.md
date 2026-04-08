@@ -1,7 +1,7 @@
 ---
 title: "TCFC 網站專案 — 強制規則"
 tags: [steering, rules, tcfc]
-version: "1.3"
+version: "1.4"
 related_id: []
 last_updated: "2026-04-08"
 ---
@@ -20,6 +20,28 @@ last_updated: "2026-04-08"
 | 資料來源 | Google Sheets API |
 | 當前版本 | v0.0.4.01 |
 | 知識庫名稱 | `tcfc` |
+
+## 知識庫路徑規範（強制）
+
+**所有知識庫文件必須放在 `docs/` 目錄下，禁止在專案根目錄建立 `00_Meta/`、`10_Core_Knowledge/`、`20_Projects/`、`99_Archives/`。**
+
+```
+docs/                          ← 知識庫根目錄（強制前綴）
+├── 00_Meta/                   索引與變更記錄
+│   ├── INDEX.md
+│   └── changelog.md
+├── 10_Core_Knowledge/         核心知識（AI 檢索區）
+├── 20_Projects/               進行中專案
+├── 99_Archives/               封存區（不檢索）
+├── fetch_raw_data/            原始賽程資料
+└── games/                     賽事文件
+```
+
+引用範例：
+- ✅ `docs/00_Meta/changelog.md`
+- ✅ `docs/10_Core_Knowledge/tcfc-architecture.md`
+- ❌ `00_Meta/changelog.md`（禁止）
+- ❌ `10_Core_Knowledge/`（禁止在根目錄）
 
 ## Git Flow 分支規則（強制）
 
@@ -81,9 +103,9 @@ Step 3: git commit & push (Version Control Sync)
 
 | 文件 | 更新條件 |
 |------|----------|
-| `00_Meta/changelog.md` | **每次必更新** — 記錄變更項目 |
-| `10_Core_Knowledge/` | 架構/元件/API 有變動時 |
-| `00_Meta/INDEX.md` | 目錄結構有變動時 |
+| `docs/00_Meta/changelog.md` | **每次必更新** — 記錄變更項目 |
+| `docs/10_Core_Knowledge/` | 架構/元件/API 有變動時 |
+| `docs/00_Meta/INDEX.md` | 目錄結構有變動時 |
 
 ### Step 3: git commit & push
 
@@ -109,16 +131,16 @@ Step 3: git commit & push (Version Control Sync)
 | 僅修改知識庫文件 | Step 2 → Step 3（可在 develop 或 feature/docs-*） |
 | 純查詢/分析/討論 | 不觸發 |
 
-## 知識庫目錄結構
+## 專案目錄結構
 
 ```
 tcfc/
-├── 00_Meta/           索引與變更記錄
-├── 10_Core_Knowledge/ 核心知識（AI 檢索區）
-├── 20_Projects/       進行中專案
-├── 99_Archives/       封存區（不檢索）
 ├── src/               Vue 3 原始碼
-├── docs/              文件與原始資料
+├── docs/              文件與知識庫（強制路徑）
+│   ├── 00_Meta/       索引與變更記錄
+│   ├── 10_Core_Knowledge/ 核心知識
+│   ├── 20_Projects/   進行中專案
+│   └── 99_Archives/   封存區
 ├── public/            靜態資源
 ├── archives/          舊版 HTML 頁面
 └── .kiro/

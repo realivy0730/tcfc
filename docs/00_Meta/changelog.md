@@ -8,6 +8,25 @@ last_updated: "2026-04-08"
 
 # TCFC 變更記錄
 
+## 2026-04-08 — v1.4 知識庫路徑遷移至 docs/
+
+**執行者**: Boday
+**分支**: develop
+
+### 變更內容
+- 搬移知識庫目錄：`00_Meta/` → `docs/00_Meta/`、`10_Core_Knowledge/` → `docs/10_Core_Knowledge/`、`20_Projects/` → `docs/20_Projects/`、`99_Archives/` → `docs/99_Archives/`
+- 更新 `steering/project-rules.md` v1.3 → v1.4
+  - 新增「知識庫路徑規範」段落（強制 `docs/` 前綴，含正確/錯誤引用範例）
+  - 更新 Step 2 文件路徑為 `docs/` 前綴
+  - 更新目錄結構圖
+- 更新 `docs/00_Meta/INDEX.md` 反映新路徑
+- 更新 `.gitignore` 路徑
+
+### 影響範圍
+- 後續所有知識庫操作必須使用 `docs/` 前綴路徑
+
+---
+
 ## 2026-04-08 — v1.3 更新 steering + 建立核心知識文件
 
 **執行者**: Boday
