@@ -1,4 +1,15 @@
+# 依賴
 node_modules
 dist
-*.local
+
+# 知識庫封存區（不追蹤）
+99_Archives/
+
+# OS
 .DS_Store
+*.local
+*.swp
+
+# 編輯器
+.vscode/
+.idea/
