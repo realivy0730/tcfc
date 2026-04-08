@@ -8,6 +8,24 @@ last_updated: "2026-04-08"
 
 # TCFC 變更記錄
 
+## 2026-04-08 — 建立 tcfc-dev agent 和 tcfc-ops skill
+
+**執行者**: Boday
+**分支**: develop
+
+### 變更內容
+- 建立 `.kiro/agents/tcfc-dev.json`
+  - Vue 3 + TypeScript 開發與維運 agent
+  - shell deniedCommands 防止直接 push main/develop
+  - agentSpawn hook 自動顯示分支狀態
+  - resources 載入 steering + 核心知識 + skills
+- 建立 `.kiro/skills/tcfc-ops/SKILL.md`
+  - 新增年度賽事 SOP（sheetConfig → service → view → router）
+  - 本地建置驗證清單
+  - 部署前/後檢查清單
+
+---
+
 ## 2026-04-08 — v1.4 知識庫路徑遷移至 docs/
 
 **執行者**: Boday
