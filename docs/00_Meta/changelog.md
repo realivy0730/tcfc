@@ -8,6 +8,18 @@ last_updated: "2026-04-08"
 
 # TCFC 變更記錄
 
+## 2026-04-08 — 建立 Agent 錯誤記錄
+
+**執行者**: Boday
+**分支**: feature/docs-learnings → develop
+
+### 變更內容
+- 建立 `.learnings/LEARNINGS.md`
+- 記錄違反 Gitflow 規範的錯誤：直接在 develop commit 並 merge 到 main
+- 含根本原因分析與預防措施
+
+---
+
 ## 2026-04-08 — 建立 Gitflow 執行記錄知識文件
 
 **執行者**: Boday
