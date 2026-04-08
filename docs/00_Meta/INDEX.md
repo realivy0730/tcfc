@@ -45,6 +45,7 @@ tcfc/
 |------|------|
 | [專案架構](../10_Core_Knowledge/tcfc-architecture.md) | 資料流、元件架構、API 層、積分邏輯 |
 | [部署流程](../10_Core_Knowledge/github-actions-deploy.md) | GitHub Actions、Secrets、待辦 |
+| [Gitflow 記錄](../10_Core_Knowledge/gitflow-history.md) | 版本時間軸、分支流程圖、關鍵 commit |
 
 ## 專案資訊
 

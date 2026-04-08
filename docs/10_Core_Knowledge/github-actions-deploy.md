@@ -30,10 +30,11 @@ last_updated: "2026-04-08"
 
 ## 部署歷史
 
-| Run | Commit | 說明 | 狀態 |
-|-----|--------|------|------|
-| #35 | 7d9c619 | hotfix/v0.0.4.01 移除 Debug step | ✅ Success (1m 15s) |
-| #34 | fe12d69 | 初始化 Kiro CLI 工作目錄 | ✅ Success (1m 18s) |
+| Run | Commit | Tag | 說明 | 狀態 |
+|-----|--------|-----|------|------|
+| #36 | 0e7b957 | v0.0.5 | release/v0.0.5 Kiro CLI 工作目錄完整建置 | ✅ Success (1m 18s) |
+| #35 | 7d9c619 | v0.0.4.01 | hotfix/v0.0.4.01 移除 Debug step | ✅ Success (1m 23s) |
+| #34 | fe12d69 | — | 初始化 Kiro CLI 工作目錄 | ✅ Success (1m 18s) |
 
 ## 已知問題與待辦
 
