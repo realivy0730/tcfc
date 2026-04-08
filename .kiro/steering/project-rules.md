@@ -20,6 +20,8 @@ last_updated: "2026-04-08"
 | 資料來源 | Google Sheets API |
 | 當前版本 | v0.0.5 |
 | 知識庫名稱 | `tcfc` |
+| 知識庫路徑 | `docs/`（禁止指向專案根目錄） |
+| 知識庫更新 | `knowledge update --name tcfc --path /Users/boday/工作/Kiro/tcfc/docs` |
 
 ## 知識庫路徑規範（強制）
 

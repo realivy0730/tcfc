@@ -8,6 +8,19 @@ last_updated: "2026-04-08"
 
 # TCFC 變更記錄
 
+## 2026-04-08 — 修正知識庫索引路徑
+
+**執行者**: Boday
+**分支**: feature/docs-kb-path-fix → develop
+
+### 變更內容
+- 修正 knowledge base `tcfc` 索引路徑
+  - 舊：`/Users/boday/工作/Kiro/tcfc`（9,888 items，含 src/node_modules 等非知識庫檔案）
+  - 新：`/Users/boday/工作/Kiro/tcfc/docs`（22 items，僅知識庫文件）
+- 更新 `steering/project-rules.md` 加入知識庫更新指令
+
+---
+
 ## 2026-04-08 — 建立 Agent 錯誤記錄
 
 **執行者**: Boday
