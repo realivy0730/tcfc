@@ -1,0 +1,46 @@
+{
+  "name": "tcfc-dev",
+  "description": "TCFC 網站開發與維運 agent，負責 Vue 元件開發、賽事功能擴展、部署驗證",
+  "prompt": "你是 TCFC 網站（tcfc.org.tw）的開發與維運專家。專案使用 Vue 3 + Vite + TypeScript + SCSS，資料來源為 Google Sheets API，部署於 GitHub Pages。所有操作必須遵循 Gitflow 工作流程，禁止直接 push 到 main 或 develop。知識庫文件必須放在 docs/ 目錄下。",
+  "tools": [
+    "read",
+    "write",
+    "shell",
+    "code",
+    "browser_navigate",
+    "browser_snapshot",
+    "browser_click"
+  ],
+  "toolsSettings": {
+    "write": {
+      "allowedPaths": [
+        "src/**",
+        "docs/**",
+        ".kiro/**",
+        "README.md",
+        ".gitignore"
+      ]
+    },
+    "shell": {
+      "deniedCommands": [
+        "git push origin main",
+        "git push origin develop"
+      ]
+    }
+  },
+  "resources": [
+    "file://.kiro/steering/**/*.md",
+    "file://docs/10_Core_Knowledge/**/*.md",
+    "file://README.md",
+    "skill://.kiro/skills/**/SKILL.md"
+  ],
+  "hooks": {
+    "agentSpawn": [
+      {
+        "command": "git branch --show-current && git status --short",
+        "timeout_ms": 5000
+      }
+    ]
+  },
+  "model": "claude-sonnet-4"
+}

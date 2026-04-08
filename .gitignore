@@ -3,7 +3,7 @@ node_modules
 dist
 
 # 知識庫封存區（不追蹤）
-99_Archives/
+docs/99_Archives/
 
 # OS
 .DS_Store
