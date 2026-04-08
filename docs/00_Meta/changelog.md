@@ -8,6 +8,25 @@ last_updated: "2026-04-08"
 
 # TCFC 變更記錄
 
+## 2026-04-08 — v0.0.5 (release) Kiro CLI 工作目錄完整建置
+
+**執行者**: Boday
+**分支**: release/v0.0.5 → main + develop
+
+### 變更內容（自 v0.0.4.01 起）
+- 建立 README.md（專案說明、技術棧、Gitflow 規範）
+- 建立 Kiro CLI 工作目錄結構
+  - `steering/project-rules.md` v1.4（Gitflow、路徑規範、部署規則、技術規範）
+  - `agents/tcfc-dev.json`（開發維運 agent，含安全防護）
+  - `skills/tcfc-ops/SKILL.md`（賽事維運 SOP、部署檢查）
+  - `settings/lsp.json`（TypeScript LSP）
+- 知識庫目錄遷移至 `docs/`（強制路徑規範）
+  - `docs/00_Meta/` — INDEX.md + changelog.md
+  - `docs/10_Core_Knowledge/` — tcfc-architecture.md + github-actions-deploy.md
+- 修復 deploy.yml Secret 洩漏（hotfix/v0.0.4.01 已含）
+
+---
+
 ## 2026-04-08 — 建立 tcfc-dev agent 和 tcfc-ops skill
 
 **執行者**: Boday

@@ -18,7 +18,7 @@ last_updated: "2026-04-08"
 | 技術棧 | Vue 3 + Vite + TypeScript + SCSS |
 | 部署 | GitHub Pages（push main 觸發） |
 | 資料來源 | Google Sheets API |
-| 當前版本 | v0.0.4.01 |
+| 當前版本 | v0.0.5 |
 | 知識庫名稱 | `tcfc` |
 
 ## 知識庫路徑規範（強制）
