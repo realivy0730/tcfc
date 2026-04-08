@@ -8,6 +8,16 @@ last_updated: "2026-04-08"
 
 # TCFC 變更記錄
 
+## 2026-04-08 — 建立 README.md
+
+**執行者**: Boday
+**分支**: feature/docs-readme → develop
+
+### 變更內容
+- 建立 `README.md`：功能說明、技術棧、專案結構、Gitflow 規則、部署流程、新增年度賽事指南
+
+---
+
 ## 2026-04-08 — v1.1 加入 Gitflow 分支規則
 
 **執行者**: Boday
