@@ -8,6 +8,20 @@ last_updated: "2026-04-08"
 
 # TCFC 變更記錄
 
+## 2026-04-08 — v1.2 加入 GitHub Actions 部署規則
+
+**執行者**: Boday
+**分支**: develop
+
+### 變更內容
+- 更新 `steering/project-rules.md` v1.1 → v1.2
+  - 加入 GitHub Actions 部署觸發條件與規則
+  - 加入 merge 到 main 前後的檢查清單
+  - 加入 Secrets 管理表與注意事項
+  - 標記 deploy.yml 中 Debug step 印出 Secret 的安全風險
+
+---
+
 ## 2026-04-08 — 建立 README.md
 
 **執行者**: Boday

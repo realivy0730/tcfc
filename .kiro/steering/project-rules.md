@@ -1,7 +1,7 @@
 ---
 title: "TCFC 網站專案 — 強制規則"
 tags: [steering, rules, tcfc]
-version: "1.1"
+version: "1.2"
 related_id: []
 last_updated: "2026-04-08"
 ---
@@ -125,6 +125,38 @@ tcfc/
     ├── skills/        專案級 Skill
     └── settings/      LSP 設定
 ```
+
+## GitHub Actions 部署（強制注意）
+
+### 觸發條件
+- **push 到 `main` 分支即觸發部署**（`.github/workflows/deploy.yml`）
+- 部署流程：`npm install` → `npm run build` → GitHub Pages
+- API Key 透過 GitHub Secrets 注入（`VITE_GOOGLE_SHEETS_API_KEY`）
+
+### 部署規則
+1. **禁止直接 push 到 main** — 必須透過 Gitflow merge（release/* 或 hotfix/*）
+2. merge 到 main 前必須確認：
+   - `npm run build` 本地建置成功
+   - TypeScript 無型別錯誤
+   - 路由正常運作
+3. merge 到 main 後必須：
+   - 確認 GitHub Actions 執行成功
+   - 驗證 https://tcfc.org.tw 頁面正常
+   - 建立對應版本 tag
+4. 部署失敗時：
+   - 檢查 Actions log
+   - 若為 Secrets 問題，需 repo owner（realivy0730）處理
+   - 若為建置錯誤，建立 hotfix 分支修復
+
+### Secrets 管理
+| Secret | 用途 | 管理者 |
+|--------|------|--------|
+| `VITE_GOOGLE_SHEETS_API_KEY` | Google Sheets API 存取 | repo owner |
+
+### ⚠️ 注意事項
+- `deploy.yml` 中有 Debug step 會印出 Secret，正式環境應移除
+- 404 頁面由 `cp dist/index.html dist/404.html` 自動產生（SPA 路由支援）
+- concurrency 設定 `cancel-in-progress: false`，不會取消進行中的部署
 
 ## 技術規範
 
