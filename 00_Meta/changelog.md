@@ -8,6 +8,20 @@ last_updated: "2026-04-08"
 
 # TCFC 變更記錄
 
+## 2026-04-08 — v0.0.4.01 (hotfix) 移除 deploy.yml Secret 洩漏
+
+**執行者**: Boday
+**分支**: hotfix/v0.0.4.01 → main + develop
+
+### 變更內容
+- 移除 `.github/workflows/deploy.yml` 中的 `Debug Environment Variables` step
+- 該 step 會將 `VITE_GOOGLE_SHEETS_API_KEY` 明文印到 GitHub Actions log
+
+### 影響範圍
+- 修復安全風險：API Key 不再暴露於 CI/CD log
+
+---
+
 ## 2026-04-08 — v1.0 初始化 Kiro CLI 工作目錄
 
 **執行者**: Boday
