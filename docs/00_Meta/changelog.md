@@ -8,6 +8,17 @@ last_updated: "2026-04-08"
 
 # TCFC 變更記錄
 
+## 2026-04-08 — 建立 Gitflow 執行記錄知識文件
+
+**執行者**: Boday
+**分支**: develop
+
+### 變更內容
+- 建立 `docs/10_Core_Knowledge/gitflow-history.md`（版本時間軸、分支流程圖、關鍵 commit、分支清理記錄、tags）
+- 更新 `docs/10_Core_Knowledge/github-actions-deploy.md`（補充 #36 部署記錄）
+
+---
+
 ## 2026-04-08 — v0.0.5 (release) Kiro CLI 工作目錄完整建置
 
 **執行者**: Boday
