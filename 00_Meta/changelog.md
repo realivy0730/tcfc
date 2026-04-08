@@ -8,6 +8,28 @@ last_updated: "2026-04-08"
 
 # TCFC 變更記錄
 
+## 2026-04-08 — v1.3 更新 steering + 建立核心知識文件
+
+**執行者**: Boday
+**分支**: develop
+
+### 變更內容
+- 更新 `steering/project-rules.md` v1.2 → v1.3
+  - 移除已修復的 Debug step 洩漏警告
+  - 加入知識庫名稱 `tcfc`
+  - 更新當前版本號為 v0.0.4.01
+- 建立 `10_Core_Knowledge/tcfc-architecture.md`
+  - 資料流（Google Sheets → API → Vue 元件）
+  - 元件架構（頁面/共用元件/API 層/工具）
+  - 賽事組別與積分計算邏輯
+  - 權限與協作（owner: realivy0730, collaborator: boday）
+- 建立 `10_Core_Knowledge/github-actions-deploy.md`
+  - Workflow 步驟與部署歷史
+  - Node.js 20 deprecation 待辦（2026-06-02 deadline）
+  - 已修復項目記錄
+
+---
+
 ## 2026-04-08 — v0.0.4.01 (hotfix) 移除 deploy.yml Secret 洩漏
 
 **執行者**: Boday

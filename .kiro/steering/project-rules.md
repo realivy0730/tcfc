@@ -1,7 +1,7 @@
 ---
 title: "TCFC 網站專案 — 強制規則"
 tags: [steering, rules, tcfc]
-version: "1.2"
+version: "1.3"
 related_id: []
 last_updated: "2026-04-08"
 ---
@@ -18,7 +18,8 @@ last_updated: "2026-04-08"
 | 技術棧 | Vue 3 + Vite + TypeScript + SCSS |
 | 部署 | GitHub Pages（push main 觸發） |
 | 資料來源 | Google Sheets API |
-| 當前版本 | v0.0.4 |
+| 當前版本 | v0.0.4.01 |
+| 知識庫名稱 | `tcfc` |
 
 ## Git Flow 分支規則（強制）
 
@@ -154,7 +155,6 @@ tcfc/
 | `VITE_GOOGLE_SHEETS_API_KEY` | Google Sheets API 存取 | repo owner |
 
 ### ⚠️ 注意事項
-- `deploy.yml` 中有 Debug step 會印出 Secret，正式環境應移除
 - 404 頁面由 `cp dist/index.html dist/404.html` 自動產生（SPA 路由支援）
 - concurrency 設定 `cancel-in-progress: false`，不會取消進行中的部署
 
