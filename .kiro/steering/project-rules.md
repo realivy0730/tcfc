@@ -192,3 +192,4 @@ tcfc/
 6. 圖示使用 Font Awesome（已安裝）
 7. 建置前必須通過 TypeScript 型別檢查
 8. 路徑別名使用 `@` 指向 `src/`
+9. **README.md 禁止加 YAML frontmatter**（`---` 區塊），GitHub 會原樣顯示導致排版錯誤
