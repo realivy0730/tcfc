@@ -8,6 +8,17 @@ last_updated: "2026-04-08"
 
 # TCFC 變更記錄
 
+## 2026-04-09 — v0.0.7 (release) changelog symlink
+
+**執行者**: Boday
+**分支**: release/v0.0.7 → main + develop
+
+### 變更內容
+- 根目錄建立 `changelog.md` symlink → `docs/00_Meta/changelog.md`
+- GitHub repo 首頁可直接查看變更記錄，知識庫索引不受影響
+
+---
+
 ## 2026-04-09 — v0.0.6 (release) 知識庫治理 + README 優化
 
 **執行者**: Boday
