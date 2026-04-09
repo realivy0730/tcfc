@@ -8,6 +8,18 @@ last_updated: "2026-04-08"
 
 # TCFC 變更記錄
 
+## 2026-04-09 — v0.0.8 (release) 首頁背景圖替換
+
+**執行者**: Boday
+**分支**: release/v0.0.8 → main + develop
+
+### 變更內容
+- 首頁背景圖替換為 Gemini AI 生成貓咪插畫
+- 圖片格式從 PNG 轉為 JPEG 70%（desktop 653K / mobile 216K）
+- 原圖備份至 `archives/images/`
+
+---
+
 ## 2026-04-09 — v0.0.7 (release) changelog symlink
 
 **執行者**: Boday

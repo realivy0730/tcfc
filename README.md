@@ -6,7 +6,7 @@
 
 市長盃足球賽事即時賽程查詢系統 — 從 Google Sheets 同步賽程，自動計算積分榜
 
-[![Version](https://img.shields.io/badge/version-0.0.7-blue)]()
+[![Version](https://img.shields.io/badge/version-0.0.8-blue)]()
 [![Vue](https://img.shields.io/badge/Vue-3-42b883)]()
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6)]()
 [![Deploy](https://img.shields.io/badge/deploy-GitHub_Pages-222)]()

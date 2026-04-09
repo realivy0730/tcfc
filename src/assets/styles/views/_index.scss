@@ -17,7 +17,7 @@ $border-radius: 12px;     // 圓角
     position: relative;
     height: 100vh;
     width: 100%;
-    background: url('@/assets/images/splash.png') no-repeat center center;
+    background: url('@/assets/images/splash.jpg') no-repeat center center;
     background-size: cover;
     margin-top: 0;
 
@@ -32,7 +32,7 @@ $border-radius: 12px;     // 圓角
     }
 
     @media (max-width: $mobile-width) {
-        background-image: url('@/assets/images/splash_m.png');
+        background-image: url('@/assets/images/splash_m.jpg');
         height: 80vh;
     }
 }
