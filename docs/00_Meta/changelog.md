@@ -8,6 +8,20 @@ last_updated: "2026-04-08"
 
 # TCFC 變更記錄
 
+## 2026-04-09 — v0.0.6 (release) 知識庫治理 + README 優化
+
+**執行者**: Boday
+**分支**: release/v0.0.6 → main + develop
+
+### 變更內容（自 v0.0.5 起）
+- 優化 README.md（置中標題、badge、資料流圖、賽事組別表、結構註解）
+- 修正知識庫索引路徑（專案根目錄 → docs/）
+- steering v1.4 加入知識庫路徑規範、知識庫更新指令、README frontmatter 禁止規則
+- 建立 `.learnings/LEARNINGS.md`（2 次 Gitflow 違規記錄）
+- Gitflow 分支保護提升為全域永久規則
+
+---
+
 ## 2026-04-08 — 修正知識庫索引路徑
 
 **執行者**: Boday
