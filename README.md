@@ -1,19 +1,56 @@
-# TCFC 臺中市體育總會足球委員會
+<div align="center">
 
-臺中市體育總會足球委員會官方網站，提供組織介紹、市長盃足球賽事即時賽程與積分查詢。
+# ⚽ TCFC 臺中市體育總會足球委員會
 
-🌐 **https://tcfc.org.tw**
+### Taichung City Football Committee
 
-## 功能
+市長盃足球賽事即時賽程查詢系統 — 從 Google Sheets 同步賽程，自動計算積分榜
 
-- 組織願景、使命與價值觀介紹
-- 市長盃足球賽事系統（2024 / 2025 年度）
-  - 學校組（U10 / U12 / U15）
-  - 公開組（U6 / U8 / U10 男女 / U12 男女 / U15 / U18）
-- 分組賽積分榜即時計算
-- 淘汰賽賽程與比分
-- 賽程資料從 Google Sheets 即時同步
-- RWD 響應式設計（桌面 / 手機）
+[![Version](https://img.shields.io/badge/version-0.0.5-blue)]()
+[![Vue](https://img.shields.io/badge/Vue-3-42b883)]()
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6)]()
+[![Deploy](https://img.shields.io/badge/deploy-GitHub_Pages-222)]()
+[![Website](https://img.shields.io/badge/🌐-tcfc.org.tw-green)](https://tcfc.org.tw)
+
+</div>
+
+---
+
+## 概述
+
+TCFC 官方網站，提供組織介紹與市長盃足球賽事即時賽程查詢。賽程資料從 Google Sheets 即時同步，前端自動計算積分榜與淘汰賽對戰表。
+
+```
+Google Sheets（賽程表）
+        ↓ Sheets API v4
+  ┌─────────────────────────────┐
+  │  sheetFetcher → Service層   │
+  │  → 積分計算 → 元件渲染      │
+  └─────────────────────────────┘
+        ↓
+  即時賽程 / 積分榜 / 淘汰賽（RWD）
+```
+
+---
+
+## 核心功能
+
+- **市長盃賽事系統** — 2024 / 2025 年度，學校組 + 公開組共 11 個組別
+- **即時積分榜** — 勝 3 分 / 平 1 分 / 負 0 分，自動排序
+- **分組賽 + 淘汰賽** — 分頁切換，各組前兩名晉級
+- **Google Sheets 同步** — 賽程資料即時更新，無需重新部署
+- **RWD 響應式** — 桌面 / 平板 / 手機自適應
+
+---
+
+## 賽事組別
+
+| 類別 | 組別 |
+|------|------|
+| 學校組 | U10（中年級）、U12（高年級）、U15（國中） |
+| 公開組 | U6（幼兒）、U8（低年級）、U10 男/女、U12 男/女、U15（國中）、U18（高中） |
+
+---
 
 ## 技術棧
 
@@ -26,9 +63,11 @@
 | 路由 | vue-router 4 |
 | 狀態管理 | Pinia |
 | HTTP | axios |
-| 圖示 | Font Awesome 6 |
+| 圖示 | Font Awesome |
 | 部署 | GitHub Pages |
 | 資料來源 | Google Sheets API v4 |
+
+---
 
 ## 快速開始
 
@@ -46,80 +85,91 @@ npm run build
 npm run preview
 ```
 
+---
+
 ## 專案結構
 
 ```
 tcfc/
 ├── src/
-│   ├── api/                    # API 層
-│   │   ├── config/             # Google Sheets 設定
-│   │   ├── types/              # TypeScript 型別定義
-│   │   └── services/           # 賽事資料服務
-│   │       └── mayorsCup/      # 市長盃（按年度分層）
-│   ├── views/                  # 頁面
-│   │   ├── Index.vue           # 首頁
-│   │   ├── NotFound.vue        # 404
-│   │   └── mayors-cup/         # 市長盃頁面
-│   │       ├── components/     # 賽事共用元件
-│   │       ├── 2024/           # 2024 年度
-│   │       └── 2025/           # 2025 年度
-│   ├── components/             # 全域共用元件
-│   ├── layouts/                # 版面配置
-│   ├── router/                 # 路由設定
-│   ├── utils/                  # 工具函式
-│   └── assets/                 # 靜態資源與 SCSS
-├── public/                     # 靜態檔案
-├── archives/                   # 舊版 HTML 頁面
-├── docs/                       # 文件與原始資料
-└── .github/workflows/          # CI/CD
+│   ├── api/                        # API 層
+│   │   ├── config/sheetConfig.ts   #   Google Sheets ID + 組別設定
+│   │   ├── types/gameSchedule.ts   #   TypeScript 型別
+│   │   └── services/mayorsCup/     #   賽事服務（按年度分層）
+│   ├── views/                      # 頁面
+│   │   ├── Index.vue               #   首頁（願景/使命/價值觀）
+│   │   └── mayors-cup/             #   市長盃（2024/2025）
+│   │       └── components/         #     BaseTournamentPage / MatchCard
+│   ├── components/                 # Header / Footer
+│   ├── router/                     # 路由（含 mayors-cup.ts）
+│   ├── utils/                      # sheetFetcher / cacheUtils / axios
+│   └── assets/                     # SCSS + 圖片
+│
+├── docs/                           # 知識庫
+│   ├── 00_Meta/                    #   INDEX + changelog
+│   └── 10_Core_Knowledge/         #   架構 / 部署 / Gitflow 記錄
+│
+├── .kiro/                          # AI Agent 配置
+│   ├── agents/tcfc-dev.json        #   開發維運 Agent
+│   ├── skills/tcfc-ops/            #   賽事維運 Skill
+│   └── steering/project-rules.md   #   專案強制規則
+│
+├── .github/workflows/deploy.yml    # GitHub Pages 部署
+└── public/                         # 靜態資源
 ```
+
+---
 
 ## Git Flow
 
-本專案採用 **Gitflow** 工作流程。
-
-### 分支
-
-| 分支 | 用途 |
-|------|------|
-| `main` | 正式環境（push 觸發 GitHub Pages 部署） |
-| `develop` | 開發整合 |
-| `feature/*` | 新功能開發 |
-| `hotfix/v*` | 緊急修復 |
-| `release/v*` | 版本發布準備 |
-
-### 工作流程
+本專案採用 **Gitflow** 工作流程，所有變更必須透過 feature / hotfix 分支。
 
 ```
 新功能：develop → feature/* → develop → release/* → main
 緊急修復：main → hotfix/* → main + develop
 ```
 
-### 版本號
+| 分支 | 用途 |
+|------|------|
+| `main` | 正式環境（push 觸發 GitHub Pages 部署） |
+| `develop` | 開發整合 |
+| `feature/*` | 新功能 / 文件變更 |
+| `hotfix/v*` | 緊急修復 |
+| `release/v*` | 版本發布 |
 
-格式：`v{major}.{minor}.{patch}`，hotfix 加 `.{序號}`
+版本號：`v{major}.{minor}.{patch}`，hotfix 加 `.{序號}`
 
-```
-v0.0.4 → v0.0.4.01 (hotfix) → v0.0.5 (release)
-```
+---
 
 ## 部署
 
-Push 到 `main` 分支會自動觸發 GitHub Actions 部署至 GitHub Pages。
+Push 到 `main` 分支自動觸發 GitHub Actions → GitHub Pages。
 
-部署流程：`npm install` → `npm run build` → 上傳 `dist/` → GitHub Pages
+```
+npm install → npm run build → dist/ → GitHub Pages
+```
+
+> API Key 透過 GitHub Secrets 注入（`VITE_GOOGLE_SHEETS_API_KEY`）
+
+---
 
 ## 新增年度賽事
 
-1. 在 `src/api/config/sheetConfig.ts` 新增年度的 Sheet ID 與組別設定
-2. 在 `src/api/services/mayorsCup/` 建立該年度的 Service
-3. 在 `src/views/mayors-cup/` 建立該年度的頁面
-4. 在 `src/router/mayors-cup.ts` 新增路由
+1. `src/api/config/sheetConfig.ts` — 新增年度 Sheet ID + 組別
+2. `src/api/services/mayorsCup/{year}/` — 建立 Service
+3. `src/views/mayors-cup/{year}/` — 建立頁面
+4. `src/router/mayors-cup.ts` — 新增路由
+
+詳見 [`.kiro/skills/tcfc-ops/SKILL.md`](.kiro/skills/tcfc-ops/SKILL.md)
+
+---
 
 ## 聯絡資訊
 
-- 📧 service@tcfc.org.tw
-- 📞 04-2258-8185
-- 📍 407027 台中市西屯區朝馬路 108 號
-- [Facebook](https://www.facebook.com/groups/576604161850781)
-- [LINE](https://line.me/ti/p/@677ciirx)
+| 管道 | 連結 |
+|------|------|
+| 📧 Email | service@tcfc.org.tw |
+| 📞 電話 | 04-2258-8185 |
+| 📍 地址 | 407027 台中市西屯區朝馬路 108 號 |
+| Facebook | [TCFC 社團](https://www.facebook.com/groups/576604161850781) |
+| LINE | [@677ciirx](https://line.me/ti/p/@677ciirx) |
