@@ -30,3 +30,21 @@
 - 任何 commit 前先確認當前分支是否為 feature/* 或 hotfix/*
 - tcfc-dev agent 已設定 `deniedCommands` 阻擋 `git push origin main/develop`
 - 純文件變更不需要同步到 main，等 release 即可
+
+---
+
+## [CORRECTION] 2026-04-09 13:44
+
+### 錯誤描述
+修改 steering 加入 README frontmatter 規範時，直接在 develop 上編輯，未先建立 feature 分支。
+
+### 違反的規則
+同 2026-04-08 17:48 的錯誤。
+
+### 根本原因
+「小改動」心態，認為只改一行不需要走 feature 分支。但規則沒有例外。
+
+### 處置
+事後補正：stash → feature/docs-readme-frontmatter-rule → merge → 清理。
+
+### 累計次數：2（同類錯誤 >= 3 次將提升為永久規則）
