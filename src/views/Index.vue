@@ -195,6 +195,6 @@
 
 
 <script setup>
-import splashImage from '@/assets/images/splash.png'
-import splashImageMobile from '@/assets/images/splash_m.png'
+import splashImage from '@/assets/images/splash.jpg'
+import splashImageMobile from '@/assets/images/splash_m.jpg'
 </script>
