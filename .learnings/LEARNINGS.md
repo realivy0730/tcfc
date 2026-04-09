@@ -48,3 +48,9 @@
 事後補正：stash → feature/docs-readme-frontmatter-rule → merge → 清理。
 
 ### 累計次數：2（同類錯誤 >= 3 次將提升為永久規則）
+
+---
+
+## ⬆️ 已提升為永久規則（2026-04-09）
+
+上述 Gitflow 違規已由使用者要求提前提升為全域永久規則，寫入 `~/.kiro/steering/global-rules.md`「Gitflow 分支保護」段落。
