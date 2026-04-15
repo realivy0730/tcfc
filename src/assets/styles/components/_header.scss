@@ -98,14 +98,29 @@
         text-decoration: none;
         color: $text-color;
         font-weight: 500;
+        position: relative;
+        padding-bottom: 4px;
         transition: color 0.3s;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: $accent-green;
+            transition: width 0.3s ease;
+        }
 
         &:hover {
             color: $accent-green;
+            &::after { width: 100%; }
         }
 
         &.router-link-active {
             color: $accent-green;
+            &::after { width: 100%; }
         }
     }
 }
@@ -180,10 +195,11 @@
 .social-link {
     color: $text-color;
     font-size: 1.2rem;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
 
     &:hover {
         color: $accent-blue;
+        transform: scale(1.2);
     }
 }
 

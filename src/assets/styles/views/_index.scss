@@ -20,23 +20,129 @@ $border-radius: 12px;     // 圓角
     background: url('@/assets/images/splash.jpg') no-repeat center center;
     background-size: cover;
     margin-top: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
 
-    &::after {
-        content: '';
+    &__overlay {
         position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 150px;
-        background: linear-gradient(to top, #fff, transparent);
+        inset: 0;
+        z-index: 0;
+        background: rgba(0, 0, 0, 0.65);
+    }
+
+    &__content {
+        position: relative;
+        z-index: 1;
+        text-align: left;
+        color: #fff;
+        padding: 0 4rem 6rem;
+        max-width: 700px;
+    }
+
+    &__en {
+        font-size: 0.8rem;
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
+        margin-bottom: 0;
+        opacity: 0.6;
+
+        &--animate {
+            animation: heroFadeUp 0.9s ease 0.3s both;
+        }
+    }
+
+    &__line {
+        width: 50px;
+        height: 3px;
+        background: #F1C40F;
+        margin: 1.2rem 0 1.8rem;
+
+        &--animate {
+            animation: heroFadeUp 0.9s ease 0.5s both;
+        }
+    }
+
+    &__title {
+        font-size: clamp(2.8rem, 6vw, 5rem);
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 2.5rem;
+        letter-spacing: -0.02em;
+
+        &--animate {
+            animation: heroFadeUp 0.9s ease 0.7s both;
+        }
+    }
+
+    &__cta {
+        display: inline-block;
+        padding: 0.9rem 2.5rem;
+        border: 2px solid #fff;
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.9rem;
+        letter-spacing: 0.15em;
+        transition: all 0.3s ease;
+
+        &--animate {
+            animation: heroFadeUp 0.9s ease 0.9s both;
+        }
+
+        &:hover {
+            background: #fff;
+            color: #000;
+        }
+    }
+
+    &__scroll {
+        position: absolute;
+        bottom: 2.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        span {
+            display: block;
+            width: 20px;
+            height: 20px;
+            border-right: 2px solid $primary-color;
+            border-bottom: 2px solid $primary-color;
+            transform: rotate(45deg);
+            animation: scrollArrow 1.5s infinite;
+            opacity: 0.8;
+        }
     }
 
     @media (max-width: $mobile-width) {
         background-image: url('@/assets/images/splash_m.jpg');
-        height: 80vh;
+        height: 100svh;
+
+        &__content {
+            padding: 0 1.5rem 4rem;
+        }
     }
 }
 
+@keyframes scrollArrow {
+    0% { opacity: 0; transform: rotate(45deg) translate(-5px, -5px); }
+    50% { opacity: 0.8; }
+    100% { opacity: 0; transform: rotate(45deg) translate(5px, 5px); }
+}
+
+@keyframes heroFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 // 共用的區塊樣式
 .section-common {
     padding: 6rem 2rem;
@@ -46,34 +152,36 @@ $border-radius: 12px;     // 圓角
         margin: auto;
         .title {
             text-align: center;
-            font-size: 2rem;
             margin-bottom: 4rem;
-            color: $primary-color;
             position: relative;
-            font-weight: 600;
-            span{
-                margin: auto;
+
+            .title__en {
+                display: block;
+                font-size: 0.8rem;
+                letter-spacing: 0.4em;
+                text-transform: uppercase;
+                opacity: 0.6;
+                margin-bottom: 0.6rem;
+            }
+
+            .title__zh {
+                display: block;
+                font-size: 2rem;
+                font-weight: 700;
                 position: relative;
-            &::after,
-            &::before {
-                content: "";
-                width: 86px;
-                height: 4px;
-                background-color: $primary-color;
-                position: absolute;
-                top: 50%;
-                transform: translateX(-50%);
-            }
-            &::after {
-                right: 100% // Moves the line below the text
-            }
+                padding-bottom: 1.2rem;
 
-            &::before {
-                right: -100% // Moves the line above the text
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 40px;
+                    height: 3px;
+                    background-color: currentColor;
+                }
             }
-
-            }
-
         }
         .d-flex {
             display: grid;
@@ -83,57 +191,58 @@ $border-radius: 12px;     // 圓角
         }
         .block {
             background-color: $white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 2rem 2rem 2rem 2.5rem;
+            border-radius: 4px;
+            border-left: 4px solid transparent;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
             transition: all 0.3s ease;
 
             &:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+                transform: translateY(-4px);
+                border-left-color: $primary-color;
+                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
             }
 
             .subtitle {
                 color: $primary-color;
-                font-size: 1.8rem;
-                margin-bottom: 1.5rem;
+                font-size: 1.1rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
                 padding-bottom: 0.8rem;
-                border-bottom: 2px solid rgba($primary-color, 0.2);
+                border-bottom: 1px solid rgba($primary-color, 0.15);
                 display: flex;
                 align-items: center;
+                gap: 0.6rem;
 
                 &::before {
                     font-family: 'Font Awesome 5 Free';
                     font-weight: 900;
-                    margin-right: 1rem;
+                    font-size: 1rem;
                     color: #F1C40F;
+                    flex-shrink: 0;
                 }
-
-                // 為每個標題加入對應的圖示
-
             }
 
             .content {
-                line-height: 1.8;
+                line-height: 1.9;
                 color: $text-color;
-                font-size: 1.1rem;
+                font-size: 1rem;
                 text-align: justify;
             }
         }
 
         .summary-block {
-            background-color: $primary-dark;
-            color: $white;
-            padding: 3rem;
-            border-radius: 12px;
-            margin-top: 4rem;
-            position: relative;
+            background-color: transparent;
+            border-left: 4px solid rgba(255,255,255,0.4);
+            padding: 2rem 2.5rem;
+            margin-top: 3rem;
 
             .content {
                 color: $white;
-                font-size: 1.2rem;
-                line-height: 1.8;
+                font-size: 1.05rem;
+                line-height: 1.9;
                 text-align: justify;
+                opacity: 0.9;
             }
         }
     }
@@ -158,23 +267,10 @@ $border-radius: 12px;     // 圓角
                 grid-template-columns: 1fr;
             }
             .title {
-                font-size: 1.5rem;
-                margin-bottom: 1rem;
-                span{
-                    &::after,
-                    &::before {
-                        width: 20px;
-                        height: 2px;
-                    }
-                    &::after {
-                        right: 100% // Moves the line below the text
-                    }
-
-                    &::before {
-                        right: -40% // Moves the line above the text
-                    }
+                margin-bottom: 2rem;
+                .title__zh {
+                    font-size: 1.5rem;
                 }
-
             }
             .block {
                 padding: 1.5rem;
@@ -199,99 +295,544 @@ $border-radius: 12px;     // 圓角
     }
 }
 
-// 願景區塊樣式
+// Vision 區塊
 .vision-section {
-    @extend .section-common;
-    background-color: $primary-color;
-    .contanter{
-        .title {
-            color: $white;
-            span{
-                &::after,
-                &::before {
-                    background-color: $white;
-                }
-            }
-        }
-        .block {
-            .subtitle {
-                &.core::before { content: '\f05b'; }         // 核心定位
-                    &.promote::before { content: '\f0ac'; }      // 推廣與國際化
-                    &.infra::before { content: '\f1ad'; }        // 基礎建設
-                    &.coop::before { content: '\f2b5'; }         // 合作發展
-                    &.sustain::before { content: '\f06c'; }      // 永續發展
-                    &.social::before { content: '\f0c0'; }       // 社會影響
-            }
-        }
+    background: url('@/assets/images/splash.jpg') no-repeat center center;
+    background-size: cover;
+    position: relative;
 
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba($primary-color, 0.92);
+    }
+
+    .vision__inner {
+        position: relative;
+        z-index: 1;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 8rem 2rem;
+    }
+
+    .vision__header {
+        margin-bottom: 5rem;
+    }
+
+    .vision__en {
+        font-size: 0.75rem;
+        letter-spacing: 0.5em;
+        color: rgba(#fff, 0.5);
+        margin-bottom: 1.5rem;
+        text-transform: uppercase;
+    }
+
+    .vision__headline {
+        font-size: clamp(3rem, 6vw, 5rem);
+        font-weight: 800;
+        color: #fff;
+        line-height: 1.15;
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.02em;
+
+        em {
+            font-style: normal;
+            color: #F1C40F;
+        }
+    }
+
+    .vision__sub {
+        font-size: 1.1rem;
+        color: rgba(#fff, 0.65);
+        max-width: 480px;
+    }
+
+    .vision__points {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 0;
+        border-top: 1px solid rgba(#fff, 0.15);
+
+        @media (max-width: $mobile-width) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .vision__point {
+        padding: 2rem 1.5rem;
+        border-right: 1px solid rgba(#fff, 0.15);
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        transition: background 0.3s ease;
+
+        &:last-child { border-right: none; }
+
+        &:hover { background: rgba(#fff, 0.06); }
+
+        @media (max-width: $mobile-width) {
+            border-right: none;
+            border-bottom: 1px solid rgba(#fff, 0.15);
+            flex-direction: row;
+            align-items: center;
+        }
+    }
+
+    .vision__num {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #F1C40F;
+        line-height: 1;
+        font-family: 'Arial', sans-serif;
+        letter-spacing: -0.03em;
+    }
+
+    .vision__text {
+        font-size: 0.9rem;
+        color: rgba(#fff, 0.8);
+        line-height: 1.6;
     }
 }
 
-
-// 使命區塊樣式
-
+// Mission 區塊
 .mission-section {
-    @extend .section-common;
-    background-color: $white;
-    .contanter{
-        .title {
-            color: $primary-color;
-            span{
-                &::after,
-                &::before {
-                    background-color: $primary-color;
-                }
-            }
-        }
-        .block {
-            .subtitle {
-                &.core::before { content: '\f521'; }      // 核心使命
-                &.edu::before { content: '\f549'; }       // 文化與教育
-                &.community::before { content: '\f0c0'; }  // 社區發展
-                &.global::before { content: '\f0ac'; }     // 國際化發展
-                &.talent::before { content: '\f501'; }     // 專業人才
-                &.industry::before { content: '\f54f'; }   // 產業發展
-            }
-        }
-        .summary-block {
-            background:linear-gradient(45deg, #103c5d, #4A90E2);
+    background-color: #0f0f0f;
 
-            .content {
-               color: $white
-            }
-        }
+    .mission__inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 6rem 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: center;
 
+        @media (max-width: $mobile-width) {
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            padding: 3rem 1.5rem;
+        }
+    }
+
+    .mission__en {
+        font-size: 0.75rem;
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
+        color: rgba(#fff, 0.45);
+        margin-bottom: 0.8rem;
+    }
+
+    .mission__title {
+        font-size: clamp(1.8rem, 3vw, 2.5rem);
+        font-weight: 800;
+        color: #fff;
+        margin-bottom: 1.5rem;
+        position: relative;
+        padding-bottom: 1rem;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: #F1C40F;
+        }
+    }
+
+    .mission__body {
+        color: rgba(#fff, 0.7);
+        line-height: 1.9;
+        margin-bottom: 1.8rem;
+        font-size: 1rem;
+    }
+
+    .mission__list {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            color: rgba(#fff, 0.7);
+            font-size: 0.95rem;
+
+            i { color: #F1C40F; font-size: 0.8rem; }
+        }
+    }
+
+    .mission__image {
+        img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            border-radius: 4px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+
+            @media (max-width: $mobile-width) { height: 240px; }
+        }
     }
 }
 
-
+// Values 區塊
 .values-section {
-    @extend .section-common;
     background-color: $primary-color;
-    .contanter{
-        .title {
-            color: $white;
-            span{
-                &::after,
-                &::before {
-                    background-color: $white;
-                }
-            }
+
+    .values__inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 6rem 2rem;
+    }
+
+    .values__header {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    .values__en {
+        font-size: 0.75rem;
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
+        color: rgba(#fff, 0.45);
+        margin-bottom: 0.8rem;
+    }
+
+    .values__title {
+        font-size: clamp(1.8rem, 3vw, 2.5rem);
+        font-weight: 800;
+        color: #fff;
+    }
+
+    .values__cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+
+        @media (max-width: $mobile-width) {
+            grid-template-columns: 1fr;
         }
-        .block {
-            .subtitle {
-                &.integrity::before { content: '\f64f'; }    // 誠信
-                &.unity::before { content: '\f0c0'; }       // 團結
-                &.innovation::before { content: '\f0eb'; }   // 創新
-                &.sustainability::before { content: '\f06c'; } // 永續
-                &.inclusivity::before { content: '\f500'; }  // 社會共融
-                &.development::before { content: '\f19d'; }  // 教育與成長
-            }
+    }
+
+    .values__card {
+        background: rgba(#fff, 0.08);
+        border: 1px solid rgba(#fff, 0.15);
+        padding: 2.5rem 2rem;
+        border-radius: 4px;
+        text-align: center;
+        transition: background 0.3s ease, transform 0.3s ease;
+
+        &:hover {
+            background: rgba(#fff, 0.15);
+            transform: translateY(-6px);
         }
 
+        h3 {
+            color: #fff;
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin: 1.2rem 0 1rem;
+        }
+
+        p {
+            color: rgba(#fff, 0.75);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+    }
+
+    .values__card-icon {
+        width: 60px;
+        height: 60px;
+        background: rgba(#F1C40F, 0.15);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+
+        i { color: #F1C40F; font-size: 1.4rem; }
     }
 }
 
+
+// Tournaments 區塊
+.tournaments-section {
+    background: #0a0a0a;
+
+    .tournaments__inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 6rem 2rem;
+    }
+
+    .tournaments__header { margin-bottom: 3rem; }
+
+    .tournaments__en {
+        font-size: 0.75rem;
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
+        color: rgba(#fff, 0.45);
+        margin-bottom: 0.8rem;
+    }
+
+    .tournaments__title {
+        font-size: clamp(1.8rem, 3vw, 2.5rem);
+        font-weight: 800;
+        color: #fff;
+    }
+
+    .tournaments__cards {
+        display: flex;
+        flex-direction: column;
+        border-top: 1px solid rgba(#fff, 0.1);
+    }
+
+    .tournaments__card {
+        display: flex;
+        align-items: center;
+        gap: 2.5rem;
+        padding: 2.5rem 0;
+        border-bottom: 1px solid rgba(#fff, 0.1);
+        text-decoration: none;
+        transition: padding-left 0.3s ease, border-left-color 0.3s ease;
+        border-left: 3px solid transparent;
+
+        &:hover {
+            padding-left: 1.5rem;
+            border-left-color: #F1C40F;
+            .tournaments__arrow { color: #F1C40F; }
+        }
+    }
+
+    .tournaments__year {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 800;
+        color: rgba(#fff, 0.12);
+        line-height: 1;
+        min-width: 140px;
+        letter-spacing: -0.03em;
+    }
+
+    .tournaments__info {
+        flex: 1;
+        h3 { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem; }
+        p { font-size: 0.85rem; color: rgba(#fff, 0.45); }
+    }
+
+    .tournaments__arrow {
+        font-size: 1.5rem;
+        color: rgba(#fff, 0.25);
+        transition: color 0.3s ease;
+    }
+
+    @media (max-width: $mobile-width) {
+        .tournaments__year { font-size: 2rem; min-width: 80px; }
+        .tournaments__card { gap: 1.5rem; }
+    }
+}
+
+// Results 區塊
+.results-section {
+    background: #111;
+
+    .results__inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 6rem 2rem;
+    }
+
+    .results__header { margin-bottom: 3rem; }
+
+    .results__en {
+        font-size: 0.75rem;
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
+        color: rgba(#fff, 0.45);
+        margin-bottom: 0.8rem;
+    }
+
+    .results__title {
+        font-size: clamp(1.8rem, 3vw, 2.5rem);
+        font-weight: 800;
+        color: #fff;
+    }
+
+    .results__loading, .results__empty {
+        color: rgba(#fff, 0.4);
+        font-size: 0.95rem;
+        padding: 2rem 0;
+    }
+
+    .results__list {
+        border-top: 1px solid rgba(#fff, 0.1);
+        margin-bottom: 2rem;
+    }
+
+    .results__item {
+        display: grid;
+        grid-template-columns: 120px 1fr 100px;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 1.5rem 0;
+        border-bottom: 1px solid rgba(#fff, 0.08);
+
+        @media (max-width: $mobile-width) {
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+        }
+    }
+
+    .results__category {
+        font-size: 0.75rem;
+        color: #F1C40F;
+        letter-spacing: 0.05em;
+    }
+
+    .results__match {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .results__team {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #fff;
+        flex: 1;
+
+        &--home { text-align: right; }
+        &--away { text-align: left; }
+    }
+
+    .results__score {
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: #F1C40F;
+        letter-spacing: 0.05em;
+        white-space: nowrap;
+    }
+
+    .results__date {
+        font-size: 0.8rem;
+        color: rgba(#fff, 0.35);
+        text-align: right;
+    }
+
+    .results__more { text-align: right; }
+
+    .results__link {
+        font-size: 0.9rem;
+        color: rgba(#fff, 0.5);
+        text-decoration: none;
+        letter-spacing: 0.05em;
+        transition: color 0.3s ease;
+
+        &:hover { color: #F1C40F; }
+    }
+}
+
+// CTA 區塊
+.cta-section {
+    background: url('@/assets/images/splash.jpg') no-repeat center center;
+    background-size: cover;
+    position: relative;
+    text-align: center;
+    padding: 8rem 2rem;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+    }
+
+    &__inner {
+        position: relative;
+        z-index: 1;
+    }
+
+    &__en {
+        font-size: 0.8rem;
+        letter-spacing: 0.4em;
+        color: rgba(255,255,255,0.6);
+        margin-bottom: 0.8rem;
+    }
+
+    &__title {
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 2.5rem;
+    }
+
+    &__btns {
+        display: flex;
+        gap: 1.2rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    &__btn {
+        display: inline-block;
+        padding: 0.9rem 2.5rem;
+        font-size: 0.95rem;
+        letter-spacing: 0.1em;
+        text-decoration: none;
+        transition: all 0.35s ease;
+        position: relative;
+        overflow: hidden;
+
+        &--primary {
+            background: #fff;
+            color: #000;
+
+            &::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: transparent;
+                border: 2px solid #fff;
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform 0.35s ease;
+            }
+
+            &:hover {
+                background: transparent;
+                color: #fff;
+                &::before { transform: scaleX(1); }
+            }
+        }
+
+        &--outline {
+            border: 2px solid #fff;
+            color: #fff;
+            background: transparent;
+
+            &::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: #fff;
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform 0.35s ease;
+                z-index: -1;
+            }
+
+            &:hover {
+                color: #000;
+                &::before { transform: scaleX(1); }
+            }
+        }
+    }
+}
 
 // 動畫效果
 .fade-in {

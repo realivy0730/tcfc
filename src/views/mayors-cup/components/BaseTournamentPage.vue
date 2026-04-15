@@ -342,20 +342,19 @@ onMounted(() => {
     padding: 2rem;
     max-width: $container-width;
     margin: 0 auto;
-    background-color: $bg-color;
+    background-color: #0a0a0a;
 
     @media (max-width: $mobile-width) {
         padding: 1rem;
     }
 
-    // 載入中狀態
     .loading-overlay {
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba($white-color, 0.9);
+        background: rgba(#0a0a0a, 0.9);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -365,20 +364,16 @@ onMounted(() => {
         .spinner {
             width: 40px;
             height: 40px;
-            border: 4px solid rgba($primary-color, 0.1);
-            border-left-color: $primary-color;
+            border: 3px solid rgba(#fff, 0.1);
+            border-left-color: #F1C40F;
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin-bottom: 1rem;
         }
 
-        span {
-            color: $primary-color;
-            font-weight: 500;
-        }
+        span { color: rgba(#fff, 0.6); font-weight: 500; }
     }
 
-    // 頁面標題區域
     .page-header {
         margin-bottom: 2rem;
         display: flex;
@@ -391,44 +386,39 @@ onMounted(() => {
         }
 
         h1 {
-            color: $primary-color;
-            font-size: 2rem;
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: 800;
             margin: 0;
 
-            @media (max-width: $mobile-width) {
-                font-size: 1.5rem;
-            }
+            @media (max-width: $mobile-width) { font-size: 1.4rem; }
         }
 
         .division-selector {
             .select-input {
                 padding: 0.75rem 1rem;
-                border: 1px solid rgba($primary-color, 0.2);
-                border-radius: 8px;
+                border: 1px solid rgba(#fff, 0.15);
+                border-radius: 6px;
                 font-size: 1rem;
                 min-width: 200px;
-                background-color: $white-color;
-                color: $primary-color;
+                background-color: #1a1a1a;
+                color: #fff;
                 cursor: pointer;
-                transition: all 0.3s ease;
+                transition: border-color 0.3s ease;
 
                 &:focus {
                     outline: none;
-                    border-color: $accent-blue;
-                    box-shadow: 0 0 0 2px rgba($accent-blue, 0.1);
+                    border-color: #F1C40F;
                 }
 
-                @media (max-width: $mobile-width) {
-                    width: 100%;
-                }
+                @media (max-width: $mobile-width) { width: 100%; }
             }
         }
     }
 
-    // 分頁切換
     .tournament-tabs {
         margin-bottom: 2rem;
-        border-bottom: 2px solid rgba($primary-color, 0.1);
+        border-bottom: 1px solid rgba(#fff, 0.1);
         display: flex;
         width: 100%;
 
@@ -437,12 +427,12 @@ onMounted(() => {
             padding: 1rem 0;
             background: none;
             border: none;
-            color: $gray-400;
-            font-size: 1.1rem;
-            font-weight: 500;
+            color: rgba(#fff, 0.35);
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
             position: relative;
-            transition: all 0.3s ease;
+            transition: color 0.3s ease;
             text-align: center;
 
             &::after {
@@ -450,181 +440,124 @@ onMounted(() => {
                 position: absolute;
                 left: 0;
                 right: 0;
-                bottom: -2px;
+                bottom: -1px;
                 height: 2px;
-                background-color: $accent-blue;
+                background-color: #F1C40F;
                 transform: scaleX(0);
                 transition: transform 0.3s ease;
             }
 
-            &:hover {
-                color: $accent-blue;
-            }
+            &:hover { color: rgba(#fff, 0.7); }
 
             &.active {
-                color: $accent-blue;
-
-                &::after {
-                    transform: scaleX(1);
-                }
-            }
-
-            // 移除最後一個按鈕的右邊框
-            &:last-child {
-                border-right: none;
+                color: #F1C40F;
+                &::after { transform: scaleX(1); }
             }
         }
     }
 
-    // 賽事狀態提示
     .stage-status {
-        background: rgba($accent-blue, 0.1);
-        color: $accent-blue;
+        background: rgba(#fff, 0.05);
+        color: rgba(#fff, 0.6);
         padding: 1rem;
-        border-radius: 8px;
+        border-radius: 6px;
         margin-bottom: 2rem;
         display: flex;
         align-items: center;
         gap: 0.75rem;
+        border: 1px solid rgba(#fff, 0.08);
 
-        &.empty {
-            background: rgba($gray-400, 0.1);
-            color: $gray-400;
-        }
+        &.empty { color: rgba(#fff, 0.35); }
 
-        i {
-            font-size: 1.2rem;
-        }
+        i { font-size: 1.1rem; }
     }
 
-    // 分組賽區塊
     .group-stage {
         .group-section {
-            background: $white-color;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            background: #111;
+            border: 1px solid rgba(#fff, 0.08);
+            border-radius: 8px;
             margin-bottom: 2rem;
             overflow: hidden;
 
-            // 積分榜
             .standings-table {
                 .group-title {
                     margin: 0;
-                    padding: 1rem;
-                    background-color: $primary-color;
-                    color: $white-color;
-                    font-size: 1.2rem;
-                    font-weight: 600;
+                    padding: 1rem 1.25rem;
+                    background: #1a1a1a;
+                    border-bottom: 1px solid rgba(#fff, 0.08);
+                    color: #fff;
+                    font-size: 1rem;
+                    font-weight: 700;
+                    letter-spacing: 0.03em;
                 }
 
                 table {
                     width: 100%;
                     border-collapse: collapse;
 
-                    th,
-                    td {
+                    th, td {
                         padding: 0.75rem 1rem;
                         text-align: center;
-                        border-bottom: 1px solid rgba($primary-color, 0.1);
+                        border-bottom: 1px solid rgba(#fff, 0.06);
 
-                        &.rank {
-                            width: 60px;
-                            color: $gray-400;
-                        }
-
-                        &.team-col {
-                            text-align: left;
-                            width: 30%;
-                        }
-
-                        &.points {
-                            font-weight: 600;
-                            color: $primary-color;
-                        }
+                        &.rank { width: 60px; color: rgba(#fff, 0.3); }
+                        &.team-col { text-align: left; width: 30%; }
+                        &.points { font-weight: 700; color: #F1C40F; }
 
                         @media (max-width: $mobile-width) {
                             padding: 0.5rem;
                             font-size: 0.9rem;
-
-                            &:nth-child(n+4):nth-child(-n+7) {
-                                display: none;
-                            }
+                            &:nth-child(n+4):nth-child(-n+7) { display: none; }
                         }
                     }
 
                     th {
-                        background-color: rgba($primary-color, 0.05);
+                        background: #1a1a1a;
                         font-weight: 600;
-                        color: $primary-color;
+                        color: rgba(#fff, 0.45);
+                        font-size: 0.8rem;
+                        letter-spacing: 0.05em;
                         white-space: nowrap;
                     }
 
+                    td { color: rgba(#fff, 0.8); }
+
                     tr {
                         &.promotion-zone {
-                            background-color: rgba($accent-green, 0.05);
-
-                            td {
-                                color: color.adjust($accent-green, $lightness: -5%);
-                                font-weight: 500;
-
-                                &.team-col {
-                                    font-weight: 600;
-                                }
-                            }
+                            border-left: 3px solid #F1C40F;
+                            td { color: #fff; font-weight: 500; }
                         }
-
-                        &:hover {
-                            background-color: rgba($primary-color, 0.02);
-                        }
+                        &:hover { background: rgba(#fff, 0.03); }
                     }
                 }
             }
 
-            // 賽程展開區域
             .matches-section {
                 .matches-header {
-                    padding: 1rem;
+                    padding: 1rem 1.25rem;
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
                     cursor: pointer;
-                    border-top: 1px solid rgba($primary-color, 0.1);
-                    transition: background-color 0.3s ease;
+                    border-top: 1px solid rgba(#fff, 0.08);
+                    transition: background 0.3s ease;
 
-                    &:hover {
-                        background-color: rgba($primary-color, 0.05);
-                    }
+                    &:hover { background: rgba(#fff, 0.03); }
 
-                    span {
-                        color: $primary-color;
-                        font-weight: 500;
-                    }
-
-                    i {
-                        color: $gray-400;
-                        transition: transform 0.3s ease;
-
-                        &.rotate {
-                            transform: rotate(180deg);
-                        }
-                    }
+                    span { color: rgba(#fff, 0.6); font-weight: 500; font-size: 0.9rem; }
+                    i { color: rgba(#fff, 0.3); transition: transform 0.3s ease; &.rotate { transform: rotate(180deg); } }
                 }
 
                 .matches-content {
-                    border-top: 1px solid rgba($primary-color, 0.1);
-                    background-color: rgba($primary-color, 0.02);
+                    border-top: 1px solid rgba(#fff, 0.06);
+                    background: rgba(#fff, 0.02);
 
                     .match-item {
-                        padding: 1rem;
-                        border-bottom: 1px solid rgba($primary-color, 0.1);
-
-                        &:last-child {
-                            border-bottom: none;
-                        }
-
-                        &.no-score {
-                            opacity: 0.8;
-                        }
+                        padding: 1rem 1.25rem;
+                        border-bottom: 1px solid rgba(#fff, 0.06);
+                        &:last-child { border-bottom: none; }
+                        &.no-score { opacity: 0.6; }
                     }
                 }
             }
@@ -633,19 +566,16 @@ onMounted(() => {
         .group-note {
             margin-top: 2rem;
             padding: 1rem;
-            background: rgba($accent-blue, 0.1);
-            border-radius: 8px;
-            color: $accent-blue;
+            background: rgba(#F1C40F, 0.08);
+            border: 1px solid rgba(#F1C40F, 0.2);
+            border-radius: 6px;
+            color: rgba(#F1C40F, 0.8);
             font-size: 0.9rem;
             text-align: center;
-
-            p {
-                margin: 0;
-            }
+            p { margin: 0; }
         }
     }
 
-    // 淘汰賽區塊
     .knockout-stage {
         .knockout-matches {
             display: grid;
@@ -653,23 +583,17 @@ onMounted(() => {
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 
             .knockout-match {
-                background: $white-color;
-                border-radius: 12px;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                background: #111;
+                border: 1px solid rgba(#fff, 0.08);
+                border-radius: 8px;
                 overflow: hidden;
-
-                &.no-score {
-                    opacity: 0.8;
-                }
+                &.no-score { opacity: 0.6; }
             }
         }
     }
 
-    // 動畫效果
     @keyframes spin {
-        to {
-            transform: rotate(360deg);
-        }
+        to { transform: rotate(360deg); }
     }
 }
 </style>

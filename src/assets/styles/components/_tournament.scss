@@ -124,10 +124,6 @@
 
   // 賽程表格區塊
   .standings-table {
-    background: $white-color;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 2rem;
     overflow: hidden;
 
     table {
@@ -137,7 +133,6 @@
       th, td {
         padding: 1rem;
         text-align: center;
-        border-bottom: 1px solid rgba($primary-color, 0.1);
 
         @media (max-width: $mobile-width) {
           padding: 0.5rem;
@@ -145,30 +140,6 @@
 
           &:nth-child(n+4):nth-child(-n+7) {
             display: none;
-          }
-        }
-
-        &:first-child {
-          text-align: left;
-          padding-left: 1.5rem;
-        }
-      }
-
-      th {
-        background-color: $primary-color;
-        color: $white-color;
-        font-weight: 500;
-        white-space: nowrap;
-      }
-
-      tbody {
-        tr {
-          &:hover {
-            background-color: rgba($primary-color, 0.05);
-          }
-
-          &:last-child td {
-            border-bottom: none;
           }
         }
       }

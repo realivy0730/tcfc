@@ -172,19 +172,20 @@ const getMedalLabel = (index: number) => {
 
 .welcome-page {
     min-height: 100vh;
-    background-color: $bg-color;
+    background-color: #0a0a0a;
 }
 
 .page-header {
-    background: linear-gradient(135deg, $primary-color 0%, $accent-blue 100%);
+    background: #0a0a0a;
+    border-bottom: 1px solid rgba(#fff, 0.08);
     padding: 3rem 1.5rem;
     text-align: center;
     color: $white-color;
 
     h1 {
         font-size: 2.5rem;
+        font-weight: 800;
         margin-bottom: 1rem;
-        text-shadow: 0 2px 4px rgba($gray-500, 0.2);
 
         @media (max-width: $mobile-width) {
             font-size: 1.8rem;
@@ -192,32 +193,31 @@ const getMedalLabel = (index: number) => {
     }
 
     .subtitle {
-        font-size: 1.4rem;
-        opacity: 0.9;
-        color: $white-100;
+        font-size: 1.1rem;
+        color: rgba(#fff, 0.45);
+        letter-spacing: 0.05em;
 
         @media (max-width: $mobile-width) {
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
     }
 }
 
 .main-content {
     max-width: $container-width;
-    margin: -2rem auto 0;
-    padding: 0 1.5rem;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
     position: relative;
     z-index: 1;
 
     @media (max-width: $mobile-width) {
-        padding: 0 1rem;
-        margin-top: -1.5rem;
+        padding: 1.5rem 1rem;
     }
 }
 
 .group-tabs-container {
-    background: $white-color;
-    border-radius: 12px;
+    background: #111;
+    border-radius: 8px;
     padding: 0.75rem;
     box-shadow: 0 4px 12px rgba($primary-color, 0.1);
     margin-bottom: 2rem;
@@ -226,8 +226,8 @@ const getMedalLabel = (index: number) => {
 .tabs-wrapper {
     position: relative;
     display: flex;
-    background: $white-100;
-    border-radius: 8px;
+    background: #0a0a0a;
+    border-radius: 6px;
     padding: 0.25rem;
     height: 56px;
 
@@ -242,13 +242,13 @@ const getMedalLabel = (index: number) => {
         background: none;
         padding: 0.75rem;
         cursor: pointer;
-        color: $gray-300;
-        font-weight: 500;
+        color: rgba(#fff, 0.35);
+        font-weight: 600;
         transition: color 0.3s ease;
         z-index: 2;
 
         &.active {
-            color: $primary-color;
+            color: #F1C40F;
         }
 
         i {
@@ -256,11 +256,11 @@ const getMedalLabel = (index: number) => {
         }
 
         .badge {
-            background: $bg-color;
+            background: rgba(#fff, 0.08);
             padding: 0.25rem 0.75rem;
             border-radius: 12px;
             font-size: 0.9rem;
-            color: $gray-400;
+            color: rgba(#fff, 0.4);
         }
 
         @media (max-width: $mobile-width) {
@@ -281,8 +281,8 @@ const getMedalLabel = (index: number) => {
         left: 0.25rem;
         width: calc(50% - 0.5rem);
         height: calc(100% - 0.5rem);
-        background: $white-color;
-        border-radius: 6px;
+        background: rgba(#F1C40F, 0.12);
+        border-radius: 4px;
         box-shadow: 0 2px 8px rgba($primary-color, 0.15);
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 1;
@@ -348,14 +348,15 @@ const getMedalLabel = (index: number) => {
 
 .result-card {
     background: $white-color;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba($primary-color, 0.1);
+    border-radius: 8px;
+    background: #1a1a1a;
+    border: 1px solid rgba(#fff, 0.08);
     overflow: hidden;
     transition: transform 0.3s ease;
 
     &:hover {
         transform: translateY(-4px);
-        box-shadow: 0 4px 12px rgba($primary-color, 0.15);
+        border-color: rgba(#fff, 0.15);
     }
 
     .card-header {
@@ -363,14 +364,14 @@ const getMedalLabel = (index: number) => {
         justify-content: space-between;
         align-items: center;
         padding: 1.25rem;
-        background: $white-100;
-        border-bottom: 1px solid rgba($primary-color, 0.1);
+        background: #111;
+        border-bottom: 1px solid rgba(#fff, 0.08);
 
         h3 {
             margin: 0;
-            color: $primary-color;
-            font-size: 1.2rem;
-            font-weight: 600;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 700;
         }
 
         .medal-icons {
@@ -400,7 +401,7 @@ const getMedalLabel = (index: number) => {
             display: flex;
             align-items: center;
             padding: 1rem 1.25rem;
-            border-bottom: 1px solid $white-100;
+            border-bottom: 1px solid rgba(#fff, 0.06);
 
             &:last-child {
                 border-bottom: none;
@@ -409,12 +410,12 @@ const getMedalLabel = (index: number) => {
             .rank {
                 width: 2rem;
                 font-weight: 600;
-                color: $gray-300;
+                color: rgba(#fff, 0.3);
             }
 
             .name {
                 flex: 1;
-                color: $text-color;
+                color: rgba(#fff, 0.8);
             }
 
             .medal-label {
