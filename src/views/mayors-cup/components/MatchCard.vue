@@ -127,12 +127,12 @@ const getMatchStatus = (match: GameSchedule): string => {
         align-items: center;
 
         .date {
-            color: $primary-color;
+            color: #F1C40F;
             font-weight: 500;
         }
 
         .time {
-            color: $gray-400;
+            color: rgba(#fff, 0.5);
         }
 
         .number {
@@ -141,7 +141,7 @@ const getMatchStatus = (match: GameSchedule): string => {
     }
 
     .venue {
-        color: $gray-400;
+        color: rgba(#fff, 0.5);
         font-size: 0.9rem;
         display: flex;
         align-items: center;
@@ -184,6 +184,7 @@ const getMatchStatus = (match: GameSchedule): string => {
                 align-items: center;
                 gap: 0.5rem;
                 font-weight: 600;
+                color: #fff;
 
                 .pk {
                     font-size: 0.9rem;
@@ -196,9 +197,9 @@ const getMatchStatus = (match: GameSchedule): string => {
 
             .match-status {
                 font-size: 0.9rem;
-                color: $gray-400;
+                color: rgba(#fff, 0.4);
                 padding: 0.2rem 0.5rem;
-                background-color: rgba($gray-400, 0.1);
+                background-color: rgba(#fff, 0.08);
                 border-radius: 4px;
             }
         }
