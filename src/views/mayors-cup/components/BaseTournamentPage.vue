@@ -343,6 +343,7 @@ onMounted(() => {
     max-width: $container-width;
     margin: 0 auto;
     background-color: #0a0a0a;
+    color: #fff;
 
     @media (max-width: $mobile-width) {
         padding: 1rem;
