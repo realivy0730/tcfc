@@ -55,7 +55,8 @@
       border-radius: 8px;
       font-size: 1rem;
       color: $primary-color;
-      background-color: $white-color;
+      background-color: #1a1a1a;
+      color: #fff;
       appearance: none;
       cursor: pointer;
       transition: all 0.3s ease;
@@ -149,7 +150,7 @@
   // 賽程展開區塊
   .matches-accordion {
     .match-item {
-      background: $white-color;
+      background: #111;
       border-radius: 8px;
       margin-bottom: 1rem;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -239,7 +240,7 @@
     }
 
     .knockout-match {
-      background: $white-color;
+      background: #111;
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
