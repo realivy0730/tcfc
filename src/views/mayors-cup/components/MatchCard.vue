@@ -82,42 +82,29 @@ const getMatchStatus = (match: GameSchedule): string => {
 
 <style lang="scss" scoped>
 .match-card {
-    &.group {
-        .match-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.75rem;
+    color: #fff;
 
-            @media (max-width: $mobile-width) {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-            }
+    &.group .match-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.75rem;
+
+        @media (max-width: $mobile-width) {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
         }
     }
 
-    &.knockout {
-        .match-header {
-            padding: 1rem;
-            background-color: $primary-color;
-            color: $white-color;
+    &.knockout .match-header {
+        padding: 1rem;
+        background-color: $primary-color;
 
-            .match-info {
-                margin-bottom: 0.5rem;
-
-                .round {
-                    font-weight: 600;
-                    font-size: 1.1rem;
-                    margin-right: 1rem;
-                }
-
-                .date,
-                .time {
-                    font-size: 0.9rem;
-                    opacity: 0.9;
-                }
-            }
+        .match-info {
+            margin-bottom: 0.5rem;
+            .round { font-weight: 600; font-size: 1.1rem; margin-right: 1rem; }
+            .date, .time { font-size: 0.9rem; opacity: 0.9; }
         }
     }
 
@@ -125,19 +112,9 @@ const getMatchStatus = (match: GameSchedule): string => {
         display: flex;
         gap: 1rem;
         align-items: center;
-
-        .date {
-            color: #F1C40F;
-            font-weight: 500;
-        }
-
-        .time {
-            color: rgba(#fff, 0.5);
-        }
-
-        .number {
-            color: $accent-blue;
-        }
+        .date { color: #F1C40F; font-weight: 500; }
+        .time { color: rgba(#fff, 0.5); }
+        .number { color: $accent-blue; }
     }
 
     .venue {
@@ -146,62 +123,44 @@ const getMatchStatus = (match: GameSchedule): string => {
         display: flex;
         align-items: center;
         gap: 0.5rem;
-
-        i {
-            color: $accent-orange;
-        }
+        i { color: $accent-orange; }
     }
 
-    .match-teams {
-        .team {
+    .match-teams .team {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem;
+        border-radius: 6px;
+
+        &.winner {
+            background-color: rgba($accent-green, 0.05);
+            .name { color: $accent-green; font-weight: 600; }
+            .score { color: $accent-green; }
+        }
+
+        .name { flex: 1; font-weight: 500; }
+
+        .score {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 0.75rem;
-            border-radius: 6px;
-
-            &.winner {
-                background-color: rgba($accent-green, 0.05);
-
-                .name {
-                    color: $accent-green;
-                    font-weight: 600;
-                }
-
-                .score {
-                    color: $accent-green;
-                }
-            }
-
-            .name {
-                flex: 1;
-                font-weight: 500;
-                color: #fff;
-            }
-
-            .score {
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-                font-weight: 600;
-                color: #fff;
-
-                .pk {
-                    font-size: 0.9rem;
-                    color: $accent-orange;
-                    padding: 0.2rem 0.5rem;
-                    background: rgba($accent-orange, 0.1);
-                    border-radius: 4px;
-                }
-            }
-
-            .match-status {
+            gap: 0.5rem;
+            font-weight: 600;
+            .pk {
                 font-size: 0.9rem;
-                color: rgba(#fff, 0.4);
+                color: $accent-orange;
                 padding: 0.2rem 0.5rem;
-                background-color: rgba(#fff, 0.08);
+                background: rgba($accent-orange, 0.1);
                 border-radius: 4px;
             }
+        }
+
+        .match-status {
+            font-size: 0.9rem;
+            color: rgba(#fff, 0.4);
+            padding: 0.2rem 0.5rem;
+            background-color: rgba(#fff, 0.08);
+            border-radius: 4px;
         }
     }
 }
