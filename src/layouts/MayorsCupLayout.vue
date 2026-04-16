@@ -94,11 +94,12 @@ const currentYear = computed(() => {
     }
 
     .main-content {
-        margin-top: 132px; // 72px header + 60px year navigation
+        margin-top: 51px;
         flex: 1;
+        background-color: #000;
 
         @media (max-width: $mobile-width) {
-            margin-top: 83px; // 43px header + 40px year navigation
+            margin-top: 51px;
         }
     }
 }
