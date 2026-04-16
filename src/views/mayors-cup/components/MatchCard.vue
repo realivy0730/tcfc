@@ -176,6 +176,7 @@ const getMatchStatus = (match: GameSchedule): string => {
             .name {
                 flex: 1;
                 font-weight: 500;
+                color: #fff;
             }
 
             .score {
