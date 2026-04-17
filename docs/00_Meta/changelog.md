@@ -3,10 +3,38 @@ title: "TCFC 變更記錄"
 tags: [Meta, changelog]
 version: "1.0"
 related_id: ["INDEX"]
-last_updated: "2026-04-08"
+last_updated: "2026-04-11"
 ---
 
 # TCFC 變更記錄
+
+## 2026-04-13 — feature/visual-redesign 動態效果
+
+**執行者**: linyuanchun
+**分支**: feature/visual-redesign
+
+### 變更內容
+- 新增 `v-scroll-reveal` 全域 directive（`src/directives/scrollReveal.ts`）
+- Hero 視差滾動 + 進場動畫（英文副標 → 主標 → CTA 依序淡入）
+- 導覽列連結 hover 底線滑入效果
+- Social icons hover 縮放效果
+- CTA 按鈕 hover 填色從左往右掃入動畫
+- 頁面切換淡入淡出過場（`src/App.vue`）
+- 新增 `FixedCta.vue` 元件（備用，未啟用）
+- tcfc-ops SKILL.md 加入動態效果 SOP
+
+
+
+**執行者**: linyuanchun
+**分支**: feature/visual-redesign
+
+### 變更內容
+- Hero 區塊：加入深色遮罩、中英文標題、CTA 按鈕、向下滾動箭頭動畫
+- Section 標題：改為英文小標 + 中文大標雙層設計（`title__en` + `title__zh`）
+- 卡片樣式：改為方角 + 左側透明邊框，hover 時顯示主色邊框
+- 新增 CTA Section：頁面底部行動呼籲區塊（背景圖 + 深色遮罩）
+- 色調微調：mission section 背景改為米白（`$bg-color`），summary-block 改為左線設計
+- tcfc-ops SKILL.md 加入首頁視覺改版 SOP
 
 ## 2026-04-09 — v0.0.8 (release) 首頁背景圖替換
 
