@@ -234,6 +234,16 @@ CTA Section         → 背景圖 + 深色遮罩 + 行動呼籲按鈕
 
 `labelKnockoutStages()` 函數已加入 Apps Script，執行後自動將所有 tab 的「晉」改為正確標籤。
 
+**注意事項**：
+- 必須在「晉」標籤存在時執行，若已被 `assignGroups` 覆蓋則需先還原版本
+- 低年級組的 F 欄位同時有小組賽「F 組」，不影響功能但 grep 時會多筆
+- 高年級女生組無淘汰賽，正常現象
+
+### 對戰圖開發狀態
+
+- ✅ Sheet 資料已就緒（QF/SF/3rd/F 標籤正確）
+- 📋 前端 `KnockoutBracket.vue` 待開發：讀取 group 欄位，依階段分層渲染
+
 ---
 
 ## 本地建置驗證

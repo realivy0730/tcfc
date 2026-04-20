@@ -4,6 +4,17 @@ tags: [Meta, changelog]
 version: "1.0"
 related_id: ["INDEX"]
 
+## [2026-04-20] — feat: Google Sheet 淘汰賽標籤完成，準備開發對戰圖
+
+**完成項目**：
+- `labelKnockoutStages()` Apps Script 執行成功，所有 tab「晉」→ QF/SF/3rd/F
+- 驗證結果（各 tab F=1, 3rd=1, SF=2，QF 依規模不同）：
+  - 幼兒組：QF(2)+SF(2)+3rd(1)+F(1)
+  - 中年級女生組：SF(2)+3rd(1)+F(1)
+  - 公開國中組、高年級男生組、中年級男生組：QF(4)+SF(2)+3rd(1)+F(1)
+  - 低年級組：R16(8)+QF(8)+SF(4)+3rd(1)+F(1)（注意：低年級組 F 欄位同時有小組賽 F 組，grep 會多筆）
+- **下一步**：開發前端 KnockoutBracket.vue 對戰圖（讀取 group 欄位分層渲染）
+
 ## [2026-04-20] — feat: Apps Script labelKnockoutStages + Google Sheet 標籤規範確認
 
 **背景**：公開組 Google Sheet 各 tab 的淘汰賽場次 C 欄全部標為「晉」，前端無法區分賽事階段。
