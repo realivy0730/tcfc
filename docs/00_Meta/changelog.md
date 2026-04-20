@@ -3,6 +3,43 @@ title: "TCFC 變更記錄"
 tags: [Meta, changelog]
 version: "1.0"
 related_id: ["INDEX"]
+
+## [2026-04-20] — feat: Apps Script labelKnockoutStages + Google Sheet 標籤規範確認
+
+**背景**：公開組 Google Sheet 各 tab 的淘汰賽場次 C 欄全部標為「晉」，前端無法區分賽事階段。
+
+**分析結果**：
+- 各 tab 晉級場次數量：幼兒組(6)、低年級組(24)、中年級男生組(12)、中年級女生組(4)、高年級男生組(12)、公開國中組(8)
+- 規則：從最後一場往前數，固定對應 F → 3rd → SF → QF → R16 → R32
+
+**新增 Apps Script 函數 `labelKnockoutStages()`**：
+- 對所有非「總覽」tab 執行
+- 掃描 C 欄找出所有「晉」的列，從最後往前依序改為 F/3rd/SF/SF/QF/QF/QF/QF/R16...
+- 執行後前端可直接用 group 欄位判斷賽事階段
+
+**Google Sheet 標籤規範（確認）**：
+
+| group 欄位 | 意義 |
+|-----------|------|
+| `A`/`B`/`C`... | 分組賽 |
+| `R32` | 三十二強 |
+| `R16` | 十六強 |
+| `QF` | 八強 |
+| `SF` | 四強 |
+| `3rd` | 季殿軍賽 |
+| `F` | 冠亞軍賽 |
+
+**注意**：Apps Script 完整程式碼需手動貼入（Playwright 無法可靠操作 Monaco editor）
+
+---
+
+## [2026-04-20] — fix: KnockoutBracket 垂直排列修正
+
+**問題**：KnockoutBracket.vue 使用 `display: flex`（預設 row），導致 SF/3rd/F 三個 round 左右並排。
+
+**修復**：將 `.knockout-bracket` 改為 `flex-direction: column`，讓 round 由上至下垂直排列：四強(SF) → 季殿軍(3rd) → 決賽(F)。
+
+**commit**: `3047999` → `feature/visual-redesign`
 last_updated: "2026-04-11"
 ---
 
