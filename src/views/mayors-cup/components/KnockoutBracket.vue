@@ -1,33 +1,10 @@
 <!-- src/views/mayors-cup/components/KnockoutBracket.vue -->
 <template>
   <div class="knockout-bracket">
-    <!-- SF 四強 -->
-    <div v-if="rounds.SF?.length" class="round">
-      <h3 class="round-title">四強</h3>
+    <div v-for="round in roundOrder" :key="round.key" v-if="rounds[round.key]?.length" class="round">
+      <h3 class="round-title">{{ round.label }}</h3>
       <div class="matches">
-        <div v-for="m in rounds.SF" :key="m.gameNumber" class="bracket-match">
-          <BracketTeam :team="m.homeTeam" :score="m.homeScore" :pk="m.homePK" :winner="isWinner(m,'home')" />
-          <BracketTeam :team="m.awayTeam" :score="m.awayScore" :pk="m.awayPK" :winner="isWinner(m,'away')" />
-        </div>
-      </div>
-    </div>
-
-    <!-- 3rd 季殿軍 -->
-    <div v-if="rounds['3rd']?.length" class="round">
-      <h3 class="round-title">季殿軍</h3>
-      <div class="matches">
-        <div v-for="m in rounds['3rd']" :key="m.gameNumber" class="bracket-match">
-          <BracketTeam :team="m.homeTeam" :score="m.homeScore" :pk="m.homePK" :winner="isWinner(m,'home')" />
-          <BracketTeam :team="m.awayTeam" :score="m.awayScore" :pk="m.awayPK" :winner="isWinner(m,'away')" />
-        </div>
-      </div>
-    </div>
-
-    <!-- F 決賽 -->
-    <div v-if="rounds.F?.length" class="round">
-      <h3 class="round-title">決賽</h3>
-      <div class="matches">
-        <div v-for="m in rounds.F" :key="m.gameNumber" class="bracket-match">
+        <div v-for="m in rounds[round.key]" :key="m.gameNumber" class="bracket-match">
           <BracketTeam :team="m.homeTeam" :score="m.homeScore" :pk="m.homePK" :winner="isWinner(m,'home')" />
           <BracketTeam :team="m.awayTeam" :score="m.awayScore" :pk="m.awayPK" :winner="isWinner(m,'away')" />
         </div>
@@ -41,6 +18,15 @@ import { computed, defineComponent, h } from 'vue';
 import type { GameSchedule } from '@/api/types/gameSchedule';
 
 const props = defineProps<{ knockoutMatches: GameSchedule[] }>();
+
+const roundOrder = [
+  { key: 'R32', label: '三十二強' },
+  { key: 'R16', label: '十六強' },
+  { key: 'QF',  label: '八強' },
+  { key: 'SF',  label: '四強' },
+  { key: '3rd', label: '季殿軍' },
+  { key: 'F',   label: '決賽' },
+];
 
 // 依 group 分層
 const rounds = computed(() => {
