@@ -1,15 +1,17 @@
 <!-- src/views/mayors-cup/components/KnockoutBracket.vue -->
 <template>
   <div class="knockout-bracket">
-    <div v-for="round in roundOrder" :key="round.key" v-if="rounds[round.key]?.length" class="round">
-      <h3 class="round-title">{{ round.label }}</h3>
-      <div class="matches">
-        <div v-for="m in rounds[round.key]" :key="m.gameNumber" class="bracket-match">
-          <BracketTeam :team="m.homeTeam" :score="m.homeScore" :pk="m.homePK" :winner="isWinner(m,'home')" />
-          <BracketTeam :team="m.awayTeam" :score="m.awayScore" :pk="m.awayPK" :winner="isWinner(m,'away')" />
+    <template v-for="round in roundOrder" :key="round.key">
+      <div v-if="rounds[round.key]?.length" class="round">
+        <h3 class="round-title">{{ round.label }}</h3>
+        <div class="matches">
+          <div v-for="m in rounds[round.key]" :key="m.gameNumber" class="bracket-match">
+            <BracketTeam :team="m.homeTeam" :score="m.homeScore" :pk="m.homePK" :winner="isWinner(m,'home')" />
+            <BracketTeam :team="m.awayTeam" :score="m.awayScore" :pk="m.awayPK" :winner="isWinner(m,'away')" />
+          </div>
         </div>
       </div>
-    </div>
+    </template>
   </div>
 </template>
 
