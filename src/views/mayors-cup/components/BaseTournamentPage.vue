@@ -196,9 +196,10 @@ const groupMatches = computed(() => {
 });
 
 const knockoutMatches = computed(() => {
-    // 篩選淘汰賽賽事
+    // 篩選淘汰賽賽事（排除 A-Z 小組賽，但保留 F/SF/QF/R16/R32/3rd）
+    const knockoutLabels = ['F', 'SF', 'QF', 'R16', 'R32', '3rd'];
     return matches.value
-        .filter(match => !/^[A-Z]$/.test(match.group))
+        .filter(match => knockoutLabels.includes(match.group))
         .sort((a, b) => {
             const dateCompare = new Date(a.date).getTime() - new Date(b.date).getTime();
             if (dateCompare !== 0) return dateCompare;

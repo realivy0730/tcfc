@@ -2,7 +2,7 @@
 <template>
   <div class="knockout-bracket">
     <template v-for="round in roundOrder" :key="round.key">
-      <div v-if="rounds[round.key]?.length" class="round">
+      <div v-if="rounds[round.key]?.length" class="round" :class="`round-${round.key}`">
         <h3 class="round-title">{{ round.label }}</h3>
         <div class="matches">
           <div v-for="m in rounds[round.key]" :key="m.gameNumber" class="bracket-match">
@@ -78,15 +78,21 @@ const BracketTeam = defineComponent({
 
     .round-title {
       text-align: center;
-      color: #F1C40F;
       font-size: 0.9rem;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       margin-bottom: 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid rgba(#F1C40F, 0.3);
+      padding: 0.4rem 0.75rem;
+      border-radius: 4px;
     }
+
+    &.round-F .round-title   { background: rgba(#F1C40F, 0.15); color: #F1C40F; border: 1px solid rgba(#F1C40F, 0.4); }
+    &.round-3rd .round-title { background: rgba(#95a5a6, 0.15); color: #bdc3c7; border: 1px solid rgba(#95a5a6, 0.4); }
+    &.round-SF .round-title  { background: rgba(#3498db, 0.15); color: #5dade2; border: 1px solid rgba(#3498db, 0.4); }
+    &.round-QF .round-title  { background: rgba(#2ecc71, 0.15); color: #58d68d; border: 1px solid rgba(#2ecc71, 0.4); }
+    &.round-R16 .round-title,
+    &.round-R32 .round-title { background: rgba(#fff, 0.05); color: rgba(#fff, 0.6); border: 1px solid rgba(#fff, 0.15); }
 
     .matches {
       display: flex;
