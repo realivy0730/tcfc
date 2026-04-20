@@ -105,6 +105,9 @@
                 <span>淘汰賽賽程已產生，比賽即將開始</span>
             </div>
 
+            <!-- 淘汰賽對戰圖 -->
+            <KnockoutBracket :knockout-matches="knockoutMatches" />
+
             <div class="knockout-matches">
                 <div v-for="match in knockoutMatches" :key="match.gameNumber" class="knockout-match"
                     :class="{ 'no-score': !hasScore(match) }">
@@ -126,6 +129,7 @@ import { ref, computed, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import type { GameSchedule } from '@/api/types/gameSchedule';
 import MatchCard from './MatchCard.vue';
+import KnockoutBracket from './KnockoutBracket.vue';
 
 // Props
 const props = defineProps<{
