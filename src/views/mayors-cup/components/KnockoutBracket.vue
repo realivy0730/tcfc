@@ -80,13 +80,9 @@ const BracketTeam = defineComponent({
 <style lang="scss" scoped>
 .knockout-bracket {
   display: flex;
+  flex-direction: column;
   gap: 2rem;
-  overflow-x: auto;
   padding-bottom: 1rem;
-
-  @media (max-width: $mobile-width) {
-    flex-direction: column;
-  }
 
   .round {
     flex: 1;
