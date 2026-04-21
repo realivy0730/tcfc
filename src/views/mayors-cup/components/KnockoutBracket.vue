@@ -12,7 +12,7 @@
                 v-for="m in rounds[round.key]"
                 :key="m.gameNumber"
                 class="bracket-match"
-                :class="{ 'has-connector': round.key !== 'F' }"
+                :class="{ 'has-connector': round.key !== 'F' && round.key !== '3rd' }"
               >
                 <BracketTeam :team="m.homeTeam" :score="m.homeScore" :pk="m.homePK" :winner="isWinner(m,'home')" />
                 <BracketTeam :team="m.awayTeam" :score="m.awayScore" :pk="m.awayPK" :winner="isWinner(m,'away')" />
@@ -20,17 +20,6 @@
             </div>
           </div>
         </template>
-
-        <!-- 季殿軍：緊接在決賽欄右側 -->
-        <div v-if="rounds['3rd']?.length" class="bracket-col col-3rd">
-          <div class="col-header">🥉 季殿軍</div>
-          <div class="col-matches">
-            <div v-for="m in rounds['3rd']" :key="m.gameNumber" class="bracket-match">
-              <BracketTeam :team="m.homeTeam" :score="m.homeScore" :pk="m.homePK" :winner="isWinner(m,'home')" />
-              <BracketTeam :team="m.awayTeam" :score="m.awayScore" :pk="m.awayPK" :winner="isWinner(m,'away')" />
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -47,6 +36,7 @@ const mainRounds = [
   { key: 'R16', label: '十六強' },
   { key: 'QF',  label: '八強' },
   { key: 'SF',  label: '四強' },
+  { key: '3rd', label: '🥉 季殿軍' },
   { key: 'F',   label: '🏆 冠亞軍' },
 ];
 
