@@ -190,7 +190,7 @@ const groupMatches = computed(() => {
 
 const knockoutMatches = computed(() => {
     // 篩選淘汰賽賽事（排除 A-Z 小組賽，但保留 F/SF/QF/R16/R32/3rd）
-    const knockoutLabels = ['F', 'SF', 'QF', 'R16', 'R32', '3rd'];
+    const knockoutLabels = ['FINAL', 'SF', 'QF', 'R16', 'R32', '3rd'];
     return matches.value
         .filter(match => knockoutLabels.includes(match.group))
         .sort((a, b) => {
