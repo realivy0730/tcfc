@@ -95,6 +95,23 @@
                 <div class="group-note">
                     <p>註：各組前兩名晉級淘汰賽</p>
                 </div>
+
+                <!-- 最終排名（只有一組且無淘汰賽時顯示） -->
+                <div v-if="groupMatches.length === 1 && !hasKnockoutMatches" class="final-standings">
+                    <h2 class="final-standings-title">🏆 最終排名</h2>
+                    <div class="final-standings-list">
+                        <div
+                            v-for="(team, index) in groupMatches[0].standings"
+                            :key="team.name"
+                            class="final-rank-item"
+                            :class="`rank-${index + 1}`"
+                        >
+                            <span class="rank-medal">{{ ['🥇','🥈','🥉','4️⃣'][index] || `${index+1}` }}</span>
+                            <span class="rank-team">{{ team.name }}</span>
+                            <span class="rank-points">{{ team.points }} 分</span>
+                        </div>
+                    </div>
+                </div>
             </template>
         </div>
 
@@ -584,6 +601,41 @@ onMounted(() => {
             font-size: 0.9rem;
             text-align: center;
             p { margin: 0; }
+        }
+
+        .final-standings {
+            margin-top: 2rem;
+
+            .final-standings-title {
+                font-size: 1rem;
+                font-weight: 700;
+                color: #F1C40F;
+                margin-bottom: 1rem;
+            }
+
+            .final-standings-list {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .final-rank-item {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                padding: 0.75rem 1rem;
+                background: #111;
+                border: 1px solid rgba(#fff, 0.08);
+                border-radius: 6px;
+
+                &.rank-1 { border-color: rgba(#F1C40F, 0.4); }
+                &.rank-2 { border-color: rgba(#95a5a6, 0.4); }
+                &.rank-3 { border-color: rgba(#cd7f32, 0.4); }
+
+                .rank-medal { font-size: 1.2rem; }
+                .rank-team  { flex: 1; color: #fff; font-weight: 600; }
+                .rank-points { color: rgba(#fff, 0.5); font-size: 0.85rem; }
+            }
         }
     }
 
