@@ -4,6 +4,29 @@ tags: [Meta, changelog]
 version: "1.0"
 related_id: ["INDEX"]
 
+## [2026-04-21] — feat: 淘汰賽對戰圖（橫向線圖）+ 多項 bug 修正
+
+**淘汰賽對戰圖重構**：
+- 改為橫向 bracket 線圖（QF → SF → 🥉季殿軍 → 🏆冠亞軍）
+- 各階段顏色區分（金/灰/藍/綠）
+- 決賽標籤改為「冠亞軍」，季殿軍獨立欄位
+
+**Bug 修正**：
+- 修正決賽(F)被過濾問題：`knockoutLabels` 明確列出 `['FINAL','F','SF','QF','R16','R32','3rd']`
+- 修正 F 標籤衝突：多場 F 時只取場次號最大的為決賽（解決高年級男生組 F 小組賽衝突）
+- 修正 F 標籤被誤判為小組賽：分組賽過濾排除 `F`，`hasKnockoutMatches` 改用明確標籤列表
+- 移除淘汰賽下方重複的卡片列表
+
+**新功能**：
+- 單組無淘汰賽時（如高年級女生組）顯示「最終排名」🥇🥈🥉4️⃣
+
+**學校組 Apps Script**：
+- 對學校組 Sheet 執行 `labelKnockoutStages`，將「晉」改為 SF/3rd/F
+
+**技術細節**：
+- `KnockoutBracket.vue`：橫向 bracket，`mainRounds` 陣列控制順序
+- `BaseTournamentPage.vue`：`knockoutOnlyLabels` 常數，分組賽過濾排除 F
+
 ## [2026-04-20] — feat: Google Sheet 淘汰賽標籤完成，準備開發對戰圖
 
 **完成項目**：

@@ -242,7 +242,19 @@ CTA Section         → 背景圖 + 深色遮罩 + 行動呼籲按鈕
 ### 對戰圖開發狀態
 
 - ✅ Sheet 資料已就緒（QF/SF/3rd/F 標籤正確）
-- 📋 前端 `KnockoutBracket.vue` 待開發：讀取 group 欄位，依階段分層渲染
+- ✅ 前端 `KnockoutBracket.vue` 橫向 bracket 線圖完成
+- ✅ 各階段顏色區分（金/灰/藍/綠）
+- ✅ 決賽標籤「冠亞軍」，季殿軍獨立欄位
+- ✅ 單組無淘汰賽時顯示「最終排名」
+
+### F 標籤衝突問題
+
+部分組別（低年級組、中年級男生組、高年級男生組）的小組賽有 F 組，與決賽標籤 `F` 衝突。
+
+**解法**：
+- `knockoutMatches` computed：多場 F 時只取場次號最大的為決賽
+- 分組賽過濾：`/^[A-Z]$/ && group !== 'F'`
+- `hasKnockoutMatches`：改用明確標籤列表 `knockoutOnlyLabels`
 
 ---
 
