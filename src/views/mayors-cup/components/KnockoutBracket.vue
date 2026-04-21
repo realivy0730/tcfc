@@ -12,7 +12,7 @@
                 v-for="m in rounds[round.key]"
                 :key="m.gameNumber"
                 class="bracket-match"
-                :class="{ 'has-connector': round.key !== 'FINAL' && round.key !== '3rd' }"
+                :class="{ 'has-connector': round.key !== 'FINAL' && round.key !== 'F' && round.key !== '3rd' }"
               >
                 <BracketTeam :team="m.homeTeam" :score="m.homeScore" :pk="m.homePK" :winner="isWinner(m,'home')" />
                 <BracketTeam :team="m.awayTeam" :score="m.awayScore" :pk="m.awayPK" :winner="isWinner(m,'away')" />
@@ -38,6 +38,7 @@ const mainRounds = [
   { key: 'SF',  label: '四強' },
   { key: '3rd',   label: '🥉 季殿軍' },
   { key: 'FINAL', label: '🏆 冠亞軍' },
+  { key: 'F',     label: '🏆 冠亞軍' },
 ];
 
 const rounds = computed(() => {
@@ -111,7 +112,8 @@ const BracketTeam = defineComponent({
     white-space: nowrap;
   }
 
-  &.col-FINAL .col-header { background: rgba(#F1C40F, 0.15); color: #F1C40F; border: 1px solid rgba(#F1C40F, 0.4); }
+  &.col-FINAL .col-header,
+  &.col-F .col-header     { background: rgba(#F1C40F, 0.15); color: #F1C40F; border: 1px solid rgba(#F1C40F, 0.4); }
   &.col-3rd .col-header { background: rgba(#95a5a6, 0.15); color: #bdc3c7; border: 1px solid rgba(#95a5a6, 0.4); }
   &.col-SF .col-header  { background: rgba(#3498db, 0.15); color: #5dade2; border: 1px solid rgba(#3498db, 0.4); }
   &.col-QF .col-header  { background: rgba(#2ecc71, 0.15); color: #58d68d; border: 1px solid rgba(#2ecc71, 0.4); }

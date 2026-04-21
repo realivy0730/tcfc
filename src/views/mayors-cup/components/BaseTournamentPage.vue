@@ -189,15 +189,27 @@ const groupMatches = computed(() => {
 });
 
 const knockoutMatches = computed(() => {
-    // 篩選淘汰賽賽事（排除 A-Z 小組賽，但保留 F/SF/QF/R16/R32/3rd）
     const knockoutLabels = ['FINAL', 'SF', 'QF', 'R16', 'R32', '3rd'];
-    return matches.value
-        .filter(match => knockoutLabels.includes(match.group))
-        .sort((a, b) => {
-            const dateCompare = new Date(a.date).getTime() - new Date(b.date).getTime();
-            if (dateCompare !== 0) return dateCompare;
-            return a.time.localeCompare(b.time);
-        });
+    const allMatches = matches.value.filter(match => knockoutLabels.includes(match.group));
+
+    // F 標籤：只取場次號最大的那場（真正的決賽），其餘是小組賽
+    const fMatches = matches.value.filter(m => m.group === 'F');
+    if (fMatches.length === 1) {
+        // 只有一場 F，直接加入（改 group 為 FINAL 方便前端識別）
+        allMatches.push({ ...fMatches[0], group: 'FINAL' });
+    } else if (fMatches.length > 1) {
+        // 多場 F，只取場次號最大的（決賽）
+        const finalMatch = fMatches.reduce((a, b) =>
+            parseInt(a.gameNumber) > parseInt(b.gameNumber) ? a : b
+        );
+        allMatches.push({ ...finalMatch, group: 'FINAL' });
+    }
+
+    return allMatches.sort((a, b) => {
+        const dateCompare = new Date(a.date).getTime() - new Date(b.date).getTime();
+        if (dateCompare !== 0) return dateCompare;
+        return a.time.localeCompare(b.time);
+    });
 });
 
 // 工具函數
