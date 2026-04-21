@@ -161,8 +161,10 @@ const expandedGroups = ref<Record<string, boolean>>({});
 // 賽程狀態計算
 const hasAnyMatches = computed(() => matches.value.length > 0);
 
+const knockoutOnlyLabels = ['FINAL', 'F', 'SF', 'QF', 'R16', 'R32', '3rd'];
+
 const hasKnockoutMatches = computed(() => {
-    return matches.value.some(match => !/^[A-Z]$/.test(match.group));
+    return matches.value.some(match => knockoutOnlyLabels.includes(match.group));
 });
 
 const hasKnockoutScores = computed(() => {
@@ -180,7 +182,7 @@ const groupMatches = computed(() => {
 
     // 篩選小組賽賽事（組別為 A-Z 的英文字母）
     matches.value
-        .filter(match => /^[A-Z]$/.test(match.group))
+        .filter(match => /^[A-Z]$/.test(match.group) && match.group !== 'F')
         .forEach(match => {
             if (!groups.has(match.group)) {
                 groups.set(match.group, {
