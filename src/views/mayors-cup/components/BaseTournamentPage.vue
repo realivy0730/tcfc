@@ -107,13 +107,6 @@
 
             <!-- 淘汰賽對戰圖 -->
             <KnockoutBracket :knockout-matches="knockoutMatches" />
-
-            <div class="knockout-matches">
-                <div v-for="match in knockoutMatches" :key="match.gameNumber" class="knockout-match"
-                    :class="{ 'no-score': !hasScore(match) }">
-                    <MatchCard :match="match" :show-score="hasScore(match)" :is-winner="isWinner" layout="knockout" />
-                </div>
-            </div>
         </div>
 
         <!-- 載入中狀態 -->
