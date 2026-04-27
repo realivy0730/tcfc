@@ -343,16 +343,16 @@ const getMedalLabel = (index: number) => {
 }
 
 .result-card {
-    background: $white-color;
-    border-radius: 8px;
     background: #ffffff;
+    border-radius: 8px;
     border: 1px solid rgba(#1a2e1c, 0.08);
+    border-top: 3px solid #B89968;
     overflow: hidden;
     transition: transform 0.3s ease;
 
     &:hover {
         transform: translateY(-4px);
-        border-color: rgba(#1a2e1c, 0.15);
+        border-color: #B89968;
     }
 
     .card-header {
@@ -360,7 +360,7 @@ const getMedalLabel = (index: number) => {
         justify-content: space-between;
         align-items: center;
         padding: 1.25rem;
-        background: #eef2ee;
+        background: #f5f0e8;
         border-bottom: 1px solid rgba(#1a2e1c, 0.08);
 
         h3 {
