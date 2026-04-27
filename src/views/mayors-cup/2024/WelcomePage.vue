@@ -14,21 +14,16 @@
         <main class="main-content">
             <!-- 分組導覽區 -->
             <div class="group-tabs-container">
-                <nav class="group-tabs" role="tablist">
-                    <!-- 導覽列 -->
-                    <div class="tabs-wrapper">
-                        <button v-for="(tab, index) in tabs" :key="tab.id" role="tab" class="tab-button"
-                            :class="{ active: activeTab === tab.id }" @click="switchTab(tab.id, index)"
-                            :aria-selected="activeTab === tab.id">
-                            <i :class="tab.icon"></i>
-                            <span class="tab-name">{{ tab.name }}</span>
-                            <span class="badge">{{ getGroupCount(tab.id) }}</span>
-                        </button>
-                        <!-- 移動指示器 -->
-                        <div class="active-indicator" :style="{ transform: `translateX(${activeTabIndex * 100}%)` }">
-                        </div>
-                    </div>
-                </nav>
+                <p class="group-tabs-label">選擇組別</p>
+                <div class="group-tabs">
+                    <button v-for="(tab, index) in tabs" :key="tab.id"
+                        class="tab-button"
+                        :class="{ active: activeTab === tab.id }"
+                        @click="switchTab(tab.id, index)">
+                        <i :class="tab.icon"></i>
+                        <span>{{ tab.name }}</span>
+                    </button>
+                </div>
             </div>
 
             <!-- 查看賽程按鈕 -->
@@ -245,76 +240,48 @@ const getMedalLabel = (index: number) => {
 }
 
 .group-tabs-container {
-    background: #eef2ee;
+    background: #f5f0e8;
     border-radius: 8px;
-    padding: 0.75rem;
-    box-shadow: 0 4px 12px rgba($primary-color, 0.1);
+    border-top: 3px solid #B89968;
+    padding: 1.25rem 1.5rem;
     margin-bottom: 2rem;
 }
 
-.tabs-wrapper {
-    position: relative;
+.group-tabs-label {
+    font-size: 0.95rem;
+    color: #1a2e1c;
+    margin-bottom: 1rem;
+    font-family: 'Noto Serif TC', serif;
+}
+
+.group-tabs {
     display: flex;
-    background: #f7f9f7;
-    border-radius: 6px;
-    padding: 0.25rem;
-    height: 56px;
+    gap: 0.75rem;
 
     .tab-button {
-        position: relative;
-        flex: 1;
-        display: flex;
+        display: inline-flex;
         align-items: center;
-        justify-content: center;
-        gap: 0.75rem;
-        border: none;
-        background: none;
-        padding: 0.75rem;
+        gap: 0.5rem;
+        padding: 0.6rem 1.25rem;
+        background: #ffffff;
+        border: 1px solid rgba(#1a2e1c, 0.15);
+        border-radius: 6px;
+        color: rgba(#1a2e1c, 0.6);
+        font-size: 0.95rem;
         cursor: pointer;
-        color: rgba(#1a2e1c, 0.35);
-        font-weight: 600;
-        transition: color 0.3s ease;
-        z-index: 2;
+        transition: all 0.2s ease;
 
         &.active {
+            border-color: #B89968;
             color: #B89968;
         }
 
-        i {
-            font-size: 1.2rem;
+        &:hover:not(.active) {
+            border-color: rgba(#1a2e1c, 0.3);
+            color: #1a2e1c;
         }
 
-        .badge {
-            background: rgba(#1a2e1c, 0.08);
-            padding: 0.25rem 0.75rem;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            color: rgba(#1a2e1c, 0.4);
-        }
-
-        @media (max-width: $mobile-width) {
-            flex-direction: column;
-            gap: 0.25rem;
-            padding: 0.5rem;
-
-            .badge {
-                padding: 0.15rem 0.5rem;
-                font-size: 0.8rem;
-            }
-        }
-    }
-
-    .active-indicator {
-        position: absolute;
-        top: 0.25rem;
-        left: 0.25rem;
-        width: calc(50% - 0.5rem);
-        height: calc(100% - 0.5rem);
-        background: rgba(#B89968, 0.12);
-        border-radius: 4px;
-        box-shadow: 0 2px 8px rgba($primary-color, 0.15);
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: 1;
+        i { font-size: 1rem; }
     }
 }
 
@@ -472,22 +439,6 @@ const getMedalLabel = (index: number) => {
 
 // 手機版特定樣式
 @media (max-width: $mobile-width) {
-    .group-tabs-container {
-        padding: 0.5rem;
-        margin: 0 -0.5rem 1.5rem;
-        border-radius: 8px;
-    }
-
-    .tabs-wrapper {
-        height: 70px;
-
-        .tab-button {
-            .tab-name {
-                font-size: 0.95rem;
-            }
-        }
-    }
-
     .results-grid {
         gap: 1rem;
     }
@@ -561,22 +512,6 @@ const getMedalLabel = (index: number) => {
 
         .subtitle {
             animation-delay: 0.2s;
-        }
-    }
-
-    .group-tabs-container {
-        position: relative;
-
-        &::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba($accent-blue, 0.05), rgba($primary-color, 0.05));
-            border-radius: 12px;
-            z-index: 0;
         }
     }
 
