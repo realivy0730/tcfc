@@ -294,7 +294,7 @@ const getMedalLabel = (index: number) => {
         display: inline-flex;
         align-items: center;
         gap: 0.75rem;
-        background: $accent-green;
+        background: #B89968;
         color: $white-color;
         padding: 0.875rem 1.5rem;
         border-radius: 8px;
@@ -303,7 +303,7 @@ const getMedalLabel = (index: number) => {
         transition: all 0.3s ease;
 
         &:hover {
-            background: color.adjust($accent-green, $lightness: -5%);
+            background: color.adjust(#B89968, $lightness: -5%);
             transform: translateY(-2px);
         }
 
