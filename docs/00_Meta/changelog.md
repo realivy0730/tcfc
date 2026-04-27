@@ -4,6 +4,57 @@ tags: [Meta, changelog]
 version: "1.0"
 related_id: ["INDEX"]
 
+## [2026-04-27] — feat: 2024/2025 WelcomePage hero 改為深色底圖風格
+
+**2024 WelcomePage**：
+- `.page-header` 改為深色 hero：底圖 `welcome-header.jpg` + 遮罩 `rgba(#0a0a0a, 0.55)`
+- 加英文小標 `MAYORS CUP 2024`（古銅金 `#B89968`，letter-spacing 0.3em）
+- 主標白色，副標 `rgba(#fff, 0.7)`
+
+**2025 WelcomePage**：
+- `.hero` 同樣改為深色底圖風格，共用 `welcome-header.jpg`
+- 加英文小標 `MAYORS CUP 2025`，結構與 2024 一致
+
+## [2026-04-27] — feat: 2024 WelcomePage page-header 加底圖
+
+**2024 WelcomePage**：
+- `.page-header` 加入 `welcome-header.jpg` 底圖（`jean-francois-jouet-bLTkkRXFb8U-unsplash.jpg`）
+- 加半透明遮罩 `rgba(#f7f9f7, 0.75)` 保持文字可讀性
+- 圖片複製至 `src/assets/images/welcome-header.jpg`
+
+
+
+**Hero 視覺重設計（參考 Evolvin Football Field 風格）**：
+- Task 1：大型透明背景文字 `TAICHUNG FOOTBALL COMMITTEE`（`opacity: 0.07`）
+- Task 2：右側垂直標語「凝聚城市足球魂」（`writing-mode: vertical-rl`）
+- Task 3：圓形旋轉 SCROLL DOWN（SVG textPath + `rotateSlow` 動畫）
+- Task 4：底部全寬雙 CTA 色塊（左深森林綠「查看賽事」+ 右黃「最新比分」）
+
+**深森林綠色系全站套用**：
+- `#0a0a0a` → `#0a1a0e`（最深背景）
+- `#111` → `#0f2214`（次背景）
+- `#1a1a1a` → `#162d1b`（卡片背景）
+- `#2ecc71` → `#4caf6e`（亮草綠強調色）
+- `_variables.scss` 新增 `$bg-deepest`、`$bg-dark`、`$bg-card` 語意變數
+
+
+
+**淘汰賽 Bracket 優化**：
+- 欄位改用 `flex: 1` 均分畫面寬度，不再靠左堆疊
+- 每個場次卡片底部加入時間、地點、場次資訊列（`match-meta`）
+- 手機版直式排列（冠亞軍在最上，依序往下）
+
+**資料規範統一（F → FINAL）**：
+- 前端移除 `F` 作為冠亞軍標籤，改用 `FINAL`
+- `BaseTournamentPage` 保留 `F` 相容邏輯（取場次號最大者），待 Apps Script 更新後移除
+- `KnockoutBracket.vue` 移除 `F` key
+- Apps Script `labelKnockoutStages()` labels 陣列第一個改為 `'FINAL'`
+- `fixYoujiKnockout()` 的 `[15,'F']` 改為 `[15,'FINAL']`（待手動更新）
+
+**其他**：
+- `$container-width` 從 1200px 調整為 1416px
+- `tcfc-ops SKILL.md` 精簡，移除非維運章節
+
 ## [2026-04-21] — feat: 淘汰賽對戰圖（橫向線圖）+ 多項 bug 修正
 
 **淘汰賽對戰圖重構**：

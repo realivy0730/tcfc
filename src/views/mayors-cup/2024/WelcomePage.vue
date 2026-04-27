@@ -3,8 +3,11 @@
     <div class="welcome-page">
         <!-- 頁面標題區 -->
         <header class="page-header">
-            <h1>113年度 - 臺中市市長盃足球錦標賽(2024)</h1>
-            <p class="subtitle">凝聚城市足球魂，打造臺中足球夢</p>
+            <div class="page-header__inner">
+                <p class="page-header__en">MAYORS CUP 2024</p>
+                <h1>113年度 臺中市市長盃足球錦標賽</h1>
+                <p class="subtitle">凝聚城市足球魂，打造臺中足球夢</p>
+            </div>
         </header>
 
         <!-- 主要內容區 -->
@@ -172,19 +175,45 @@ const getMedalLabel = (index: number) => {
 
 .welcome-page {
     min-height: 100vh;
-    background-color: #0a0a0a;
+    background-color: #f7f9f7;
 }
 
 .page-header {
-    background: #0a0a0a;
-    border-bottom: 1px solid rgba(#fff, 0.08);
-    padding: 3rem 1.5rem;
+    background: url('@/assets/images/welcome-header.jpg') no-repeat center center;
+    background-size: cover;
+    position: relative;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    color: $white-color;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(#0a0a0a, 0.55);
+    }
+
+    &__inner {
+        position: relative;
+        z-index: 1;
+        padding: 0 1.5rem;
+    }
+
+    &__en {
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.3em;
+        color: #B89968;
+        margin-bottom: 1.25rem;
+        text-transform: uppercase;
+    }
 
     h1 {
         font-size: 2.5rem;
         font-weight: 800;
+        color: #ffffff;
         margin-bottom: 1rem;
 
         @media (max-width: $mobile-width) {
@@ -194,7 +223,7 @@ const getMedalLabel = (index: number) => {
 
     .subtitle {
         font-size: 1.1rem;
-        color: rgba(#fff, 0.45);
+        color: rgba(#ffffff, 0.7);
         letter-spacing: 0.05em;
 
         @media (max-width: $mobile-width) {
@@ -216,7 +245,7 @@ const getMedalLabel = (index: number) => {
 }
 
 .group-tabs-container {
-    background: #111;
+    background: #eef2ee;
     border-radius: 8px;
     padding: 0.75rem;
     box-shadow: 0 4px 12px rgba($primary-color, 0.1);
@@ -226,7 +255,7 @@ const getMedalLabel = (index: number) => {
 .tabs-wrapper {
     position: relative;
     display: flex;
-    background: #0a0a0a;
+    background: #f7f9f7;
     border-radius: 6px;
     padding: 0.25rem;
     height: 56px;
@@ -242,13 +271,13 @@ const getMedalLabel = (index: number) => {
         background: none;
         padding: 0.75rem;
         cursor: pointer;
-        color: rgba(#fff, 0.35);
+        color: rgba(#1a2e1c, 0.35);
         font-weight: 600;
         transition: color 0.3s ease;
         z-index: 2;
 
         &.active {
-            color: #F1C40F;
+            color: #B89968;
         }
 
         i {
@@ -256,11 +285,11 @@ const getMedalLabel = (index: number) => {
         }
 
         .badge {
-            background: rgba(#fff, 0.08);
+            background: rgba(#1a2e1c, 0.08);
             padding: 0.25rem 0.75rem;
             border-radius: 12px;
             font-size: 0.9rem;
-            color: rgba(#fff, 0.4);
+            color: rgba(#1a2e1c, 0.4);
         }
 
         @media (max-width: $mobile-width) {
@@ -281,7 +310,7 @@ const getMedalLabel = (index: number) => {
         left: 0.25rem;
         width: calc(50% - 0.5rem);
         height: calc(100% - 0.5rem);
-        background: rgba(#F1C40F, 0.12);
+        background: rgba(#B89968, 0.12);
         border-radius: 4px;
         box-shadow: 0 2px 8px rgba($primary-color, 0.15);
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -349,14 +378,14 @@ const getMedalLabel = (index: number) => {
 .result-card {
     background: $white-color;
     border-radius: 8px;
-    background: #1a1a1a;
-    border: 1px solid rgba(#fff, 0.08);
+    background: #ffffff;
+    border: 1px solid rgba(#1a2e1c, 0.08);
     overflow: hidden;
     transition: transform 0.3s ease;
 
     &:hover {
         transform: translateY(-4px);
-        border-color: rgba(#fff, 0.15);
+        border-color: rgba(#1a2e1c, 0.15);
     }
 
     .card-header {
@@ -364,12 +393,12 @@ const getMedalLabel = (index: number) => {
         justify-content: space-between;
         align-items: center;
         padding: 1.25rem;
-        background: #111;
-        border-bottom: 1px solid rgba(#fff, 0.08);
+        background: #eef2ee;
+        border-bottom: 1px solid rgba(#1a2e1c, 0.08);
 
         h3 {
             margin: 0;
-            color: #fff;
+            color: #1a2e1c;
             font-size: 1.1rem;
             font-weight: 700;
         }
@@ -401,7 +430,7 @@ const getMedalLabel = (index: number) => {
             display: flex;
             align-items: center;
             padding: 1rem 1.25rem;
-            border-bottom: 1px solid rgba(#fff, 0.06);
+            border-bottom: 1px solid rgba(#1a2e1c, 0.06);
 
             &:last-child {
                 border-bottom: none;
@@ -410,12 +439,12 @@ const getMedalLabel = (index: number) => {
             .rank {
                 width: 2rem;
                 font-weight: 600;
-                color: rgba(#fff, 0.3);
+                color: rgba(#1a2e1c, 0.3);
             }
 
             .name {
                 flex: 1;
-                color: rgba(#fff, 0.8);
+                color: rgba(#1a2e1c, 0.8);
             }
 
             .medal-label {
@@ -524,17 +553,6 @@ const getMedalLabel = (index: number) => {
     .page-header {
         position: relative;
         overflow: hidden;
-
-        &::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 100px;
-            background: linear-gradient(to top, $bg-color, transparent);
-            pointer-events: none;
-        }
 
         h1,
         .subtitle {
