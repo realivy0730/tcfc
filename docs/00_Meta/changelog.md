@@ -4,6 +4,23 @@ tags: [Meta, changelog]
 version: "1.0"
 related_id: ["INDEX"]
 
+## [2026-04-28] — feat: 全站視覺重設計（字體、Tab、Footer）
+
+**字體**：
+- `index.html` 加入 Google Fonts `Noto Serif TC`（400/500/600/700/900）
+- `_reset.scss` h1~h6 全套 `'Noto Serif TC', serif`
+
+**2024 WelcomePage**：
+- Tab 改為卡片式 border 按鈕（米色背景 `#f5f0e8`，頂部古銅金線）
+- `view-schedule` 按鈕背景改為古銅金 `#B89968`
+
+**Footer**：
+- 上半部：淺灰白 `#f5f5f3`，四欄佈局（品牌 2fr + 導覽 + 服務 + 聯絡）
+- 品牌欄：中文名 + 英文小字 + 簡介 + 社群圖示（古銅金圓形）
+- 聯絡欄：label 小字母間距（PHONE/EMAIL/ADDRESS）
+- 下半部：深灰 `#2e3440`，置中版權文字
+- 連結 hover 變古銅金，移除舊箭頭前綴
+
 ## [2026-04-27] — feat: 2024/2025 WelcomePage hero 改為深色底圖風格
 
 **2024 WelcomePage**：
