@@ -352,7 +352,6 @@ const getMedalLabel = (index: number) => {
 
     &:hover {
         transform: translateY(-4px);
-        border-color: #B89968;
     }
 
     .card-header {
