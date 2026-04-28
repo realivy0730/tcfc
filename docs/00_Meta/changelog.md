@@ -4,6 +4,19 @@ tags: [Meta, changelog]
 version: "1.0"
 related_id: ["INDEX"]
 
+## [2026-04-28] — feat: 全站主色改為深藍灰 #3f4a52 + 細節修正
+
+**主色替換**：
+- `$primary-color`: `#1a2e1c` → `#3f4a52`（深藍灰，含文字色與背景色）
+- 影響 7 個檔案：`_variables.scss`、`_index.scss`、`_tournament.scss`、`_footer.scss`、2024/2025 WelcomePage、BaseTournamentPage
+
+**其他修正**：
+- `tournaments__year` 顏色從 `rgba(#fff, 0.12)` → `rgba(#3f4a52, 0.1)`（淺色背景可見）
+- `results__item` 日期欄寬 100px → 130px
+- Google Fonts 換為 `Noto Sans TC`（原為 `Noto Sans`）
+- 移除全域 `a:hover { text-decoration: underline }`
+- `logo-text` 加 `Noto Serif TC` 字體
+
 ## [2026-04-28] — feat: 全站視覺重設計（字體、Tab、Footer）
 
 **字體**：
