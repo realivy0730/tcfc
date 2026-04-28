@@ -892,14 +892,14 @@ $border-radius: 12px;     // 圓角
 
             &:hover {
                 background: transparent;
-                color: #3f4a52;
+                color: #fff;
                 &::before { transform: scaleX(1); }
             }
         }
 
         &--outline {
             border: 2px solid #fff;
-            color: #3f4a52;
+            color: #fff;
             background: transparent;
 
             &::before {

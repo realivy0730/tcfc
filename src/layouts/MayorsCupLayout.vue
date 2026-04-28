@@ -45,7 +45,7 @@ const currentYear = computed(() => {
     min-height: 100vh;
 
     .year-navigation {
-        background: #0a0a0a;
+        background: #2e3440;
         border-bottom: 1px solid rgba(#fff, 0.08);
         position: fixed;
         width: 100%;
@@ -66,7 +66,7 @@ const currentYear = computed(() => {
 
             .year-link {
                 padding: 0.5rem 0;
-                color: rgba(#fff, 0.4);
+                color: rgba(#fff, 0.45);
                 text-decoration: none;
                 transition: all 0.3s ease;
                 font-weight: 600;
@@ -77,8 +77,8 @@ const currentYear = computed(() => {
                 &:hover { color: rgba(#fff, 0.8); }
 
                 &.active {
-                    color: #F1C40F;
-                    border-bottom-color: #F1C40F;
+                    color: #B89968;
+                    border-bottom-color: #B89968;
                 }
             }
         }
@@ -96,7 +96,7 @@ const currentYear = computed(() => {
     .main-content {
         margin-top: 51px;
         flex: 1;
-        background-color: #000;
+        background-color: #f7f9f7;
 
         @media (max-width: $mobile-width) {
             margin-top: 51px;

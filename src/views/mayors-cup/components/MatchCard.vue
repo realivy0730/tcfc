@@ -82,9 +82,7 @@ const getMatchStatus = (match: GameSchedule): string => {
 
 <style lang="scss" scoped>
 .match-card {
-    color: #fff;
-
-    &.group .match-header {
+    .match-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -97,33 +95,17 @@ const getMatchStatus = (match: GameSchedule): string => {
         }
     }
 
-    &.knockout .match-header {
-        padding: 1rem;
-        background-color: $primary-color;
-
-        .match-info {
-            margin-bottom: 0.5rem;
-            .round { font-weight: 600; font-size: 1.1rem; margin-right: 1rem; }
-            .date, .time { font-size: 0.9rem; opacity: 0.9; }
-        }
-    }
-
     .match-info {
         display: flex;
         gap: 1rem;
         align-items: center;
-        .date { color: #F1C40F; font-weight: 500; }
-        .time { color: rgba(#fff, 0.5); }
-        .number { color: $accent-blue; }
     }
 
     .venue {
-        color: rgba(#fff, 0.5);
         font-size: 0.9rem;
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        i { color: $accent-orange; }
     }
 
     .match-teams .team {
@@ -132,12 +114,6 @@ const getMatchStatus = (match: GameSchedule): string => {
         align-items: center;
         padding: 0.75rem;
         border-radius: 6px;
-
-        &.winner {
-            background-color: rgba($accent-green, 0.05);
-            .name { color: $accent-green; font-weight: 600; }
-            .score { color: $accent-green; }
-        }
 
         .name { flex: 1; font-weight: 500; }
 
@@ -148,19 +124,77 @@ const getMatchStatus = (match: GameSchedule): string => {
             font-weight: 600;
             .pk {
                 font-size: 0.9rem;
-                color: $accent-orange;
                 padding: 0.2rem 0.5rem;
-                background: rgba($accent-orange, 0.1);
                 border-radius: 4px;
             }
         }
 
         .match-status {
             font-size: 0.9rem;
-            color: rgba(#fff, 0.4);
             padding: 0.2rem 0.5rem;
-            background-color: rgba(#fff, 0.08);
             border-radius: 4px;
+        }
+    }
+
+    // ── group layout（米色背景）──
+    &.group {
+        color: #3f4a52;
+
+        .date   { color: #B89968; font-weight: 500; }
+        .time   { color: rgba(#3f4a52, 0.45); }
+        .number { color: rgba(#3f4a52, 0.6); }
+        .venue  { color: rgba(#3f4a52, 0.45); i { color: rgba(#3f4a52, 0.4); } }
+
+        .match-teams .team {
+            &.winner {
+                .name  { font-weight: 700; }
+                .score { font-weight: 700; }
+            }
+            &:not(.winner) {
+                .name  { color: rgba(#3f4a52, 0.4); }
+                .score { color: rgba(#3f4a52, 0.4); }
+            }
+            .score .pk {
+                color: rgba(#3f4a52, 0.6);
+                background: rgba(#3f4a52, 0.08);
+            }
+            .match-status {
+                color: rgba(#3f4a52, 0.4);
+                background: rgba(#3f4a52, 0.06);
+            }
+        }
+    }
+
+    // ── knockout layout（深色背景）──
+    &.knockout {
+        color: #fff;
+
+        .match-header {
+            padding: 1rem;
+            background-color: $primary-color;
+            .round { font-weight: 600; font-size: 1.1rem; margin-right: 1rem; }
+            .date, .time { font-size: 0.9rem; opacity: 0.9; }
+        }
+
+        .date   { color: #F1C40F; font-weight: 500; }
+        .time   { color: rgba(#fff, 0.5); }
+        .number { color: $accent-blue; }
+        .venue  { color: rgba(#fff, 0.5); i { color: $accent-orange; } }
+
+        .match-teams .team {
+            &.winner {
+                background: rgba($accent-green, 0.05);
+                .name  { color: $accent-green; font-weight: 600; }
+                .score { color: $accent-green; }
+            }
+            .score .pk {
+                color: $accent-orange;
+                background: rgba($accent-orange, 0.1);
+            }
+            .match-status {
+                color: rgba(#fff, 0.4);
+                background: rgba(#fff, 0.08);
+            }
         }
     }
 }

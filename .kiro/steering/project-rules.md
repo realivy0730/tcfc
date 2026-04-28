@@ -106,6 +106,7 @@ Step 3: git commit & push (Version Control Sync)
 | 文件 | 更新條件 |
 |------|----------|
 | `docs/00_Meta/changelog.md` | **每次必更新** — 記錄變更項目 |
+| `docs/10_Core_Knowledge/tcfc-architecture.md` | **有程式碼修改時必更新** — 將修改摘要寫入「修改記錄」章節 |
 | `docs/10_Core_Knowledge/` | 架構/元件/API 有變動時 |
 | `docs/00_Meta/INDEX.md` | 目錄結構有變動時 |
 

@@ -455,6 +455,7 @@ onMounted(() => {
             padding: 1rem 0;
             background: none;
             border: none;
+            outline: none;
             color: rgba(#3f4a52, 0.35);
             font-size: 1rem;
             font-weight: 600;
@@ -502,17 +503,21 @@ onMounted(() => {
 
     .group-stage {
         .group-section {
-            background: #eef2ee;
+            background: #ffffff;
             border: 1px solid rgba(#3f4a52, 0.08);
+            border-top: 3px solid #B89968;
             border-radius: 8px;
             margin-bottom: 2rem;
             overflow: hidden;
+            transition: transform 0.3s ease;
+
+            &:hover { transform: translateY(-4px); }
 
             .standings-table {
                 .group-title {
                     margin: 0;
                     padding: 1rem 1.25rem;
-                    background: #ffffff;
+                    background: #f5f0e8;
                     border-bottom: 1px solid rgba(#3f4a52, 0.08);
                     color: #3f4a52;
                     font-size: 1rem;
@@ -578,12 +583,14 @@ onMounted(() => {
                 }
 
                 .matches-content {
-                    border-top: 1px solid rgba(#3f4a52, 0.06);
-                    background: rgba(#fff, 0.02);
+                    background: #f5f0e8;
+                    border-left: 3px solid #B89968;
+                    margin: 0 1.25rem 1rem;
+                    border-radius: 0 6px 6px 0;
 
                     .match-item {
-                        padding: 1rem 1.25rem;
-                        border-bottom: 1px solid rgba(#3f4a52, 0.06);
+                        padding: 0.75rem 1rem;
+                        border-bottom: 1px solid rgba(#B89968, 0.15);
                         &:last-child { border-bottom: none; }
                         &.no-score { opacity: 0.6; }
                     }
