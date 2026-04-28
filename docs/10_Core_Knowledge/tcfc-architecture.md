@@ -150,7 +150,18 @@ BaseTournamentPage.vue 內建積分計算：
 
 ---
 
-#### 早期 commits 摘要
+#### 2026-04-28 部署狀況
+
+- `feature/visual-redesign` merge → `develop` → `release/v0.1.0` → `main`
+- GitHub Actions Run #42 **失敗**
+- 失敗步驟：**Build Project**（1s 結束）
+- 本地 `npm run build` 成功，CI 失敗
+- 疑似原因：`VITE_GOOGLE_SHEETS_API_KEY` Secret 失效或未設定
+- 待確認：GitHub → Settings → Secrets → `VITE_GOOGLE_SHEETS_API_KEY`
+
+---
+
+
 
 | commit | 說明 |
 |--------|------|
