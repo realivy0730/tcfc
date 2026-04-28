@@ -3,7 +3,8 @@
     <div class="welcome-page">
         <section class="hero">
             <div class="hero-content">
-                <h1>114年度 - 臺中市市長盃足球錦標賽(2025)</h1>
+                <p class="hero-en">MAYORS CUP 2025</p>
+                <h1>114年度 臺中市市長盃足球錦標賽</h1>
                 <p>賽事籌備中，敬請期待</p>
             </div>
         </section>
@@ -68,36 +69,54 @@ onMounted(() => {
 <style lang="scss" scoped>
 .welcome-page {
     .hero {
-        height: 60vh;
-        background: linear-gradient(45deg, $primary-color, $accent-blue);
+        background: url('@/assets/images/welcome-header.jpg') no-repeat center center;
+        background-size: cover;
+        position: relative;
+        min-height: 420px;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        color: $white-color;
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(#0a0a0a, 0.55);
+        }
 
         &-content {
+            position: relative;
             z-index: 1;
             padding: 0 $spacing-unit;
+        }
 
-            h1 {
-                font-size: 3rem;
-                margin-bottom: 1.5rem;
-                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        &-en {
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            color: #B89968;
+            margin-bottom: 1.25rem;
+            text-transform: uppercase;
+        }
 
-                @media (max-width: $mobile-width) {
-                    font-size: 2rem;
-                }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 1rem;
+
+            @media (max-width: $mobile-width) {
+                font-size: 1.8rem;
             }
+        }
 
-            p {
-                font-size: 1.5rem;
-                opacity: 0.9;
-                text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        p {
+            font-size: 1.1rem;
+            color: rgba(#ffffff, 0.7);
 
-                @media (max-width: $mobile-width) {
-                    font-size: 1.2rem;
-                }
+            @media (max-width: $mobile-width) {
+                font-size: 1rem;
             }
         }
     }
@@ -110,7 +129,7 @@ onMounted(() => {
 
     .preparation-section {
         padding: 4rem 0;
-        background-color: $bg-color;
+        background-color: #f7f9f7;
 
         .preparation-content {
             text-align: center;
@@ -118,31 +137,32 @@ onMounted(() => {
             margin: 0 auto;
 
             .status-icon {
-                width: 100px;
-                height: 100px;
+                width: 80px;
+                height: 80px;
                 margin: 0 auto 2rem;
-                background: $white-color;
+                background: rgba(#3f4a52, 0.05);
+                border: 1px solid rgba(#3f4a52, 0.1);
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
                 i {
-                    font-size: 3rem;
-                    color: $accent-orange;
+                    font-size: 2.5rem;
+                    color: #B89968;
                 }
             }
 
             h2 {
-                color: $primary-color;
-                font-size: 2.5rem;
+                color: #3f4a52;
+                font-size: 2rem;
+                font-weight: 800;
                 margin-bottom: 1rem;
             }
 
             p {
-                color: $gray-400;
-                font-size: 1.2rem;
+                color: rgba(#3f4a52, 0.45);
+                font-size: 1.1rem;
                 margin-bottom: 4rem;
             }
         }
@@ -156,9 +176,9 @@ onMounted(() => {
                 position: absolute;
                 left: 50%;
                 transform: translateX(-50%);
-                width: 2px;
+                width: 1px;
                 height: 100%;
-                background-color: $accent-blue;
+                background-color: rgba(#3f4a52, 0.1);
 
                 @media (max-width: $mobile-width) {
                     left: 20px;
@@ -178,9 +198,9 @@ onMounted(() => {
                 }
 
                 .time-point {
-                    width: 16px;
-                    height: 16px;
-                    background-color: $accent-orange;
+                    width: 12px;
+                    height: 12px;
+                    background-color: #B89968;
                     border-radius: 50%;
                     position: absolute;
                     left: 50%;
@@ -194,26 +214,27 @@ onMounted(() => {
 
                 .content {
                     width: 300px;
-                    background: $white-color;
+                    background: #ffffff;
+                    border: 1px solid rgba(#3f4a52, 0.08);
                     padding: 1.5rem;
-                    border-radius: 12px;
-                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                    border-radius: 8px;
                     margin-left: 3rem;
 
                     h4 {
-                        color: $accent-blue;
-                        font-size: 1.2rem;
+                        color: #B89968;
+                        font-size: 1rem;
+                        font-weight: 700;
                         margin-bottom: 1rem;
                     }
 
                     .item-content {
                         h5 {
-                            color: $primary-color;
+                            color: #3f4a52;
                             margin-bottom: 0.5rem;
                         }
 
                         p {
-                            color: $gray-400;
+                            color: rgba(#3f4a52, 0.45);
                             font-size: 0.9rem;
                             margin-bottom: 0;
                         }

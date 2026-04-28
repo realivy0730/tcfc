@@ -2,11 +2,19 @@
 @use "sass:map";
 
 // === 主要色系 ===
-$primary-color: #103c5d;
+$primary-color: #3f4a52;   // 深綠黑（主文字/標題）
 $second-color: #870D0E;
-$accent-blue: #4A90E2;  // 新增
-$accent-green: #50B794; // 新增
-$accent-orange: #F5A623; // 新增
+$accent-blue: #4A90E2;
+$accent-green: #2d7a4f;    // 深草綠
+$accent-orange: #F5A623;
+
+// === 淺色主題背景色系 ===
+$bg-deepest: #f7f9f7;      // 主背景（帶綠調白）
+$bg-dark: #eef2ee;         // 次背景（淺灰綠）
+$bg-card: #ffffff;         // 卡片背景
+
+// === 強調色 ===
+$gold: #B89968;            // 古銅金（主強調色）
 // === 文字色系 ===
 $text-color: #333;
 $white-color: #ffffff;  // 新增
@@ -44,7 +52,7 @@ $breakpoints: (
 $mobile-width: 768px;
 $tablet-width: 992px;
 $desktop-width: 1200px;
-$container-width: 1200px;
+$container-width: 1416px;
 
 // === 間距單位 ===
 $spacing-unit: 1rem;

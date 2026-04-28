@@ -3,7 +3,7 @@ title: "TCFC 網站專案 — 強制規則"
 tags: [steering, rules, tcfc]
 version: "1.4"
 related_id: []
-last_updated: "2026-04-08"
+last_updated: "2026-04-17"
 ---
 
 # TCFC 網站專案 — 強制規則
@@ -18,7 +18,7 @@ last_updated: "2026-04-08"
 | 技術棧 | Vue 3 + Vite + TypeScript + SCSS |
 | 部署 | GitHub Pages（push main 觸發） |
 | 資料來源 | Google Sheets API |
-| 當前版本 | v0.0.8 |
+| 當前版本 | v0.0.9 |
 | 知識庫名稱 | `tcfc` |
 | 知識庫路徑 | `docs/`（禁止指向專案根目錄） |
 | 知識庫更新 | `knowledge update --name tcfc --path /Users/boday/工作/Kiro/tcfc/docs` |
@@ -106,6 +106,7 @@ Step 3: git commit & push (Version Control Sync)
 | 文件 | 更新條件 |
 |------|----------|
 | `docs/00_Meta/changelog.md` | **每次必更新** — 記錄變更項目 |
+| `docs/10_Core_Knowledge/tcfc-architecture.md` | **有程式碼修改時必更新** — 將修改摘要寫入「修改記錄」章節 |
 | `docs/10_Core_Knowledge/` | 架構/元件/API 有變動時 |
 | `docs/00_Meta/INDEX.md` | 目錄結構有變動時 |
 
