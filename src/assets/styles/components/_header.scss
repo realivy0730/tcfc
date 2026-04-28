@@ -74,10 +74,9 @@
 
 // 如果需要文字特別樣式，可以加入以下設定
 .logo-text {
-    // 防止文字換行
     white-space: nowrap;
+    font-family: 'Noto Serif TC', serif;
 
-    // 漸層文字效果（選用）
     background: linear-gradient(45deg, $primary-color, $accent-blue);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
