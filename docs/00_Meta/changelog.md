@@ -4,6 +4,14 @@ tags: [Meta, changelog]
 version: "1.0"
 related_id: ["INDEX"]
 
+## [2026-04-28] — refactor: 2024 WelcomePage CSS 清理
+
+- 移除死碼 308 行（`.tabs-wrapper` 舊選擇器、重複 `.welcome-page` 宣告、`result-card::before` 漸層邊框）
+- 合併兩個 `.welcome-page` 區塊為一
+- `getGroupCount`、`activeTabIndex` 未使用的 script 變數移除
+- media query 內聯至各元件，`background-size` 合併進 shorthand
+- focus ring 改為 `rgba(#B89968, 0.3)`（與主題一致）
+
 ## [2026-04-28] — feat: 全站主色改為深藍灰 #3f4a52 + 細節修正
 
 **主色替換**：
