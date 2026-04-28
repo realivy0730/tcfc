@@ -8,7 +8,7 @@ $border-radius: 15px;
 $box-shadow: 0 10px 30px rgba($primary-color, 0.1);
 $primary-light: color.adjust($primary-color, $lightness: 15%);  // 較亮的主色
 $primary-dark: color.adjust($primary-color, $lightness: -10%);    // 較暗的主色
-$accent-color: #1a2e1c;      // 輔助色（白色）
+$accent-color: #3f4a52;      // 輔助色（白色）
 $text-light: #e6e6e6;    // 淺色文字
 $border-radius: 12px;     // 圓角
 
@@ -40,7 +40,7 @@ $border-radius: 12px;     // 圓角
         z-index: 1;
         font-size: clamp(4rem, 12vw, 14rem);
         font-weight: 900;
-        color: #1a2e1c;
+        color: #3f4a52;
         opacity: 0.07;
         letter-spacing: 0.05em;
         white-space: nowrap;
@@ -61,7 +61,7 @@ $border-radius: 12px;     // 圓角
         writing-mode: vertical-rl;
         letter-spacing: 0.3em;
         font-size: 0.8rem;
-        color: rgba(#1a2e1c, 0.35);
+        color: rgba(#3f4a52, 0.35);
         pointer-events: none;
     }
 
@@ -138,7 +138,7 @@ $border-radius: 12px;     // 圓角
         }
 
         &__arrow {
-            color: #1a2e1c;
+            color: #3f4a52;
             font-size: 1.1rem;
             animation: scrollArrow 1.5s infinite;
         }
@@ -506,14 +506,14 @@ $border-radius: 12px;     // 圓角
         font-size: 0.75rem;
         letter-spacing: 0.5em;
         text-transform: uppercase;
-        color: rgba(#1a2e1c, 0.45);
+        color: rgba(#3f4a52, 0.45);
         margin-bottom: 0.8rem;
     }
 
     .mission__title {
         font-size: clamp(1.8rem, 3vw, 2.5rem);
         font-weight: 800;
-        color: #1a2e1c;
+        color: #3f4a52;
         margin-bottom: 1.5rem;
         position: relative;
         padding-bottom: 1rem;
@@ -530,7 +530,7 @@ $border-radius: 12px;     // 圓角
     }
 
     .mission__body {
-        color: rgba(#1a2e1c, 0.7);
+        color: rgba(#3f4a52, 0.7);
         line-height: 1.9;
         margin-bottom: 1.8rem;
         font-size: 1rem;
@@ -547,7 +547,7 @@ $border-radius: 12px;     // 圓角
             display: flex;
             align-items: center;
             gap: 0.7rem;
-            color: rgba(#1a2e1c, 0.7);
+            color: rgba(#3f4a52, 0.7);
             font-size: 0.95rem;
 
             i { color: #B89968; font-size: 0.8rem; }
@@ -664,20 +664,20 @@ $border-radius: 12px;     // 圓角
         font-size: 0.75rem;
         letter-spacing: 0.5em;
         text-transform: uppercase;
-        color: rgba(#1a2e1c, 0.45);
+        color: rgba(#3f4a52, 0.45);
         margin-bottom: 0.8rem;
     }
 
     .tournaments__title {
         font-size: clamp(1.8rem, 3vw, 2.5rem);
         font-weight: 800;
-        color: #1a2e1c;
+        color: #3f4a52;
     }
 
     .tournaments__cards {
         display: flex;
         flex-direction: column;
-        border-top: 1px solid rgba(#1a2e1c, 0.1);
+        border-top: 1px solid rgba(#3f4a52, 0.1);
     }
 
     .tournaments__card {
@@ -685,7 +685,7 @@ $border-radius: 12px;     // 圓角
         align-items: center;
         gap: 2.5rem;
         padding: 2.5rem 0;
-        border-bottom: 1px solid rgba(#1a2e1c, 0.1);
+        border-bottom: 1px solid rgba(#3f4a52, 0.1);
         text-decoration: none;
         transition: padding-left 0.3s ease, border-left-color 0.3s ease;
         border-left: 3px solid transparent;
@@ -700,7 +700,7 @@ $border-radius: 12px;     // 圓角
     .tournaments__year {
         font-size: clamp(2.5rem, 5vw, 4rem);
         font-weight: 800;
-        color: rgba(#1a2e1c, 0.1);
+        color: rgba(#3f4a52, 0.1);
         line-height: 1;
         min-width: 140px;
         letter-spacing: -0.03em;
@@ -708,13 +708,13 @@ $border-radius: 12px;     // 圓角
 
     .tournaments__info {
         flex: 1;
-        h3 { font-size: 1.1rem; font-weight: 700; color: #1a2e1c; margin-bottom: 0.3rem; }
-        p { font-size: 0.85rem; color: rgba(#1a2e1c, 0.45); }
+        h3 { font-size: 1.1rem; font-weight: 700; color: #3f4a52; margin-bottom: 0.3rem; }
+        p { font-size: 0.85rem; color: rgba(#3f4a52, 0.45); }
     }
 
     .tournaments__arrow {
         font-size: 1.5rem;
-        color: rgba(#1a2e1c, 0.25);
+        color: rgba(#3f4a52, 0.25);
         transition: color 0.3s ease;
     }
 
@@ -740,24 +740,24 @@ $border-radius: 12px;     // 圓角
         font-size: 0.75rem;
         letter-spacing: 0.5em;
         text-transform: uppercase;
-        color: rgba(#1a2e1c, 0.45);
+        color: rgba(#3f4a52, 0.45);
         margin-bottom: 0.8rem;
     }
 
     .results__title {
         font-size: clamp(1.8rem, 3vw, 2.5rem);
         font-weight: 800;
-        color: #1a2e1c;
+        color: #3f4a52;
     }
 
     .results__loading, .results__empty {
-        color: rgba(#1a2e1c, 0.4);
+        color: rgba(#3f4a52, 0.4);
         font-size: 0.95rem;
         padding: 2rem 0;
     }
 
     .results__list {
-        border-top: 1px solid rgba(#1a2e1c, 0.1);
+        border-top: 1px solid rgba(#3f4a52, 0.1);
         margin-bottom: 2rem;
     }
 
@@ -767,7 +767,7 @@ $border-radius: 12px;     // 圓角
         align-items: center;
         gap: 1.5rem;
         padding: 1.5rem 0;
-        border-bottom: 1px solid rgba(#1a2e1c, 0.08);
+        border-bottom: 1px solid rgba(#3f4a52, 0.08);
 
         @media (max-width: $mobile-width) {
             grid-template-columns: 1fr;
@@ -790,7 +790,7 @@ $border-radius: 12px;     // 圓角
     .results__team {
         font-size: 1rem;
         font-weight: 600;
-        color: #1a2e1c;
+        color: #3f4a52;
         flex: 1;
 
         &--home { text-align: right; }
@@ -807,7 +807,7 @@ $border-radius: 12px;     // 圓角
 
     .results__date {
         font-size: 0.8rem;
-        color: rgba(#1a2e1c, 0.35);
+        color: rgba(#3f4a52, 0.35);
         text-align: right;
     }
 
@@ -815,7 +815,7 @@ $border-radius: 12px;     // 圓角
 
     .results__link {
         font-size: 0.9rem;
-        color: rgba(#1a2e1c, 0.5);
+        color: rgba(#3f4a52, 0.5);
         text-decoration: none;
         letter-spacing: 0.05em;
         transition: color 0.3s ease;
@@ -892,14 +892,14 @@ $border-radius: 12px;     // 圓角
 
             &:hover {
                 background: transparent;
-                color: #1a2e1c;
+                color: #3f4a52;
                 &::before { transform: scaleX(1); }
             }
         }
 
         &--outline {
             border: 2px solid #fff;
-            color: #1a2e1c;
+            color: #3f4a52;
             background: transparent;
 
             &::before {

@@ -21,20 +21,20 @@
             font-family: 'Noto Serif TC', serif;
             font-size: 1.2rem;
             font-weight: 700;
-            color: #1a2e1c;
+            color: #3f4a52;
             margin-bottom: 0.25rem;
         }
 
         &__sub {
             font-size: 0.7rem;
             letter-spacing: 0.2em;
-            color: rgba(#1a2e1c, 0.4);
+            color: rgba(#3f4a52, 0.4);
             margin-bottom: 1.25rem;
         }
 
         &__desc {
             font-size: 0.9rem;
-            color: rgba(#1a2e1c, 0.6);
+            color: rgba(#3f4a52, 0.6);
             line-height: 1.8;
             margin-bottom: 1.5rem;
         }
@@ -44,7 +44,7 @@
         h4 {
             font-size: 1rem;
             font-weight: 600;
-            color: #1a2e1c;
+            color: #3f4a52;
             margin-bottom: 1.25rem;
             font-family: 'Noto Serif TC', serif;
         }
@@ -57,7 +57,7 @@
         li { margin-bottom: 0.875rem; }
 
         a {
-            color: rgba(#1a2e1c, 0.6);
+            color: rgba(#3f4a52, 0.6);
             text-decoration: none;
             font-size: 0.95rem;
             transition: color 0.2s;
@@ -105,17 +105,17 @@
     &__label {
         font-size: 0.7rem;
         letter-spacing: 0.15em;
-        color: rgba(#1a2e1c, 0.4);
+        color: rgba(#3f4a52, 0.4);
         margin-bottom: 0.25rem;
     }
 
     &__value {
         font-size: 0.95rem;
-        color: rgba(#1a2e1c, 0.7);
+        color: rgba(#3f4a52, 0.7);
         margin-bottom: 1rem;
 
         a {
-            color: rgba(#1a2e1c, 0.7);
+            color: rgba(#3f4a52, 0.7);
             text-decoration: none;
             &:hover { color: #B89968; }
         }

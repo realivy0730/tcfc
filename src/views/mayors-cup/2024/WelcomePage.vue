@@ -249,7 +249,7 @@ const getMedalLabel = (index: number) => {
 
 .group-tabs-label {
     font-size: 0.95rem;
-    color: #1a2e1c;
+    color: #3f4a52;
     margin-bottom: 1rem;
     font-family: 'Noto Serif TC', serif;
 }
@@ -264,9 +264,9 @@ const getMedalLabel = (index: number) => {
         gap: 0.5rem;
         padding: 0.6rem 1.25rem;
         background: #ffffff;
-        border: 1px solid rgba(#1a2e1c, 0.15);
+        border: 1px solid rgba(#3f4a52, 0.15);
         border-radius: 6px;
-        color: rgba(#1a2e1c, 0.6);
+        color: rgba(#3f4a52, 0.6);
         font-size: 0.95rem;
         cursor: pointer;
         transition: all 0.2s ease;
@@ -277,8 +277,8 @@ const getMedalLabel = (index: number) => {
         }
 
         &:hover:not(.active) {
-            border-color: rgba(#1a2e1c, 0.3);
-            color: #1a2e1c;
+            border-color: rgba(#3f4a52, 0.3);
+            color: #3f4a52;
         }
 
         i { font-size: 1rem; }
@@ -345,7 +345,7 @@ const getMedalLabel = (index: number) => {
 .result-card {
     background: #ffffff;
     border-radius: 8px;
-    border: 1px solid rgba(#1a2e1c, 0.08);
+    border: 1px solid rgba(#3f4a52, 0.08);
     border-top: 3px solid #B89968;
     overflow: hidden;
     transition: transform 0.3s ease;
@@ -360,11 +360,11 @@ const getMedalLabel = (index: number) => {
         align-items: center;
         padding: 1.25rem;
         background: #f5f0e8;
-        border-bottom: 1px solid rgba(#1a2e1c, 0.08);
+        border-bottom: 1px solid rgba(#3f4a52, 0.08);
 
         h3 {
             margin: 0;
-            color: #1a2e1c;
+            color: #3f4a52;
             font-size: 1.1rem;
             font-weight: 700;
         }
@@ -396,7 +396,7 @@ const getMedalLabel = (index: number) => {
             display: flex;
             align-items: center;
             padding: 1rem 1.25rem;
-            border-bottom: 1px solid rgba(#1a2e1c, 0.06);
+            border-bottom: 1px solid rgba(#3f4a52, 0.06);
 
             &:last-child {
                 border-bottom: none;
@@ -405,12 +405,12 @@ const getMedalLabel = (index: number) => {
             .rank {
                 width: 2rem;
                 font-weight: 600;
-                color: rgba(#1a2e1c, 0.3);
+                color: rgba(#3f4a52, 0.3);
             }
 
             .name {
                 flex: 1;
-                color: rgba(#1a2e1c, 0.8);
+                color: rgba(#3f4a52, 0.8);
             }
 
             .medal-label {

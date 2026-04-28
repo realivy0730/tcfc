@@ -140,8 +140,8 @@ onMounted(() => {
                 width: 80px;
                 height: 80px;
                 margin: 0 auto 2rem;
-                background: rgba(#1a2e1c, 0.05);
-                border: 1px solid rgba(#1a2e1c, 0.1);
+                background: rgba(#3f4a52, 0.05);
+                border: 1px solid rgba(#3f4a52, 0.1);
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
@@ -154,14 +154,14 @@ onMounted(() => {
             }
 
             h2 {
-                color: #1a2e1c;
+                color: #3f4a52;
                 font-size: 2rem;
                 font-weight: 800;
                 margin-bottom: 1rem;
             }
 
             p {
-                color: rgba(#1a2e1c, 0.45);
+                color: rgba(#3f4a52, 0.45);
                 font-size: 1.1rem;
                 margin-bottom: 4rem;
             }
@@ -178,7 +178,7 @@ onMounted(() => {
                 transform: translateX(-50%);
                 width: 1px;
                 height: 100%;
-                background-color: rgba(#1a2e1c, 0.1);
+                background-color: rgba(#3f4a52, 0.1);
 
                 @media (max-width: $mobile-width) {
                     left: 20px;
@@ -215,7 +215,7 @@ onMounted(() => {
                 .content {
                     width: 300px;
                     background: #ffffff;
-                    border: 1px solid rgba(#1a2e1c, 0.08);
+                    border: 1px solid rgba(#3f4a52, 0.08);
                     padding: 1.5rem;
                     border-radius: 8px;
                     margin-left: 3rem;
@@ -229,12 +229,12 @@ onMounted(() => {
 
                     .item-content {
                         h5 {
-                            color: #1a2e1c;
+                            color: #3f4a52;
                             margin-bottom: 0.5rem;
                         }
 
                         p {
-                            color: rgba(#1a2e1c, 0.45);
+                            color: rgba(#3f4a52, 0.45);
                             font-size: 0.9rem;
                             margin-bottom: 0;
                         }

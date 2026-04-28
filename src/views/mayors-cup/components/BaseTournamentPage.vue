@@ -182,7 +182,7 @@ const groupMatches = computed(() => {
 
     // 篩選小組賽賽事（組別為 A-Z 的英文字母）
     matches.value
-        .filter(match => /^[A-Z]$/.test(match.group) && match.group !== 'F')
+        .filter(match => /^[A-Z]$/.test(match.group))
         .forEach(match => {
             if (!groups.has(match.group)) {
                 groups.set(match.group, {
@@ -209,22 +209,20 @@ const groupMatches = computed(() => {
 
 const knockoutMatches = computed(() => {
     const knockoutLabels = ['FINAL', 'SF', 'QF', 'R16', 'R32', '3rd'];
-    const allMatches = matches.value.filter(match => knockoutLabels.includes(match.group));
+    const result = matches.value.filter(match => knockoutLabels.includes(match.group));
 
-    // F 標籤：只取場次號最大的那場（真正的決賽），其餘是小組賽
+    // F 標籤相容：Sheet 尚未更新時，取場次號最大的 F 場次作為決賽
     const fMatches = matches.value.filter(m => m.group === 'F');
     if (fMatches.length === 1) {
-        // 只有一場 F，直接加入（改 group 為 FINAL 方便前端識別）
-        allMatches.push({ ...fMatches[0], group: 'FINAL' });
+        result.push({ ...fMatches[0], group: 'FINAL' });
     } else if (fMatches.length > 1) {
-        // 多場 F，只取場次號最大的（決賽）
         const finalMatch = fMatches.reduce((a, b) =>
             parseInt(a.gameNumber) > parseInt(b.gameNumber) ? a : b
         );
-        allMatches.push({ ...finalMatch, group: 'FINAL' });
+        result.push({ ...finalMatch, group: 'FINAL' });
     }
 
-    return allMatches.sort((a, b) => {
+    return result.sort((a, b) => {
         const dateCompare = new Date(a.date).getTime() - new Date(b.date).getTime();
         if (dateCompare !== 0) return dateCompare;
         return a.time.localeCompare(b.time);
@@ -371,8 +369,8 @@ onMounted(() => {
     padding: 2rem;
     max-width: $container-width;
     margin: 0 auto;
-    background-color: #0a0a0a;
-    color: #fff;
+    background-color: #f7f9f7;
+    color: #3f4a52;
 
     @media (max-width: $mobile-width) {
         padding: 1rem;
@@ -384,7 +382,7 @@ onMounted(() => {
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(#0a0a0a, 0.9);
+        background: rgba(#f7f9f7, 0.9);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -394,14 +392,14 @@ onMounted(() => {
         .spinner {
             width: 40px;
             height: 40px;
-            border: 3px solid rgba(#fff, 0.1);
-            border-left-color: #F1C40F;
+            border: 3px solid rgba(#3f4a52, 0.1);
+            border-left-color: #B89968;
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin-bottom: 1rem;
         }
 
-        span { color: rgba(#fff, 0.6); font-weight: 500; }
+        span { color: rgba(#3f4a52, 0.6); font-weight: 500; }
     }
 
     .page-header {
@@ -416,7 +414,7 @@ onMounted(() => {
         }
 
         h1 {
-            color: #fff;
+            color: #3f4a52;
             font-size: 1.8rem;
             font-weight: 800;
             margin: 0;
@@ -427,18 +425,18 @@ onMounted(() => {
         .division-selector {
             .select-input {
                 padding: 0.75rem 1rem;
-                border: 1px solid rgba(#fff, 0.15);
+                border: 1px solid rgba(#3f4a52, 0.15);
                 border-radius: 6px;
                 font-size: 1rem;
                 min-width: 200px;
-                background-color: #1a1a1a;
-                color: #fff;
+                background-color: #ffffff;
+                color: #3f4a52;
                 cursor: pointer;
                 transition: border-color 0.3s ease;
 
                 &:focus {
                     outline: none;
-                    border-color: #F1C40F;
+                    border-color: #B89968;
                 }
 
                 @media (max-width: $mobile-width) { width: 100%; }
@@ -448,7 +446,7 @@ onMounted(() => {
 
     .tournament-tabs {
         margin-bottom: 2rem;
-        border-bottom: 1px solid rgba(#fff, 0.1);
+        border-bottom: 1px solid rgba(#3f4a52, 0.1);
         display: flex;
         width: 100%;
 
@@ -457,7 +455,7 @@ onMounted(() => {
             padding: 1rem 0;
             background: none;
             border: none;
-            color: rgba(#fff, 0.35);
+            color: rgba(#3f4a52, 0.35);
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
@@ -472,40 +470,40 @@ onMounted(() => {
                 right: 0;
                 bottom: -1px;
                 height: 2px;
-                background-color: #F1C40F;
+                background-color: #B89968;
                 transform: scaleX(0);
                 transition: transform 0.3s ease;
             }
 
-            &:hover { color: rgba(#fff, 0.7); }
+            &:hover { color: rgba(#3f4a52, 0.7); }
 
             &.active {
-                color: #F1C40F;
+                color: #B89968;
                 &::after { transform: scaleX(1); }
             }
         }
     }
 
     .stage-status {
-        background: rgba(#fff, 0.05);
-        color: rgba(#fff, 0.6);
+        background: rgba(#3f4a52, 0.05);
+        color: rgba(#3f4a52, 0.6);
         padding: 1rem;
         border-radius: 6px;
         margin-bottom: 2rem;
         display: flex;
         align-items: center;
         gap: 0.75rem;
-        border: 1px solid rgba(#fff, 0.08);
+        border: 1px solid rgba(#3f4a52, 0.08);
 
-        &.empty { color: rgba(#fff, 0.35); }
+        &.empty { color: rgba(#3f4a52, 0.35); }
 
         i { font-size: 1.1rem; }
     }
 
     .group-stage {
         .group-section {
-            background: #111;
-            border: 1px solid rgba(#fff, 0.08);
+            background: #eef2ee;
+            border: 1px solid rgba(#3f4a52, 0.08);
             border-radius: 8px;
             margin-bottom: 2rem;
             overflow: hidden;
@@ -514,9 +512,9 @@ onMounted(() => {
                 .group-title {
                     margin: 0;
                     padding: 1rem 1.25rem;
-                    background: #1a1a1a;
-                    border-bottom: 1px solid rgba(#fff, 0.08);
-                    color: #fff;
+                    background: #ffffff;
+                    border-bottom: 1px solid rgba(#3f4a52, 0.08);
+                    color: #3f4a52;
                     font-size: 1rem;
                     font-weight: 700;
                     letter-spacing: 0.03em;
@@ -529,11 +527,11 @@ onMounted(() => {
                     th, td {
                         padding: 0.75rem 1rem;
                         text-align: center;
-                        border-bottom: 1px solid rgba(#fff, 0.06);
+                        border-bottom: 1px solid rgba(#3f4a52, 0.06);
 
-                        &.rank { width: 60px; color: rgba(#fff, 0.3); }
+                        &.rank { width: 60px; color: rgba(#3f4a52, 0.3); }
                         &.team-col { text-align: left; width: 30%; }
-                        &.points { font-weight: 700; color: #F1C40F; }
+                        &.points { font-weight: 700; color: #B89968; }
 
                         @media (max-width: $mobile-width) {
                             padding: 0.5rem;
@@ -543,22 +541,22 @@ onMounted(() => {
                     }
 
                     th {
-                        background: #1a1a1a;
+                        background: #ffffff;
                         font-weight: 600;
-                        color: rgba(#fff, 0.45);
+                        color: rgba(#3f4a52, 0.45);
                         font-size: 0.8rem;
                         letter-spacing: 0.05em;
                         white-space: nowrap;
                     }
 
-                    td { color: rgba(#fff, 0.8); }
+                    td { color: rgba(#3f4a52, 0.8); }
 
                     tr {
                         &.promotion-zone {
-                            border-left: 3px solid #F1C40F;
-                            td { color: #fff; font-weight: 500; }
+                            border-left: 3px solid #B89968;
+                            td { color: #3f4a52; font-weight: 500; }
                         }
-                        &:hover { background: rgba(#fff, 0.03); }
+                        &:hover { background: rgba(#3f4a52, 0.03); }
                     }
                 }
             }
@@ -570,22 +568,22 @@ onMounted(() => {
                     justify-content: space-between;
                     align-items: center;
                     cursor: pointer;
-                    border-top: 1px solid rgba(#fff, 0.08);
+                    border-top: 1px solid rgba(#3f4a52, 0.08);
                     transition: background 0.3s ease;
 
-                    &:hover { background: rgba(#fff, 0.03); }
+                    &:hover { background: rgba(#3f4a52, 0.03); }
 
-                    span { color: rgba(#fff, 0.6); font-weight: 500; font-size: 0.9rem; }
-                    i { color: rgba(#fff, 0.3); transition: transform 0.3s ease; &.rotate { transform: rotate(180deg); } }
+                    span { color: rgba(#3f4a52, 0.6); font-weight: 500; font-size: 0.9rem; }
+                    i { color: rgba(#3f4a52, 0.3); transition: transform 0.3s ease; &.rotate { transform: rotate(180deg); } }
                 }
 
                 .matches-content {
-                    border-top: 1px solid rgba(#fff, 0.06);
+                    border-top: 1px solid rgba(#3f4a52, 0.06);
                     background: rgba(#fff, 0.02);
 
                     .match-item {
                         padding: 1rem 1.25rem;
-                        border-bottom: 1px solid rgba(#fff, 0.06);
+                        border-bottom: 1px solid rgba(#3f4a52, 0.06);
                         &:last-child { border-bottom: none; }
                         &.no-score { opacity: 0.6; }
                     }
@@ -596,10 +594,10 @@ onMounted(() => {
         .group-note {
             margin-top: 2rem;
             padding: 1rem;
-            background: rgba(#F1C40F, 0.08);
-            border: 1px solid rgba(#F1C40F, 0.2);
+            background: rgba(#B89968, 0.08);
+            border: 1px solid rgba(#B89968, 0.2);
             border-radius: 6px;
-            color: rgba(#F1C40F, 0.8);
+            color: rgba(#B89968, 0.8);
             font-size: 0.9rem;
             text-align: center;
             p { margin: 0; }
@@ -611,7 +609,7 @@ onMounted(() => {
             .final-standings-title {
                 font-size: 1rem;
                 font-weight: 700;
-                color: #F1C40F;
+                color: #B89968;
                 margin-bottom: 1rem;
             }
 
@@ -626,17 +624,17 @@ onMounted(() => {
                 align-items: center;
                 gap: 1rem;
                 padding: 0.75rem 1rem;
-                background: #111;
-                border: 1px solid rgba(#fff, 0.08);
+                background: #eef2ee;
+                border: 1px solid rgba(#3f4a52, 0.08);
                 border-radius: 6px;
 
-                &.rank-1 { border-color: rgba(#F1C40F, 0.4); }
+                &.rank-1 { border-color: rgba(#B89968, 0.4); }
                 &.rank-2 { border-color: rgba(#95a5a6, 0.4); }
                 &.rank-3 { border-color: rgba(#cd7f32, 0.4); }
 
                 .rank-medal { font-size: 1.2rem; }
-                .rank-team  { flex: 1; color: #fff; font-weight: 600; }
-                .rank-points { color: rgba(#fff, 0.5); font-size: 0.85rem; }
+                .rank-team  { flex: 1; color: #3f4a52; font-weight: 600; }
+                .rank-points { color: rgba(#3f4a52, 0.5); font-size: 0.85rem; }
             }
         }
     }
@@ -648,8 +646,8 @@ onMounted(() => {
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 
             .knockout-match {
-                background: #111;
-                border: 1px solid rgba(#fff, 0.08);
+                background: #eef2ee;
+                border: 1px solid rgba(#3f4a52, 0.08);
                 border-radius: 8px;
                 overflow: hidden;
                 &.no-score { opacity: 0.6; }
