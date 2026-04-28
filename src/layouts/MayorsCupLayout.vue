@@ -45,8 +45,8 @@ const currentYear = computed(() => {
     min-height: 100vh;
 
     .year-navigation {
-        background: $white-color;
-        border-bottom: 1px solid rgba($primary-color, 0.1);
+        background: #2e3440;
+        border-bottom: 1px solid rgba(#fff, 0.08);
         position: fixed;
         width: 100%;
         top: 72px;
@@ -61,24 +61,24 @@ const currentYear = computed(() => {
 
         .year-selector {
             display: flex;
-            gap: 1rem;
+            gap: 2rem;
             justify-content: center;
 
             .year-link {
-                padding: 0.5rem 1.5rem;
-                border-radius: 20px;
-                color: $gray-400;
+                padding: 0.5rem 0;
+                color: rgba(#fff, 0.45);
                 text-decoration: none;
                 transition: all 0.3s ease;
-                font-weight: 500;
+                font-weight: 600;
+                font-size: 0.9rem;
+                letter-spacing: 0.05em;
+                border-bottom: 2px solid transparent;
 
-                &:hover {
-                    color: $primary-color;
-                }
+                &:hover { color: rgba(#fff, 0.8); }
 
                 &.active {
-                    background-color: $primary-color;
-                    color: $white-color;
+                    color: #B89968;
+                    border-bottom-color: #B89968;
                 }
             }
         }
@@ -88,18 +88,18 @@ const currentYear = computed(() => {
             padding: 0.3rem 0;
 
             .year-selector .year-link {
-                padding: 0.3rem 1rem;
-                font-size: 0.9rem;
+                font-size: 0.85rem;
             }
         }
     }
 
     .main-content {
-        margin-top: 132px; // 72px header + 60px year navigation
+        margin-top: 51px;
         flex: 1;
+        background-color: #f7f9f7;
 
         @media (max-width: $mobile-width) {
-            margin-top: 83px; // 43px header + 40px year navigation
+            margin-top: 51px;
         }
     }
 }

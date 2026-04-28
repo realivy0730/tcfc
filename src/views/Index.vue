@@ -1,200 +1,210 @@
 <template>
     <div class="home">
-        <section class="hero"></section>
-        <section class="vision-section">
-            <div class="contanter">
-                <h2 class="title"><span>願景 Vision </span></h2>
-                <div class="d-flex">
-                    <!-- 核心願景 -->
-                    <div class="block">
-                        <h3 class="subtitle core">核心定位</h3>
-                        <p class="content">
-                            台中市體育總會足球推動委員會的願景是成為台灣足球運動的領航者，致力於推動足球運動的普及化、專業化及國際化，並以建立完善的足球發展生態系統為目標。我們希望透過完善的足球培育機制，吸引更多青少年參與，提供專業的訓練資源，使其在學業與運動間取得平衡，並為未來的職業發展奠定穩固基礎。我們將積極促進社區足球文化，鼓勵各年齡層參與，從學校、社區、企業乃至家庭，共同建立全齡化的足球生態。
-                        </p>
-                    </div>
+        <section class="hero" ref="heroRef">
+            <div class="hero__overlay"></div>
 
-                    <!-- 推廣與國際化 -->
-                    <div class="block">
-                        <h3 class="subtitle promote">推廣與國際化</h3>
-                        <p class="content">
-                            透過舉辦各類賽事、培訓營、社區活動等，讓市民更深入了解足球的價值，並建立深厚的歸屬感。此外，我們將持續強化與國際接軌，積極爭取與國際足球機構合作，邀請國際專業教練來台分享經驗，讓台中市足球與國際接軌，擴大國際影響力。我們相信，透過這樣的努力，不僅能夠提升台中市的國際知名度，也能夠讓本地球員有機會與世界級選手競技與交流，進一步拓展足球視野。
-                        </p>
-                    </div>
+            <!-- Task 1: 大型透明背景文字 -->
+            <div class="hero__bg-text" aria-hidden="true">TAICHUNG FOOTBALL COMMITTEE</div>
 
-                    <!-- 基礎建設 -->
-                    <div class="block">
-                        <h3 class="subtitle infra">基礎建設</h3>
-                        <p class="content">
-                            未來，我們將全力推動台中市國際足球運動園區的建設，提供世界級的場地與設備，以吸引國內外賽事及球隊前來訓練與比賽，促進運動產業發展，帶動地方經濟成長。該運動園區將包含現代化的比賽場地、訓練設施以及休閒娛樂區，為市民提供多功能的足球體驗。我們希望透過這樣的建設，讓台中市成為台灣足球發展的核心，並進一步促進旅遊與相關產業的發展。
-                        </p>
-                    </div>
+            <!-- Task 2: 右側垂直標語 -->
+            <div class="hero__vertical" aria-hidden="true">凝聚城市足球魂</div>
 
-                    <!-- 合作發展 -->
-                    <div class="block">
-                        <h3 class="subtitle coop">合作發展</h3>
-                        <p class="content">
-                            此外，我們的願景還包括加強與學校及企業的合作，鼓勵設立更多的足球俱樂部，推動草根足球的發展。透過與各級學校合作，推動校園足球聯賽，讓學生在課業之外，能夠透過足球建立健康的體魄與團隊合作精神。同時，我們將與在地企業合作，提供資源與贊助機會，共同推動足球運動的發展，使其成為企業社會責任的一部分。
-                        </p>
-                    </div>
+            <div class="hero__content">
+                <p class="hero__en hero__en--animate">TAICHUNG FOOTBALL COMMITTEE</p>
+                <div class="hero__line hero__line--animate"></div>
+                <h1 class="hero__title hero__title--animate">臺中市體育總會<br>足球委員會</h1>
+            </div>
 
-                    <!-- 永續發展 -->
-                    <div class="block">
-                        <h3 class="subtitle sustain">永續發展</h3>
-                        <p class="content">
-                            我們的願景也涵蓋環境永續發展的概念，在足球場地的規劃與運營上，融入綠色能源、節能設施以及資源循環利用等現代環保技術，確保足球運動與環境和諧共存。我們希望能夠成為全球環保足球運動的典範，推動更多永續發展的創新方案，讓足球場地成為社會教育的一部分。
-                        </p>
-                    </div>
+            <!-- Task 3: 圓形旋轉 SCROLL DOWN -->
+            <a href="#tournaments" class="hero__scroll-ring" aria-label="向下滾動">
+                <svg viewBox="0 0 100 100" class="hero__scroll-ring__text">
+                    <path id="circle" d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none"/>
+                    <text>
+                        <textPath href="#circle" startOffset="0%">SCROLL DOWN · SCROLL DOWN · </textPath>
+                    </text>
+                </svg>
+                <span class="hero__scroll-ring__arrow">↓</span>
+            </a>
 
-                    <!-- 社會影響 -->
-                    <div class="block">
-                        <h3 class="subtitle social">社會影響</h3>
-                        <p class="content">
-                            我們相信，透過足球的力量，能夠凝聚城市精神，促進社會和諧，並激勵年輕一代勇敢追夢，實現自我。台中市足球推動委員會將持續努力，結合政府、企業與社會各界的力量，共同打造一個充滿活力與競爭力的足球環境。我們的終極目標是讓足球成為市民日常生活的一部分，並透過不斷的創新與發展，使台中成為台灣乃至亞洲足球版圖中的重要一環。
-                        </p>
-                    </div>
-                </div>
-                <!-- 總結 -->
-                <div class="summary-block">
-
-                    <p class="content">
-                        總結來說，我們的願景是透過持續努力與創新，使台中成為台灣足球發展的重鎮，讓足球成為市民生活的一部分，並透過專業與熱情，將台中打造為亞洲足球版圖中的重要角色，為未來的足球發展貢獻一份力量。
-                    </p>
-                </div>
+            <!-- Task 4: 底部雙 CTA 色塊 -->
+            <div class="hero__cta-bar">
+                <a href="#tournaments" class="hero__cta-bar__btn hero__cta-bar__btn--yellow">
+                    查看賽事 <span>→</span>
+                </a>
+                <a href="#results" class="hero__cta-bar__btn hero__cta-bar__btn--green">
+                    最新比分 <span>→</span>
+                </a>
             </div>
         </section>
     </div>
 
+    <!-- 賽事入口 -->
+    <section id="tournaments" class="tournaments-section">
+        <div class="tournaments__inner">
+            <div class="tournaments__header" v-scroll-reveal>
+                <p class="tournaments__en">TOURNAMENTS</p>
+                <h2 class="tournaments__title">市長盃賽事</h2>
+            </div>
+            <div class="tournaments__cards">
+                <router-link to="/mayors-cup/2025" class="tournaments__card" v-scroll-reveal="{ delay: 0 }">
+                    <span class="tournaments__year">2025</span>
+                    <div class="tournaments__info">
+                        <h3>臺中市長盃足球錦標賽</h3>
+                        <p>114 年度賽事</p>
+                    </div>
+                    <span class="tournaments__arrow">→</span>
+                </router-link>
+                <router-link to="/mayors-cup/2024" class="tournaments__card" v-scroll-reveal="{ delay: 100 }">
+                    <span class="tournaments__year">2024</span>
+                    <div class="tournaments__info">
+                        <h3>臺中市長盃足球錦標賽</h3>
+                        <p>113 年度賽事</p>
+                    </div>
+                    <span class="tournaments__arrow">→</span>
+                </router-link>
+            </div>
+        </div>
+    </section>
+
+    <!-- 最新比分 -->
+    <section id="results" class="results-section">
+        <div class="results__inner">
+            <div class="results__header" v-scroll-reveal>
+                <p class="results__en">LATEST RESULTS</p>
+                <h2 class="results__title">最新比分</h2>
+            </div>
+            <div v-if="loading" class="results__loading">載入中...</div>
+            <div v-else-if="results.length === 0" class="results__empty">暫無比賽結果</div>
+            <div v-else class="results__list">
+                <div class="results__item" v-for="(game, i) in results" :key="i" v-scroll-reveal="{ delay: i * 60 }">
+                    <span class="results__category">{{ game.category }}</span>
+                    <div class="results__match">
+                        <span class="results__team results__team--home">{{ game.homeTeam }}</span>
+                        <span class="results__score">{{ game.homeScore }} : {{ game.awayScore }}</span>
+                        <span class="results__team results__team--away">{{ game.awayTeam }}</span>
+                    </div>
+                    <span class="results__date">{{ game.date }}</span>
+                </div>
+            </div>
+            <div class="results__more" v-scroll-reveal>
+                <router-link to="/mayors-cup/2025" class="results__link">查看完整賽程 →</router-link>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision -->
+    <section id="vision" class="vision-section">
+        <div class="vision__inner">
+            <div class="vision__header" v-scroll-reveal>
+                <p class="vision__en">VISION</p>
+                <h2 class="vision__headline">打造台灣足球<br><em>先驅城市</em></h2>
+                <p class="vision__sub">建立一個全齡參與、專業發展、全民支持的足球環境</p>
+            </div>
+            <div class="vision__points">
+                <div class="vision__point" v-for="(item, i) in visionPoints" :key="i" v-scroll-reveal="{ delay: i * 120 }">
+                    <span class="vision__num">0{{ i + 1 }}</span>
+                    <span class="vision__text">{{ item }}</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission -->
     <section class="mission-section">
-        <div class="contanter">
-            <h2 class="title"><span>使命 Mission</span></h2>
-            <div class="d-flex">
-                <!-- 核心使命 -->
-                <div class="block">
-                    <h3 class="subtitle core">核心使命</h3>
-                    <p class="content">
-                        台中市體育總會足球推動委員會的使命在於全力推動足球運動的普及與發展，透過多元化的策略，讓足球成為市民生活的一部分，並致力於提升台中市在全國乃至國際上的足球競爭力。我們的主要目標包括促進青少年足球教育、提供專業訓練資源、協助政府規劃足球場地設施，並與國內外足球機構合作，共同發展台中市的足球環境。
-                    </p>
-                </div>
-
-                <!-- 文化與教育 -->
-                <div class="block">
-                    <h3 class="subtitle edu">文化與教育推廣</h3>
-                    <p class="content">
-                        我們相信，足球不僅是一項運動，更是一種文化，一種能夠帶動社會和諧、增進國際交流、激發團隊合作精神的重要力量。因此，我們積極推動校園足球計畫，從幼兒園至大學，建立一個完整的足球教育體系，讓每個孩子都能接觸到專業的足球訓練，並在比賽中培養自信、紀律與團隊合作精神。
-                    </p>
-                </div>
-
-                <!-- 社區發展 -->
-                <div class="block">
-                    <h3 class="subtitle community">社區發展</h3>
-                    <p class="content">
-                        我們的使命還包括推動社區足球的發展，透過舉辦各類社區聯賽、親子足球活動及市民體驗營，讓不同年齡層的市民都能夠參與其中，享受足球運動的樂趣，並透過足球促進家庭與社區的凝聚力。透過與市府運動局的合作，我們將協助規劃與改善現有足球場地，並積極爭取新建場地的經費，確保市民能夠在完善的環境中進行足球活動。
-                    </p>
-                </div>
-
-                <!-- 國際化發展 -->
-                <div class="block">
-                    <h3 class="subtitle global">國際化發展</h3>
-                    <p class="content">
-                        此外，我們的使命涵蓋了台中市足球運動的國際化發展，透過舉辦國際友誼賽、邀請海外球隊交流以及派遣本地優秀球員出國深造，提升台中市足球的整體實力。我們的目標是讓台中市成為台灣足球的先驅城市，並透過國際合作吸引更多外資投入足球產業，進一步帶動地方經濟發展。
-                    </p>
-                </div>
-
-                <!-- 專業人才培育 -->
-                <div class="block">
-                    <h3 class="subtitle talent">專業人才培育</h3>
-                    <p class="content">
-                        我們將著重於培養本地教練團隊，確保台中市擁有一支優秀的教練群，能夠提供科學化的訓練，結合現代足球理念與技術，讓球員在各年齡層階段都能獲得適合的發展機會。此外，我們將持續提升裁判隊伍的素質，確保比賽的公正性與專業度，進一步提升整體足球環境的競爭力。
-                    </p>
-                </div>
-
-                <!-- 產業發展 -->
-                <div class="block">
-                    <h3 class="subtitle industry">產業發展</h3>
-                    <p class="content">
-                        我們的使命也涵蓋了對足球產業鏈的發展，包括足球裝備、運動科學、賽事經營、媒體行銷等領域，打造一個完善的足球產業生態系統，提供更多就業機會，並讓台中市成為足球商機的重要據點。
-                    </p>
-                </div>
-            </div>
-
-            <!-- 總結區塊 -->
-            <div class="summary-block">
-                <p class="content">
-                    總而言之，我們的使命不僅是促進足球運動的普及，更是希望透過足球建立一個更健康、更有凝聚力、更具有國際競爭力的城市，讓台中成為台灣乃至亞洲的足球中心。
+        <div class="mission__inner">
+            <div class="mission__text" v-scroll-reveal="{ direction: 'left' }">
+                <p class="mission__en">MISSION</p>
+                <h2 class="mission__title">使命</h2>
+                <p class="mission__body">
+                    我們的使命是推廣與普及足球運動，為所有年齡層提供公平且專業的足球發展機會，與政府、學校及社區緊密合作，共同打造充滿活力的足球文化。
                 </p>
+                <ul class="mission__list">
+                    <li><i class="fas fa-check"></i>統籌推動台中市各級足球賽事</li>
+                    <li><i class="fas fa-check"></i>促進青少年足球發展與培訓體系</li>
+                    <li><i class="fas fa-check"></i>與政府協力推動足球政策</li>
+                    <li><i class="fas fa-check"></i>加強國內外足球組織交流</li>
+                    <li><i class="fas fa-check"></i>創造社區足球文化，實現全民足球</li>
+                </ul>
+            </div>
+            <div class="mission__image" v-scroll-reveal="{ direction: 'right' }">
+                <img :src="missionImage" alt="台中市足球" />
             </div>
         </div>
     </section>
 
-
-
+    <!-- Values -->
     <section class="values-section">
-        <div class="contanter">
-            <h2 class="title"><span>價值觀 Values</span></h2>
-            <div class="d-flex">
-                <!-- 誠信 -->
-                <div class="block">
-                    <h3 class="subtitle integrity">誠信</h3>
-                    <p class="content">
-                        我們堅持以誠信為根基，確保所有足球活動的公平、公正與公開，並在管理、比賽及合作中遵循最高的道德標準。我們相信誠信是贏得社會信任的基石，並致力於營造一個透明、負責任的足球生態系統。透過嚴謹的紀律與管理機制，確保每一場比賽的公正性，並建立完善的監督機制。
-                    </p>
-                </div>
-
-                <!-- 團結 -->
-                <div class="block">
-                    <h3 class="subtitle unity">團結</h3>
-                    <p class="content">
-                        團隊合作是足球的精髓，我們倡導團結合作的精神，強調市府、學校、企業及市民共同參與，共同推動足球運動的發展。我們相信，透過不同單位的協作，可以讓足球成為社區凝聚力的象徵，促進彼此理解與尊重，打造更和諧的社會環境。
-                    </p>
-                </div>
-
-                <!-- 創新 -->
-                <div class="block">
-                    <h3 class="subtitle innovation">創新</h3>
-                    <p class="content">
-                        我們追求創新，積極引進現代化的足球科技與管理模式，運用數據分析、人工智慧等技術來優化訓練與比賽。我們相信，透過不斷創新的方式，能夠為台中市的足球運動注入新的活力，讓球員在競爭中不斷突破自我，創造卓越表現。
-                    </p>
-                </div>
-
-                <!-- 永續 -->
-                <div class="block">
-                    <h3 class="subtitle sustainability">永續</h3>
-                    <p class="content">
-                        我們致力於足球運動的長遠發展，並融入環保與社會責任的理念，確保足球場地的規劃與運營能夠符合永續發展的目標。我們希望透過節能設施、資源循環利用等措施，讓足球運動不僅促進健康，也對環境友善。
-                    </p>
-                </div>
-
-                <!-- 社會共融 -->
-                <div class="block">
-                    <h3 class="subtitle inclusivity">社會共融</h3>
-                    <p class="content">
-                        我們致力於打造一個無障礙的足球環境，確保無論年齡、性別、身心障礙與背景，每個人都能公平地參與足球運動，享受其中的樂趣。我們推動多元化的足球計畫，針對不同族群提供量身打造的足球活動。
-                    </p>
-                </div>
-
-                <!-- 教育與成長 -->
-                <div class="block">
-                    <h3 class="subtitle development">教育與成長</h3>
-                    <p class="content">
-                        我們深信足球是一個極佳的教育平台，能夠教導年輕人紀律、責任感與堅持的精神。因此，我們積極推動足球教育，透過與學校合作，設立基礎與進階培訓課程，幫助學生在足球運動中找到自我。
-                    </p>
-                </div>
+        <div class="values__inner">
+            <div class="values__header" v-scroll-reveal>
+                <p class="values__en">CORE VALUES</p>
+                <h2 class="values__title">核心價值</h2>
             </div>
-
-            <!-- 總結區塊 -->
-            <div class="summary-block">
-                <p class="content">
-                    我們將持續秉持這些核心價值，透過資源共享與技術交流，讓台中市的足球運動更上一層樓。我們相信，透過我們的努力，足球不僅能夠帶給人們健康與樂趣，更能成為促進社會進步與城市發展的重要動力。
-                </p>
+            <div class="values__cards">
+                <div class="values__card" v-scroll-reveal="{ delay: 0 }">
+                    <div class="values__card-icon"><i class="fas fa-fire"></i></div>
+                    <h3>熱情 × 平等</h3>
+                    <p>以對足球的熱愛推動各項活動，提供公平參與的機會，無論年齡、性別或背景，讓每個人都有機會接觸足球。</p>
+                </div>
+                <div class="values__card" v-scroll-reveal="{ delay: 150 }">
+                    <div class="values__card-icon"><i class="fas fa-trophy"></i></div>
+                    <h3>創新 × 卓越</h3>
+                    <p>持續探索新穎的訓練與管理方式，運用數位科技優化足球發展，追求卓越的比賽品質，以國際水準為目標。</p>
+                </div>
+                <div class="values__card" v-scroll-reveal="{ delay: 300 }">
+                    <div class="values__card-icon"><i class="fas fa-hands-helping"></i></div>
+                    <h3>紀律 × 團隊</h3>
+                    <p>培養球員良好的紀律和競技精神，強調合作精神，透過足球建立深厚的團隊關係，共同進步，回饋社會。</p>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="cta-section__inner">
+            <p class="cta-section__en">JOIN US</p>
+            <h2 class="cta-section__title">一起推動台中足球</h2>
+            <div class="cta-section__btns">
+                <a href="https://www.facebook.com/groups/576604161850781" target="_blank" class="cta-section__btn cta-section__btn--primary">Facebook 社群</a>
+                <a href="mailto:service@tcfc.org.tw" class="cta-section__btn cta-section__btn--outline">聯絡我們</a>
+            </div>
+        </div>
+    </section>
 </template>
 
-
-
-<script setup>
+<script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
 import splashImage from '@/assets/images/splash.jpg'
-import splashImageMobile from '@/assets/images/splash_m.jpg'
+import missionImage from '@/assets/images/mission.jpg'
+import { getLatestResults } from '@/api/services/homeService'
+import type { GameSchedule } from '@/api/types/gameSchedule'
+
+const visionPoints = [
+    '最具影響力的地方足球推動單位',
+    '培育國際級足球人才的搖籃',
+    '完善的足球基礎設施建設',
+    '推廣健康、團隊合作與競技精神',
+    '足球與教育社會發展相結合',
+]
+
+const heroRef = ref<HTMLElement | null>(null)
+const loading = ref(true)
+const results = ref<(GameSchedule & { category: string })[]>([])
+
+function onScroll() {
+    if (!heroRef.value) return
+    heroRef.value.style.backgroundPositionY = `${window.scrollY * 0.4}px`
+}
+
+onMounted(async () => {
+    window.addEventListener('scroll', onScroll, { passive: true })
+    try {
+        results.value = await getLatestResults(5)
+    } catch {
+        results.value = []
+    } finally {
+        loading.value = false
+    }
+})
+onUnmounted(() => window.removeEventListener('scroll', onScroll))
 </script>

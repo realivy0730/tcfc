@@ -1,9 +1,9 @@
 ---
 title: "TCFC 專案架構"
 tags: [architecture, vue, typescript]
-version: "1.0"
+version: "1.1"
 related_id: ["github-actions-deploy"]
-last_updated: "2026-04-08"
+last_updated: "2026-04-28"
 ---
 
 # TCFC 專案架構
@@ -48,6 +48,7 @@ MatchCard.vue / ScoreboardTable.vue（UI 元件）
 | Footer.vue | 底部資訊（聯絡方式 + 快速連結） |
 | BaseTournamentPage.vue | 賽事頁面通用邏輯（積分計算、分組/淘汰切換） |
 | MatchCard.vue | 單場比賽卡片 |
+| KnockoutBracket.vue | 淘汰賽對戰圖 |
 | ScoreboardTable.vue | 計分板表格 |
 
 ### API 層 (api/)
@@ -84,6 +85,86 @@ BaseTournamentPage.vue 內建積分計算：
 - 勝 = 3 分、平 = 1 分、負 = 0 分
 - 排序：積分 → 進球數
 - 各組前兩名晉級淘汰賽
+
+## 全站色系規範
+
+| 用途 | 色碼 |
+|------|------|
+| 主色（深藍灰） | `#3f4a52` |
+| 強調色（古銅金） | `#B89968` |
+| 主背景 | `#f7f9f7` |
+| 次背景（米色） | `#f5f0e8` |
+| 卡片背景 | `#ffffff` |
+| 大標字體 | `'Noto Serif TC', serif` |
+| body 字體 | `'Noto Sans TC', sans-serif` |
+
+## 視覺設計規範
+
+### 卡片風格（統一參考 result-card）
+- `border: 1px solid rgba(#3f4a52, 0.08)`
+- `border-top: 3px solid #B89968`（金色頂線）
+- `border-radius: 8px`
+- `card-header` 背景：`#f5f0e8`
+- hover：`transform: translateY(-4px)`
+
+### Tab 切換
+- active 底線：`#B89968`
+- 非 active 文字：`rgba(#3f4a52, 0.35)`
+- 無 outline（移除瀏覽器預設藍框）
+
+### 展開賽程（matches-content）
+- 背景：`#f5f0e8`
+- 左側邊線：`border-left: 3px solid #B89968`
+
+## 修改記錄
+
+### feature/visual-redesign 分支（共 46 commits，尚未 merge）
+
+#### 2026-04-28 視覺重構（最新）— c0ceac9
+
+**MatchCard.vue**
+- 依 `layout` prop 分兩套配色（group 米色 / knockout 深色）
+- group layout：日期 `#B89968`、時間/場地 `rgba(#3f4a52, 0.45)`
+- 勝者改為加粗 + 輸者淡化，移除金色背景
+
+**BaseTournamentPage.vue**
+- `.matches-content`：背景 `#f5f0e8`、左側金色邊線
+- `.group-section`：加 `border-top: 3px solid #B89968`、`group-title` 背景 `#f5f0e8`、加 hover
+- Tab 按鈕加 `outline: none`
+
+**KnockoutBracket.vue**
+- 卡片白底、`border-top: 3px solid #B89968`、hover 效果
+- `match-meta` 背景 `#f5f0e8`
+- 輪次標籤統一 `#3f4a52` 色系，FINAL/3rd 保留金色
+- 勝者加粗 + 輸者淡化
+
+**MayorsCupLayout.vue**
+- `year-navigation` 背景 `#2e3440`、文字白色系
+
+**_index.scss**
+- `.cta-section__btn--outline`：`color: #fff`
+- `.cta-section__btn--primary:hover`：`color: #fff`
+
+**project-rules.md**
+- Step 2 加入 `tcfc-architecture.md` 強制更新規則
+
+---
+
+#### 早期 commits 摘要
+
+| commit | 說明 |
+|--------|------|
+| 全站深色風格改版 | 初始深色主題 |
+| BaseTournamentPage + MatchCard 深色修復 | 多次修復白字不可見問題 |
+| KnockoutBracket 開發 | 支援 R32/R16/QF/SF/3rd/FINAL 全階段 |
+| 2025 open/school 改用 BaseTournamentPage | 統一架構 |
+| 全站主色 `#1a2e1c` → `#3f4a52` | 深藍灰取代深綠 |
+| Google Fonts 換為 Noto Sans TC + Noto Serif TC | 字體統一 |
+| 2024/2025 WelcomePage hero 深色底圖風格 | 頁首重設計 |
+| Tab 改為卡片式 border 按鈕 | WelcomePage tab 風格 |
+| Footer 改為淺色四欄佈局 | Footer 重設計 |
+| result-card 配色統一米色系 | WelcomePage 卡片風格 |
+| 2024 WelcomePage CSS 清理 | 移除死碼 |
 
 ## 權限與協作
 
