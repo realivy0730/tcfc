@@ -2,15 +2,39 @@
     <div class="home">
         <section class="hero" ref="heroRef">
             <div class="hero__overlay"></div>
+
+            <!-- Task 1: 大型透明背景文字 -->
+            <div class="hero__bg-text" aria-hidden="true">TAICHUNG FOOTBALL COMMITTEE</div>
+
+            <!-- Task 2: 右側垂直標語 -->
+            <div class="hero__vertical" aria-hidden="true">凝聚城市足球魂</div>
+
             <div class="hero__content">
                 <p class="hero__en hero__en--animate">TAICHUNG FOOTBALL COMMITTEE</p>
                 <div class="hero__line hero__line--animate"></div>
                 <h1 class="hero__title hero__title--animate">臺中市體育總會<br>足球委員會</h1>
-                <a href="#tournaments" class="hero__cta hero__cta--animate">查看賽事</a>
             </div>
-            <a href="#tournaments" class="hero__scroll" aria-label="向下滾動">
-                <span></span>
+
+            <!-- Task 3: 圓形旋轉 SCROLL DOWN -->
+            <a href="#tournaments" class="hero__scroll-ring" aria-label="向下滾動">
+                <svg viewBox="0 0 100 100" class="hero__scroll-ring__text">
+                    <path id="circle" d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none"/>
+                    <text>
+                        <textPath href="#circle" startOffset="0%">SCROLL DOWN · SCROLL DOWN · </textPath>
+                    </text>
+                </svg>
+                <span class="hero__scroll-ring__arrow">↓</span>
             </a>
+
+            <!-- Task 4: 底部雙 CTA 色塊 -->
+            <div class="hero__cta-bar">
+                <a href="#tournaments" class="hero__cta-bar__btn hero__cta-bar__btn--yellow">
+                    查看賽事 <span>→</span>
+                </a>
+                <a href="#results" class="hero__cta-bar__btn hero__cta-bar__btn--green">
+                    最新比分 <span>→</span>
+                </a>
+            </div>
         </section>
     </div>
 
@@ -43,7 +67,7 @@
     </section>
 
     <!-- 最新比分 -->
-    <section class="results-section">
+    <section id="results" class="results-section">
         <div class="results__inner">
             <div class="results__header" v-scroll-reveal>
                 <p class="results__en">LATEST RESULTS</p>
@@ -103,7 +127,7 @@
                 </ul>
             </div>
             <div class="mission__image" v-scroll-reveal="{ direction: 'right' }">
-                <img :src="splashImage" alt="台中市足球" />
+                <img :src="missionImage" alt="台中市足球" />
             </div>
         </div>
     </section>
@@ -151,6 +175,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import splashImage from '@/assets/images/splash.jpg'
+import missionImage from '@/assets/images/mission.jpg'
 import { getLatestResults } from '@/api/services/homeService'
 import type { GameSchedule } from '@/api/types/gameSchedule'
 
