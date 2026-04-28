@@ -118,34 +118,53 @@ BaseTournamentPage.vue 內建積分計算：
 
 ## 修改記錄
 
-### 2026-04-28 視覺重構
+### feature/visual-redesign 分支（共 46 commits，尚未 merge）
 
-#### MatchCard.vue
-- 重構 style，依 `layout` prop 分兩套配色
-- `&.group`（米色背景）：日期 `#B89968`、時間/場地 `rgba(#3f4a52, 0.45)`、勝者加粗+輸者淡化
-- `&.knockout`（深色背景）：保留原深色配色
-- 移除勝者金色背景，改為字體加粗 + 輸者 `rgba(#3f4a52, 0.4)` 淡化
+#### 2026-04-28 視覺重構（最新）— c0ceac9
 
-#### BaseTournamentPage.vue
+**MatchCard.vue**
+- 依 `layout` prop 分兩套配色（group 米色 / knockout 深色）
+- group layout：日期 `#B89968`、時間/場地 `rgba(#3f4a52, 0.45)`
+- 勝者改為加粗 + 輸者淡化，移除金色背景
+
+**BaseTournamentPage.vue**
 - `.matches-content`：背景 `#f5f0e8`、左側金色邊線
-- `.group-section`：加 `border-top: 3px solid #B89968`、`group-title` 背景改 `#f5f0e8`、加 hover
+- `.group-section`：加 `border-top: 3px solid #B89968`、`group-title` 背景 `#f5f0e8`、加 hover
 - Tab 按鈕加 `outline: none`
 
-#### KnockoutBracket.vue
-- 卡片背景 `#eef2ee` → `#ffffff`
-- 加 `border-top: 3px solid #B89968`、hover 效果
-- `match-meta` 背景改 `#f5f0e8`
-- 輪次標籤統一用 `#3f4a52` 色系，FINAL/3rd 保留金色層次
-- 勝者改為加粗+輸者淡化（與 MatchCard 一致）
+**KnockoutBracket.vue**
+- 卡片白底、`border-top: 3px solid #B89968`、hover 效果
+- `match-meta` 背景 `#f5f0e8`
+- 輪次標籤統一 `#3f4a52` 色系，FINAL/3rd 保留金色
+- 勝者加粗 + 輸者淡化
 
-#### MayorsCupLayout.vue
-- `year-navigation` 背景改為 `#2e3440`
-- 文字改為白色系（`rgba(#fff, 0.45)`）、hover `rgba(#fff, 0.8)`
-- active 保留金色 `#B89968`
+**MayorsCupLayout.vue**
+- `year-navigation` 背景 `#2e3440`、文字白色系
 
-#### src/assets/styles/views/_index.scss
-- `.cta-section__btn--outline`：加 `color: #fff`
-- `.cta-section__btn--primary:hover`：加 `color: #fff`
+**_index.scss**
+- `.cta-section__btn--outline`：`color: #fff`
+- `.cta-section__btn--primary:hover`：`color: #fff`
+
+**project-rules.md**
+- Step 2 加入 `tcfc-architecture.md` 強制更新規則
+
+---
+
+#### 早期 commits 摘要
+
+| commit | 說明 |
+|--------|------|
+| 全站深色風格改版 | 初始深色主題 |
+| BaseTournamentPage + MatchCard 深色修復 | 多次修復白字不可見問題 |
+| KnockoutBracket 開發 | 支援 R32/R16/QF/SF/3rd/FINAL 全階段 |
+| 2025 open/school 改用 BaseTournamentPage | 統一架構 |
+| 全站主色 `#1a2e1c` → `#3f4a52` | 深藍灰取代深綠 |
+| Google Fonts 換為 Noto Sans TC + Noto Serif TC | 字體統一 |
+| 2024/2025 WelcomePage hero 深色底圖風格 | 頁首重設計 |
+| Tab 改為卡片式 border 按鈕 | WelcomePage tab 風格 |
+| Footer 改為淺色四欄佈局 | Footer 重設計 |
+| result-card 配色統一米色系 | WelcomePage 卡片風格 |
+| 2024 WelcomePage CSS 清理 | 移除死碼 |
 
 ## 權限與協作
 
