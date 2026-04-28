@@ -562,29 +562,6 @@ const getMedalLabel = (index: number) => {
     }
 
     .result-card {
-        position: relative;
-
-        &::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 12px;
-            padding: 2px;
-            background: linear-gradient(135deg, rgba($accent-blue, 0.2), rgba($primary-color, 0.2));
-            -webkit-mask:
-                linear-gradient(#fff 0 0) content-box,
-                linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        &:hover::before {
-            opacity: 1;
-        }
-
         .team-item {
             position: relative;
             transition: all 0.3s ease;
