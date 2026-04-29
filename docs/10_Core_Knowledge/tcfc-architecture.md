@@ -187,6 +187,16 @@ BaseTournamentPage.vue 內建積分計算：
 
 **預防措施**：新增圖片後立即 `git add`，不要等到 commit 時才處理。
 
+#### 2026-04-29 v0.1.2 — 正式站 Google Sheets API 讀取失敗修復
+
+**症狀**：正式站 `https://tcfc.org.tw/mayors-cup/2024/school` 顯示「賽程尚未公布，請稍候」，本地開發正常。
+
+**根本原因**：GitHub Actions build 時 `VITE_GOOGLE_SHEETS_API_KEY` 環境變數未設定，導致 API Key 為空字串，Google Sheets API 回傳 403。
+
+**修復**：在 GitHub Repository Secrets 新增 `VITE_GOOGLE_SHEETS_API_KEY`，值為正確的 API Key，重新部署後正式站即可正常讀取資料。
+
+**預防措施**：部署前確認 GitHub Secrets 已設定所有 `VITE_*` 環境變數。
+
 #### 2026-04-29 v0.1.1 — 市長盃頁面空白修復
 
 **症狀**：從首頁點連結到 `/mayors-cup/2024` 或 `/mayors-cup/2025`，頁面有 HTML 結構但無內容。
