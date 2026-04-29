@@ -177,6 +177,16 @@ BaseTournamentPage.vue 內建積分計算：
 | result-card 配色統一米色系 | WelcomePage 卡片風格 |
 | 2024 WelcomePage CSS 清理 | 移除死碼 |
 
+#### 2026-04-28~29 部署修復
+
+| Run | 結果 | 原因 | 修復 |
+|-----|------|------|------|
+| #42 | ❌ | `package.json` build script 硬寫 API Key，CI 環境衝突 | 移除硬寫 Key，改由 `.env` 和 CI Secret 注入 |
+| #43 | ❌ | 圖片未 commit（`vision.jpg` 等 5 張） | `git add src/assets/images/` |
+| #44 | ✅ | 修復完成，正式上線 | — |
+
+**預防措施**：新增圖片後立即 `git add`，不要等到 commit 時才處理。
+
 ## 權限與協作
 
 | 帳號 | 角色 | 說明 |
