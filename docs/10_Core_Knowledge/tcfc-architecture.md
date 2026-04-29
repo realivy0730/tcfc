@@ -187,6 +187,16 @@ BaseTournamentPage.vue 內建積分計算：
 
 **預防措施**：新增圖片後立即 `git add`，不要等到 commit 時才處理。
 
+#### 2026-04-29 v0.1.1 — 市長盃頁面空白修復
+
+**症狀**：從首頁點連結到 `/mayors-cup/2024` 或 `/mayors-cup/2025`，頁面有 HTML 結構但無內容。
+
+**根本原因**：`App.vue` 使用 `<router-view v-slot="{ Component }"><transition><component :is="Component" /></transition></router-view>` 的 slot 寫法，在 nested routes 下 Vue Router 只渲染最外層 layout（`MayorsCupLayout`），layout 內的子 `<router-view>` 不會被觸發，導致子頁面（`WelcomePage`、`SchoolGroupPage` 等）無法渲染。
+
+**修復**：`App.vue` 改回簡單的 `<router-view />`，移除 transition slot 寫法。
+
+**影響**：頁面切換動畫消失，但功能正常。
+
 ## 權限與協作
 
 | 帳號 | 角色 | 說明 |
