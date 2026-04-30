@@ -4,6 +4,37 @@ tags: [Meta, changelog]
 version: "1.0"
 related_id: ["INDEX"]
 
+## [2026-04-30] — plan: 2026 年度市長盃對戰表開發計畫啟動
+
+**背景**：115年（2026）臺中市市長盃足球錦標賽，需新增年度對戰表頁面。
+
+**分析結果**：
+- 參考 `docs/115年臺中市市長盃足球賽錦標賽賽程表.pdf`
+- 對比 113年（2024）結構，主要差異：
+  - 公開國中組拆為「公開國中男生組」＋「公開國中女生組」（新增女生組）
+  - 低年級組改名為「低年級男生組」
+- 建立方式：複製 113年 Google Sheets 再修改
+
+**已完成**：建立開發計畫文件 `docs/10_Core_Knowledge/2026-plan.md`
+
+---
+
+## [2026-04-29] — fix: v0.1.2 正式站 Google Sheets API 讀取失敗
+
+**根本原因**：GitHub Secrets 未設定 `VITE_GOOGLE_SHEETS_API_KEY`，build 時 API Key 為空字串，Google Sheets API 回傳 403。
+
+**修復**：在 GitHub Repository Secrets 新增 `VITE_GOOGLE_SHEETS_API_KEY`，重新部署後正常。
+
+---
+
+## [2026-04-29] — fix: v0.1.1 市長盃頁面空白
+
+**根本原因**：`App.vue` transition slot 寫法在 nested routes 下導致子頁面不渲染。
+
+**修復**：`App.vue` 改回 `<router-view />`。
+
+---
+
 ## [2026-04-28] — refactor: 2024 WelcomePage CSS 清理
 
 - 移除死碼 308 行（`.tabs-wrapper` 舊選擇器、重複 `.welcome-page` 宣告、`result-card::before` 漸層邊框）
