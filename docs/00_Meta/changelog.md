@@ -3,6 +3,15 @@ title: "TCFC 變更記錄"
 tags: [Meta, changelog]
 version: "1.0"
 related_id: ["INDEX"]
+last_updated: "2026-05-30"
+---
+
+## [2026-05-30] — docs: GitHub 治理流程標準化 (#2)
+
+- 新增 `docs/10_Core_Knowledge/github-issue-lifecycle-standard.md`，定義 GitHub Issue ↔ Branch ↔ PR ↔ Merge ↔ Release Version ↔ Close Issue 追蹤鏈。
+- README 補充 GitHub 治理入口與本輪 issue / umbrella issue 關聯。
+- `docs/00_Meta/INDEX.md` 補齊核心知識導航，讓 Codex CLI、Gemini CLI、Antigravity CLI 可快速進入狀況。
+- 本輪不修改 `.kiro/steering`，Kiro-side knowledge index rebuild 記為 follow-up。
 
 ## [2026-04-28] — refactor: 2024 WelcomePage CSS 清理
 
