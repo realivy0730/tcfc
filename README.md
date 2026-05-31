@@ -139,6 +139,10 @@ tcfc/
 
 版本號：`v{major}.{minor}.{patch}`，hotfix 加 `.{序號}`
 
+### GitHub 治理入口
+
+所有非純查詢任務採 GitHub-only 追蹤鏈：`GitHub Issue ↔ Branch ↔ PR ↔ Merge ↔ Release Version ↔ Close Issue`。本輪治理任務對應 [realivy0730/tcfc#2](https://github.com/realivy0730/tcfc/issues/2) 與 umbrella [boday/trend-pulse#250](https://github.com/boday/trend-pulse/issues/250)，完整規範見 [`docs/10_Core_Knowledge/github-issue-lifecycle-standard.md`](docs/10_Core_Knowledge/github-issue-lifecycle-standard.md)。
+
 ---
 
 ## 部署

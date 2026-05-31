@@ -2,7 +2,7 @@
 title: "TCFC 網站專案索引"
 tags: [Meta, INDEX, 導航]
 version: "1.2"
-last_updated: "2026-04-17"
+last_updated: "2026-05-30"
 ---
 
 # TCFC 網站專案索引
@@ -53,6 +53,7 @@ tcfc/
 | [專案架構](../10_Core_Knowledge/tcfc-architecture.md) | 資料流、元件架構、API 層、積分邏輯 |
 | [部署流程](../10_Core_Knowledge/github-actions-deploy.md) | GitHub Actions、Secrets、待辦 |
 | [Gitflow 記錄](../10_Core_Knowledge/gitflow-history.md) | 版本時間軸、分支流程圖 |
+| [GitHub 治理標準](../10_Core_Knowledge/github-issue-lifecycle-standard.md) | issue → branch → PR → release 流程 |
 
 ## 專案資訊
 
