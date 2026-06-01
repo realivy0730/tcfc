@@ -451,3 +451,5 @@ last_updated: "2026-04-11"
 
 ### 影響範圍
 - 新增 Kiro CLI 管理層，不影響原有 Vue 3 原始碼
+
+## 2026-06-01 - Governance closeout (#4)

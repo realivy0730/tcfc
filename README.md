@@ -173,3 +173,5 @@ npm install → npm run build → dist/ → GitHub Pages
 | 📍 地址 | 407027 台中市西屯區朝馬路 108 號 |
 | Facebook | [TCFC 社團](https://www.facebook.com/groups/576604161850781) |
 | LINE | [@677ciirx](https://line.me/ti/p/@677ciirx) |
+
+- Governance closeout (2026-06-01): lifecycle issue #4 synchronized (.kiro/steering + docs).
