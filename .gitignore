@@ -2,6 +2,11 @@
 node_modules
 dist
 
+# 環境變數（含 API key，禁止進入 repo）
+.env
+.env.local
+.env.*.local
+
 # 知識庫封存區（不追蹤）
 docs/99_Archives/
 
