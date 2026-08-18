@@ -10,6 +10,7 @@ related_id: ["INDEX"]
 - API key 位置實測：key 在動態 chunk `baseGameService-DWDft1nU.js`（本機 + 遠端 CI 部署 16cfe7f0 皆有 ✓）→ 先前 grep `main-*.js` 為誤判，key 注入正常。
 - 待解（Blocked）：`_redirects` SPA fallback 未生效（深連結 404、`/_redirects` 404、body 含 `id="app"` 疑回 404.html）；疑點 = `public/404.html`（GitHub Pages 遺留）干擾或 `_redirects` 未上傳。**驗證 gate 未過，不進 Phase 4 網域切換。**
 - **✅ 根因確認並修復**：SPA fallback 失效根因 = `public/404.html`（GitHub Pages 遺留物）——Pages 偵測到 404.html 會直接以它回應未知路徑（404）。移除後 `_redirects` 生效，深連結全 200（e56b660b 實測 + production 同步）。**Phase 3 驗證 gate 全過**（首頁 200 / 深連結 200 / bundle 含 key / _redirects 生效），可進 Phase 4 網域綁定（需 dashboard）。
+- **完成確認**：PR #9 merged（971750e）→ CI run 32150541121 success → production 正式部署驗證：`/mayors-cup/2025` 200、`/foo/bar` 200、首頁 200、chunk 含 key ✓。Phase 4（綁定 `tcfc.org.tw` Custom Domain）待 dashboard 操作。
 
 ## [2026-08-18] — feat: 部署平台遷移至 Cloudflare Pages（#6，Phase 1-2）
 
