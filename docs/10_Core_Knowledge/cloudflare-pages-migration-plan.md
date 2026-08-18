@@ -1,14 +1,14 @@
 ---
 title: "Cloudflare Pages 遷移計劃"
 tags: [deploy, cloudflare-pages, migration, plan, google-sheets]
-version: "1.1"
+version: "1.2"
 related_id: ["github-actions-deploy", "tcfc-architecture", "victory-league-architecture-reference", "issue-6"]
-last_updated: "2026-08-15"
+last_updated: "2026-08-18"
 ---
 
 # Cloudflare Pages 遷移計劃
 
-> 狀態：**計劃階段（Phase 0）** — 追蹤 Issue：[#6](https://github.com/realivy0730/tcfc/issues/6)
+> 狀態：**執行中（Phase 1-2 完成，Phase 3 驗證進行中）** — 追蹤 Issue：[#6](https://github.com/realivy0730/tcfc/issues/6)
 > 動機：借鏡 Family Lock（boday/boday-family）「Cloudflare Pages + Pages Functions + private repo」架構。
 
 ## 一、現況盤點：TCFC vs Family Lock
@@ -261,6 +261,22 @@ JWT = 伺服器發的簽名入場券，密鑰只有伺服器知道，無法偽�
 - 緩解②：直讀 fallback 開關（env 切換回直讀 Sheets），觸頂時計畫內降級
 - 緩解③：GAS 執行記錄監控（Apps Script 用量追蹤）
 - 緩解④：全程 pages.dev 先驗證（不直接碰正式網域），Gate 未過不切換
+
+### D0.2 ✅ 已定案（2026-08-18）— GitHub Actions secrets 公開性結論
+
+> 回應「CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID 是否公開」疑慮之實測結論。
+
+- **不公開**：secrets 存放於 Repo Settings → Secrets and variables → Actions（GitHub 加密保管），workflow log 一律 `***` 遮罩（CI log 實測確認）；fork PR 拿不到 secrets；只要不 `echo`、不 commit 進 repo，不會外洩。
+- **唯一必然公開的 key**：`VITE_GOOGLE_SHEETS_API_KEY`——前端 bundle 內建公開（DevTools 可見），防禦靠 D2 白名單護欄（Phase 5 GAS），非靠保密。
+- `CLOUDFLARE_ACCOUNT_ID` 非機密（僅帳戶識別碼），放 secret 為統一管理。
+- 保險措施（選擇性）：token 限權（Cloudflare 建 API token 只授權 `Cloudflare Pages:Edit` 且限 tcfc 專案）；觸發條件維持 `push: main`（不引入 `pull_request_target`）。
+
+### Phase 3 驗證實測（2026-08-18，執行記錄）
+
+- **API key 位置確認**：key 在**動態 chunk `baseGameService-DWDft1nU.js`**（非 `main-*.js`；先前僅 grep main 檔為誤判）。本機與遠端 CI 部署（16cfe7f0，Production/main/5cb090e）皆有 key ✓ → key 注入正常（Vite `import.meta.env` 機制；`vite.config.ts:20` 的 define/process.env 未被子源引用，無關結果）。
+- 遠端首頁 HTTP 200 ✓；部署明細：Production / main / Source 5cb090e。
+- **✅ 已解決（2026-08-18 晚）：SPA fallback 根因 = `public/404.html`（GitHub Pages 遺留物）**——Cloudflare Pages 偵測到 404.html 會直接用它回應未知路徑（404 status）；移除後 `_redirects`（`/* /index.html 200`）生效，深連結全 200（e56b660b 部署實測：`/mayors-cup/2025`、`/foo/bar`、`/mayors-cup`、`/deep/nested/page` 皆 200，production 網域同步 200）。wrangler 部署時 `_redirects` 為特殊檔（log 顯示 `Uploading _redirects`）。
+- **Phase 3 驗證 gate 全過 ✅**：首頁 200、深連結 200、bundle 含 key、_redirects 生效 → 可進 Phase 4（綁定 `tcfc.org.tw` Custom Domain，需 dashboard 操作）。
 
 ### 已排除方案（調查結論）
 
