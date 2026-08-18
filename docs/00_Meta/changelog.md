@@ -4,6 +4,31 @@ tags: [Meta, changelog]
 version: "1.0"
 related_id: ["INDEX"]
 
+## [2026-08-18] — feat: 部署平台遷移至 Cloudflare Pages（#6，Phase 1-2）
+
+- 新增 `wrangler.toml`（name=tcfc, pages_build_output_dir=dist，不含憑證）。
+- `.github/workflows/deploy.yml` 改寫：GitHub Pages → **Cloudflare Pages**（push main → npm ci → build（`VITE_GOOGLE_SHEETS_API_KEY` 走 repo secret）→ `npx wrangler pages deploy dist --project-name tcfc`，token 走 `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` secrets）；檔頭 Secret family 註解（ISSUE-096 慣例）。決策 D0=Option B（不綁 Git integration）。
+- `package.json`：build script 已是 `vite build`（3fdba7e 已去硬編碼）；新增 `cf-deploy` script。
+- `.gitignore` 追加 `.env` 區塊；**`git rm --cached .env`**（public repo 明文 key 移除追蹤，檔案留本機）。
+- `public/_redirects`（`/* /index.html 200`）SPA fallback。
+- 知識庫：INDEX 導航補齊（遷移計劃、勝利聯賽參照、憑證記錄本機註記）；changelog 補 8/14、8/15 條目。
+- 分支：`feature/cloudflare-pages-migration-6`（基於 origin/main 8c75487；develop 舊線 stash 保留未用）。
+- 基線重要發現：本機 develop 落後 origin/main 25 commits（含圖片修復 d22f6f7/7e42101）；正式基地線 = main。
+
+## [2026-08-15] — docs: 勝利聯賽架構調查 + Phase 5 改 GAS 版 + 決策記錄 (#6)
+
+- 新增 `docs/10_Core_Knowledge/victory-league-architecture-reference.md`：勝利聯賽（`/Users/linyuanchun/WorkPlace/work/勝利聯賽`）完整架構參照——GAS Web App（`executeAs: USER_DEPLOYING` / `ANYONE_ANONYMOUS`）、doGet（verify 單筆核對 / roster maskName 遮蔽）、doPost（報名/匯款回填 + 冪等鍵防重複）、雙 workflow CI（deploy-gas.yml clasp + deploy-pages.yml wrangler）、Secret family 架構（ISSUE-096）、配額限制（URL Fetch ~20k/日）、TCFC 差異對照表。
+- 事實更正：勝利聯賽 `scripts/roster-sync.js`、`fee-calc.js` 不存在（僅 release-guardrails.js）。
+- 遷移計劃 Phase 5 專章改版（6.0）：**Pages Functions → GAS 代理**（免 Service Account/OAuth、冪等實證、知識重用）；新增 6.5 GAS 版實作要點。
+- 遷移計劃新增第八章「決策記錄（Decision Log）」；**D1-D3 定案**：D1=② 讀寫全過 GAS（配額四項緩解：前端快取/直讀 fallback 開關/執行記錄監控/pages.dev 先驗證）、D2=② 白名單護欄、D3=① 另開 **Issue #7**（https://github.com/realivy0730/tcfc/issues/7）。
+
+## [2026-08-14] — docs: 記錄 Cloudflare Pages 遷移計劃 (#6)
+
+- 調查 Family Lock（boday/boday-family）架構：Vue 3 SPA + Cloudflare Pages + Pages Functions + Google OAuth/JWT，repo 已 private 且網站正常運作。
+- 關鍵發現：tcfc.org.tw DNS 已在 Cloudflare（NS: sureena/chris.cloudflare.com）；`VITE_GOOGLE_SHEETS_API_KEY` 明碼在 package.json build script 且打包進前端 JS（公開）；Sheets API key 只能讀不能寫。
+- 新增 `docs/10_Core_Knowledge/cloudflare-pages-migration-plan.md`：現況盤點、關鍵決策、目標架構、Phase 0-7 執行步驟、零影響策略（雙軌並行 → 驗證 gate → 秒級切換 → 可回滾）、風險成本、知識庫三階段同步點。
+- 本輪不修改 `.kiro/steering`，Kiro-side knowledge index rebuild 記為 follow-up。
+
 ## [2026-04-30] — plan: 2026 年度市長盃對戰表開發計畫啟動
 
 **背景**：115年（2026）臺中市市長盃足球錦標賽，需新增年度對戰表頁面。

@@ -1,0 +1,4 @@
+# Cloudflare Pages 部署設定（Issue #6，Phase 1-2）
+# 憑證不寫入本檔——CI 從 GitHub Secrets 注入（見遷移計劃 Decision Log）
+name = "tcfc"
+pages_build_output_dir = "dist"

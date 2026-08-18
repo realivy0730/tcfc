@@ -1,5 +1,14 @@
 # .github/workflows/deploy.yml
-name: Deploy to GitHub Pages
+# ==============================================================================
+# 🔐 Secret Architecture Note (Ref: ISSUE-096 / 本機 ~/credentials/tcfc-credentials-log.md)
+# 1. Cloudflare family: CLOUDFLARE_API_TOKEN + CLOUDFLARE_ACCOUNT_ID (discrete keys,
+#    injected only into the deploy step; never echoed to logs).
+# 2. Google family: VITE_GOOGLE_SHEETS_API_KEY — public read-only key by design
+#    (bundled into frontend); stored as secret for rotation & consistency
+#    (not secrecy. Phase 5 GAS proxy will remove it entirely — Issue #7).
+# DO NOT merge families. Never print secrets in this workflow.
+# ==============================================================================
+name: Deploy to Cloudflare Pages
 
 on:
   push:
@@ -8,20 +17,14 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: pages
   cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,27 +35,15 @@ jobs:
           node-version: "20"
 
       - name: Install Dependencies
-        run: npm install
-
-      - name: Set environment variables
-        run: echo "VITE_GOOGLE_SHEETS_API_KEY=${{ secrets.VITE_GOOGLE_SHEETS_API_KEY }}" >> $GITHUB_ENV
+        run: npm ci
 
       - name: Build Project
         run: npm run build
         env:
           VITE_GOOGLE_SHEETS_API_KEY: ${{ secrets.VITE_GOOGLE_SHEETS_API_KEY }}
 
-      - name: Create 404 Page
-        run: cp dist/index.html dist/404.html
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Deploy to Cloudflare Pages
+        run: npx wrangler pages deploy dist --project-name tcfc
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
