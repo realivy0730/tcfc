@@ -4,6 +4,15 @@ tags: [Meta, changelog]
 version: "1.0"
 related_id: ["INDEX"]
 
+## [2026-08-19] — feat: Phase 4 網域切換完成，tcfc.org.tw 由 Cloudflare Pages 正式服務（#6）
+
+- **API 綁定**：`POST /pages/projects/tcfc/domains`（`{"name":"tcfc.org.tw"}`）→ success（domain_id `7ead476e-…`、pending、validation http、CA google）。
+- **關鍵發現**：tcfc.org.tw zone 在 **boday 的 Cloudflare 帳戶**（NS chris/sureena 與 chiyu.idv.tw 相同）；ivy0730 帳戶 zones=0 → DNS 變更需 boday dashboard，已開 [#14](https://github.com/realivy0730/tcfc/issues/14) 追蹤移轉。
+- **DNS cutover**（boday dashboard）：刪 `@` A（185.199.108-111.153 ×4，GitHub Pages IP）→ 新增 `CNAME @ → tcfc-cqg.pages.dev`（Proxied）；MX（smtp.google.com）不受影響。
+- **中間狀態實錄**：Cloudflare error **1014（CNAME Cross-User Banned）** 約 <2 分鐘（跨帳戶指向 + HTTP 驗證未完成），驗證通過自動解除。
+- **驗證全過 ✅**：首頁 200（TCFC 臺中市體育總會足球委員會）、深連結 `/mayors-cup/2025` 200、SPA fallback 200、SSL（Google Trust Services，至 11/9）有效、內容與 production（`main-D3rq7lr5.js`）一致。
+- **後續追蹤拆 issue**：Phase 5 穩定期（#10）、Phase 6 收尾（#11 www / #12 關 GitHub Pages / #13 repo private / #14 zone 移轉）。
+
 ## [2026-08-18] — docs: Phase 3 驗證實測 + Secret 公開性結論（#6）
 
 - Secret 公開性定論（D0.2）：GitHub Actions secrets **不公開**（加密保管、log 遮罩 `***`、fork PR 無 secrets、不 echo 不外洩）；唯一公開者 = `VITE_GOOGLE_SHEETS_API_KEY`（前端 bundle 必然公開，防禦靠 D2 白名單，非靠保密）。

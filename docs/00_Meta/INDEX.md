@@ -17,7 +17,7 @@ tcfc/
 │   │   └── changelog.md                  變更記錄
 │   ├── 10_Core_Knowledge/                核心知識（AI 檢索區）
 │   │   ├── tcfc-architecture.md          專案架構與元件
-│   │   ├── github-actions-deploy.md      部署流程（GitHub Pages，待遷移）
+│   │   ├── github-actions-deploy.md      部署流程（GitHub Pages，已遷移 Cloudflare Pages）
 │   │   ├── cloudflare-pages-migration-plan.md  Cloudflare Pages 遷移計劃（#6）
 │   │   ├── victory-league-architecture-reference.md  勝利聯賽架構參照（GAS 後端）
 │   │   └── gitflow-history.md            版本時間軸
@@ -54,7 +54,7 @@ tcfc/
 |------|------|
 | [專案架構](../10_Core_Knowledge/tcfc-architecture.md) | 資料流、元件架構、API 層、積分邏輯 |
 | [部署流程](../10_Core_Knowledge/github-actions-deploy.md) | GitHub Actions、Secrets、待辦 |
-| [Cloudflare Pages 遷移計劃](../10_Core_Knowledge/cloudflare-pages-migration-plan.md) | 遷移步驟、零影響策略、決策記錄（D0/D0.1/D0.2/D1-D3）、Phase 3 驗證實測、Phase 5 GAS 版 |
+| [Cloudflare Pages 遷移計劃](../10_Core_Knowledge/cloudflare-pages-migration-plan.md) | 遷移步驟、零影響策略、決策記錄（D0/D0.1/D0.2/D1-D3）、Phase 3-4 驗證實測與網域切換、Phase 5 GAS 版 |
 | [勝利聯賽架構參照](../10_Core_Knowledge/victory-league-architecture-reference.md) | GAS 後端參照、Secret family、配額、TCFC 差異對照 |
 | [Gitflow 記錄](../10_Core_Knowledge/gitflow-history.md) | 版本時間軸、分支流程圖 |
 | 憑證記錄（本機私有） | 三平台鑰匙盤點 → `~/credentials/tcfc-credentials-log.md`（tcfc 為 public repo，憑證資訊不進 repo） |
@@ -66,7 +66,7 @@ tcfc/
 | GitHub | `realivy0730/tcfc` (public) |
 | 域名 | tcfc.org.tw |
 | 技術棧 | Vue 3 + Vite + TypeScript + SCSS |
-| 部署 | Cloudflare Pages（遷移中 #6：Phase 1-2 完成，Phase 3 驗證；CI + API Token；GitHub Pages 待關閉） |
+| 部署 | Cloudflare Pages（遷移中 #6：Phase 1-4 完成，Phase 5 穩定期觀察；GitHub Pages 待關閉） |
 | 資料來源 | Google Sheets API |
 | 當前版本 | v0.0.9 |
 | 當前分支 | `feature/cloudflare-pages-migration-6` |
