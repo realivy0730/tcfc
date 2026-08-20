@@ -132,3 +132,20 @@ function jsonResult(result, data, message) {
     .createTextOutput(JSON.stringify({ result: result, data: data, message: message }))
     .setMimeType(ContentService.MimeType.JSON);
 }
+
+// ---------- 一次性設定 ----------
+
+// 產生並寫入 AUTH_SECRET（白名單護欄用，Script Properties）
+// 執行方式：GAS 編輯器手動執行本函式一次，或 CLI：clasp run setupAuth
+// 回傳值（或 Stackdriver log）即為 secret——請複製保存；日後可在 Script Properties 更改
+function setupAuth() {
+  var props = PropertiesService.getScriptProperties();
+  if (props.getProperty('AUTH_SECRET')) {
+    Logger.log('AUTH_SECRET 已設定，本次不做更動。');
+    return 'already-set';
+  }
+  var secret = Utilities.getUuid().replace(/-/g, '').slice(0, 32);
+  props.setProperty('AUTH_SECRET', secret);
+  Logger.log('已產生 AUTH_SECRET：' + secret + '。請複製保存，並清除本 log 避免殘留。');
+  return secret;
+}

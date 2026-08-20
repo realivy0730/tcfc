@@ -43,7 +43,15 @@ jobs:
         run: |
           echo '${{ secrets.GOOGLE_SHEETS_CREDENTIALS }}' > ~/.clasprc.json
 
+      - name: Check scriptId configured
+        run: |
+          if [ "$(node -p "require('./backend/.clasp.json').scriptId")" = "" ]; then
+            echo "::notice::scriptId 為空，跳過 GAS 部署（待一次性部署前置，見 backend/README.md）"
+            echo "SKIP=1" >> "$GITHUB_ENV"
+          fi
+
       - name: Push to GAS
+        if: env.SKIP != '1'
         run: |
           cd backend
           clasp push -f
