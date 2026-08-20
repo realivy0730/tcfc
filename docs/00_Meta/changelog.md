@@ -4,6 +4,15 @@ tags: [Meta, changelog]
 version: "1.0"
 related_id: ["INDEX"]
 
+## [2026-08-19] — feat: GAS 後端導入 #7（PR #15）
+
+- **後端**：`backend/程式碼.js` 參數化 GAS（doGet `schedule`：sheetId+sheetName 讀 A2:K；doPost `update_result`：回填比數 + `AUTH_SECRET` 白名單護欄（D2=②）+ 天然冪等 + 比分驗證 + 自動記錄更新時間）；`appsscript.json`（USER_DEPLOYING + ANYONE_ANONYMOUS，勝利聯賽模式）。
+- **前端**：`gasConfig.ts` + `sheetFetcher.ts` 改寫——GAS 優先讀取、異常**自動降級直讀**（配額緩解）、`VITE_USE_GAS=false` 手動開關；未設定 `VITE_GAS_URL` 時零影響維持直讀。
+- **CI**：新增 `deploy-gas.yml`（push backend/** → clasp push，`GOOGLE_SHEETS_CREDENTIALS` secret family）；`deploy.yml` 注入 `VITE_GAS_URL` / `VITE_USE_GAS`。
+- **指南**：`backend/README.md` 一次性部署前置（clasp login / 建專案 / 首次 deploy / AUTH_SECRET / 編輯權）。
+- 驗證：`npm run build`（vue-tsc）✅、`node --check` ✅；未部署前行為零影響。
+- **待辦**：① 使用者一次性部署前置（backend/README.md）② 5b：GAS 穩定後移除 bundle API key 與直讀降級 → 關閉 #7。
+
 ## [2026-08-19] — feat: Phase 4 網域切換完成，tcfc.org.tw 由 Cloudflare Pages 正式服務（#6）
 
 - **API 綁定**：`POST /pages/projects/tcfc/domains`（`{"name":"tcfc.org.tw"}`）→ success（domain_id `7ead476e-…`、pending、validation http、CA google）。

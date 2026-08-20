@@ -1,14 +1,14 @@
 ---
 title: "Cloudflare Pages 遷移計劃"
 tags: [deploy, cloudflare-pages, migration, plan, google-sheets]
-version: "1.3"
+version: "1.1"
 related_id: ["github-actions-deploy", "tcfc-architecture", "victory-league-architecture-reference", "issue-6"]
-last_updated: "2026-08-19"
+last_updated: "2026-08-15"
 ---
 
 # Cloudflare Pages 遷移計劃
 
-> 狀態：**執行中（Phase 1-4 完成，Phase 5 穩定期觀察中）** — 追蹤 Issue：[#6](https://github.com/realivy0730/tcfc/issues/6)
+> 狀態：**計劃階段（Phase 0）** — 追蹤 Issue：[#6](https://github.com/realivy0730/tcfc/issues/6)
 > 動機：借鏡 Family Lock（boday/boday-family）「Cloudflare Pages + Pages Functions + private repo」架構。
 
 ## 一、現況盤點：TCFC vs Family Lock
@@ -100,17 +100,17 @@ Google Sheets（公開讀取）                        tcfc.org.tw（DNS 已在 
 | 1 建 Pages 專案 | Git integration + env vars（API key 注入） | 🟢 零影響 | 部署到 pages.dev 試行網域，**不碰 DNS** |
 | 2 SPA fallback | `public/_redirects`（`/* /index.html 200`） | 🟢 零影響 | ✅ 檔案已備妥，僅 build 生效 |
 | 3 雙軌驗證 | 在 `tcfc.pages.dev` 跑完整驗證清單 | 🟢 零影響 | **硬性 gate：全部通過才准 Phase 4** |
-| 4 網域切換 | Custom Domains 綁定 `tcfc.org.tw` | 🟡 秒級切換 | ✅ 已完成（2026-08-19）｜實錄：1014 窗口 <2 分鐘（見 Phase 4 執行記錄）；回滾＝移除 CNAME 改回 GitHub Pages A 紀錄（185.199.108-111.153） |
-| 5 穩定期 | 觀察 1–2 週（SSL、深連結、CDN 快取） | 🟢 正常運作 | ✅ 進行中（[#10](https://github.com/realivy0730/tcfc/issues/10)）；期間保留 GitHub Actions |
-| 6 收尾 | 移除 `deploy.yml`、關閉 GitHub Pages、repo 設 private | 🟢 零影響（先驗證後刪） | 已拆 4 個子 issue（#11 www / #12 GitHub Pages / #13 repo private / #14 zone 移轉） |
+| 4 網域切換 | Custom Domains 綁定 `tcfc.org.tw`（Cloudflare 自動補紀錄 + SSL） | 🟡 秒級切換 | 唯一有風險時刻；回滾＝移除 CNAME 改回 GitHub Pages A 紀錄（185.199.108-111.153） |
+| 5 穩定期 | 觀察 1–2 週（SSL、深連結、CDN 快取） | 🟢 正常運作 | 期間保留 GitHub Actions |
+| 6 收尾 | 移除 `deploy.yml`、關閉 GitHub Pages、repo 設 private | 🟢 零影響（先驗證後刪） | boday-family 實證：repo private 與網站運作無關 |
 | 7 Phase 5（選擇性） | GAS 代理寫入（勝利聯賽架構，見第八章決策） | 🟢 零影響 | 加在既有讀取路徑之上；另開 Issue |
 
 **驗收清單（Phase 4 切換前的硬性前置條件）**
-- [x] `tcfc.pages.dev` 首頁正常、RWD 正常
-- [x] 深連結 `/mayors-cup/2025` 直開正常（SPA fallback 生效）
-- [x] 賽程資料正確載入（兩年度）
-- [x] DevTools 確認 API key 位置（切換後移至 Pages env，移除 build script 明碼）
-- [x] SSL 憑證有效（Cloudflare 自動簽發）
+- [ ] `tcfc.pages.dev` 首頁正常、RWD 正常
+- [ ] 深連結 `/mayors-cup/2025` 直開正常（SPA fallback 生效）
+- [ ] 賽程資料正確載入（兩年度）
+- [ ] DevTools 確認 API key 位置（切換後移至 Pages env，移除 build script 明碼）
+- [ ] SSL 憑證有效（Cloudflare 自動簽發）
 
 **回滾對策**
 - DNS 異常：Cloudflare DNS 內移除 CNAME → 回 GitHub Pages A 紀錄（秒級）
@@ -220,21 +220,13 @@ JWT = 伺服器發的簽名入場券，密鑰只有伺服器知道，無法偽�
 - **CI**：新增 `deploy-gas.yml`（clasp push，`GOOGLE_SHEETS_CREDENTIALS` secret）；沿用 Secret family 註解（ISSUE-096）
 - **知識來源**：`/Users/linyuanchun/WorkPlace/work/勝利聯賽/backend/程式碼.js`（293 行範本）
 
-### 6.6 實作記錄（2026-08-19，PR #15 ✅ merged → main 3b70150）
-
-- **交付內容**：`backend/程式碼.js`（doGet `schedule` 參數化讀取 / doPost `update_result` 回填 + `AUTH_SECRET` 護欄 + 天然冪等 + 比分驗證）、`backend/appsscript.json`（USER_DEPLOYING + ANYONE_ANONYMOUS，勝利聯賽模式）、`backend/.clasp.json`、前端 `gasConfig.ts` + `sheetFetcher.ts`（GAS 優先 → **異常自動降級直讀** + `VITE_USE_GAS=false` 手動開關）、CI `deploy-gas.yml`（push backend/** → clasp push，`GOOGLE_SHEETS_CREDENTIALS`）、`backend/README.md` 部署指南。
-- **設計決定**：GAS web app 無法讀取 HTTP header → 護欄 token 走參數（公開前端 bundle 不得攜帶，僅供主辦方內部工具）；「裁判登入寫入」（email 白名單 + Google 登入）列後續 Issue。寫入為 update 型 → 天然冪等，不需冪等鍵欄位。
-- **未部署前零影響**：VITE_GAS_URL 未設定 → 前端自動維持直讀（build 已驗證）。
-- **待辦 ①（需使用者一次性前置，見 backend/README.md）**：clasp login → `~/.clasprc.json` 設為 secret `GOOGLE_SHEETS_CREDENTIALS` → `clasp create` 填 `.clasp.json` scriptId → `clasp deploy` 取得 URL 設為 secret `VITE_GAS_URL` → Script Properties 設 `AUTH_SECRET` → 確認 ivy0730 對賽程試算表有編輯權。
-- **待辦 ②（5b，驗收項）**：GAS 穩定後移除 bundle 內的 `VITE_GOOGLE_SHEETS_API_KEY` 與直讀降級路徑（暫時保留降級保險，違反 #7「key 不再存在 bundle」之驗收，改列 5b）→ 屆時關閉 #7。
-
 ## 七、知識庫三階段同步點（知識庫同步鐵律）
 
 | 階段 | 動作 | 狀態 |
 |---|---|---|
 | 計劃 | 本文件 + INDEX + changelog | ✅ 2026-08-14 |
-| 執行 | 重寫 `github-actions-deploy.md`（deprecated → 新部署方式） | 🔶 併入 Phase 6 收尾（#12/#13） |
-| 完成 | INDEX 專案資訊、README 部署章節 | 🔶 INDEX 已更新（2026-08-19）；README 併入 Phase 6 |
+| 執行 | 重寫 `github-actions-deploy.md`（deprecated → 新部署方式） | ⏳ 待 Phase 1-4 執行 |
+| 完成 | INDEX 專案資訊、README 部署章節 | ⏳ 待 Phase 4 |
 
 > Kiro-side knowledge index rebuild 記為 follow-up（本文件不修改 .kiro）。
 
@@ -259,8 +251,8 @@ JWT = 伺服器發的簽名入場券，密鑰只有伺服器知道，無法偽�
 
 | # | 決策 | 定案 | 附註 |
 |---|---|---|---|
-| D1 | 讀取路徑 | **② 讀寫全過 GAS** | 用戶拍板。✅ backend 層已實作（6.6，PR #15）：GAS 優先 + 自動降級 + `VITE_USE_GAS` 開關 |
-| D2 | 裁判寫入認證 | **② 白名單護欄** | ✅ `AUTH_SECRET` 護欄已實作（內部工具用）；email 白名單 + Google 登入列後續 |
+| D1 | 讀取路徑 | **② 讀寫全過 GAS** | 用戶拍板。**最小風險要求**：雙軌驗證 → gate → 可回滾（沿用零影響鐵律）；配額風險緩解見下 |
+| D2 | 裁判寫入認證 | **② 白名單護欄** | email / header secret 驗證（成本 ~0.5 工作天） |
 | D3 | 導入時序 | **① 另開 Issue #7** | 追蹤：[#7](https://github.com/realivy0730/tcfc/issues/7)，掛 Phase 5，#6 完成後執行 |
 
 **配額風險緩解（D1=② 的最小風險前提）**
@@ -269,31 +261,6 @@ JWT = 伺服器發的簽名入場券，密鑰只有伺服器知道，無法偽�
 - 緩解②：直讀 fallback 開關（env 切換回直讀 Sheets），觸頂時計畫內降級
 - 緩解③：GAS 執行記錄監控（Apps Script 用量追蹤）
 - 緩解④：全程 pages.dev 先驗證（不直接碰正式網域），Gate 未過不切換
-
-### D0.2 ✅ 已定案（2026-08-18）— GitHub Actions secrets 公開性結論
-
-> 回應「CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID 是否公開」疑慮之實測結論。
-
-- **不公開**：secrets 存放於 Repo Settings → Secrets and variables → Actions（GitHub 加密保管），workflow log 一律 `***` 遮罩（CI log 實測確認）；fork PR 拿不到 secrets；只要不 `echo`、不 commit 進 repo，不會外洩。
-- **唯一必然公開的 key**：`VITE_GOOGLE_SHEETS_API_KEY`——前端 bundle 內建公開（DevTools 可見），防禦靠 D2 白名單護欄（Phase 5 GAS），非靠保密。
-- `CLOUDFLARE_ACCOUNT_ID` 非機密（僅帳戶識別碼），放 secret 為統一管理。
-- 保險措施（選擇性）：token 限權（Cloudflare 建 API token 只授權 `Cloudflare Pages:Edit` 且限 tcfc 專案）；觸發條件維持 `push: main`（不引入 `pull_request_target`）。
-
-### Phase 3 驗證實測（2026-08-18，執行記錄）
-
-- **API key 位置確認**：key 在**動態 chunk `baseGameService-DWDft1nU.js`**（非 `main-*.js`；先前僅 grep main 檔為誤判）。本機與遠端 CI 部署（16cfe7f0，Production/main/5cb090e）皆有 key ✓ → key 注入正常（Vite `import.meta.env` 機制；`vite.config.ts:20` 的 define/process.env 未被子源引用，無關結果）。
-- 遠端首頁 HTTP 200 ✓；部署明細：Production / main / Source 5cb090e。
-- **✅ 已解決（2026-08-18 晚）：SPA fallback 根因 = `public/404.html`（GitHub Pages 遺留物）**——Cloudflare Pages 偵測到 404.html 會直接用它回應未知路徑（404 status）；移除後 `_redirects`（`/* /index.html 200`）生效，深連結全 200（e56b660b 部署實測：`/mayors-cup/2025`、`/foo/bar`、`/mayors-cup`、`/deep/nested/page` 皆 200，production 網域同步 200）。wrangler 部署時 `_redirects` 為特殊檔（log 顯示 `Uploading _redirects`）。
-- **Phase 3 驗證 gate 全過 ✅**：首頁 200、深連結 200、bundle 含 key、_redirects 生效 → 可進 Phase 4（綁定 `tcfc.org.tw` Custom Domain，需 dashboard 操作）。
-
-### Phase 4 網域切換執行記錄（2026-08-19，✅ 完成）
-
-- **API 綁定**：`POST /accounts/e3a5bc6de1f84fba793af4c33dc74038/pages/projects/tcfc/domains`（`{"name":"tcfc.org.tw"}`）→ success（domain_id `7ead476e-baa2-4de1-95bc-1a4ecedbebda`、status pending、validation http、zone_tag `cb17e835f5d6c9d111b9a90eb102b08c`、CA google）。
-- **關鍵發現：tcfc.org.tw zone 在 boday 的 Cloudflare 帳戶**——NS（`chris`/`sureena.ns.cloudflare.com`）與 `chiyu.idv.tw`（boday Family Lock）完全相同；ivy0730 帳戶（`e3a5bc6d…`）zones=0 → DNS 變更一律需 boday dashboard 操作（已開 [#14](https://github.com/realivy0730/tcfc/issues/14) 追蹤移轉）。
-- **DNS cutover（boday dashboard 手動）**：刪除 `@` A（185.199.108-111.153 ×4，GitHub Pages 舊 IP）→ 新增 `CNAME @ → tcfc-cqg.pages.dev`（Proxied）。MX（smtp.google.com，Google Workspace email）與其他子域不受影響。
-- **中間狀態實錄：Cloudflare error 1014（CNAME Cross-User Banned）**——跨帳戶指向 pages.dev、HTTP 驗證完成前 edge 對該域回 403/1014，約 <2 分鐘，HTTP 驗證通過後自動解除。教訓：跨帳戶 Pages 綁定切換無法完全零窗口，但窗口極短。
-- **驗證全過 ✅**：首頁 200（`TCFC 臺中市體育總會足球委員會`）、深連結 `/mayors-cup/2025` 200、SPA fallback（`/foo/bar`）200、SSL 憑證有效（CN=tcfc.org.tw，issuer Google Trust Services，至 2026-11-09）、內容與 production（`main-D3rq7lr5.js`）一致。
-- wrangler OAuth token 過期時 `wrangler whoami` 可自動 refresh（config：`~/Library/Preferences/.wrangler/config/default.toml`）。
 
 ### 已排除方案（調查結論）
 
@@ -305,10 +272,5 @@ JWT = 伺服器發的簽名入場券，密鑰只有伺服器知道，無法偽�
 
 ### 待辦關聯
 
-- Issue #6：本次平台遷移（Phase 0–7 零影響策略執行）— Phase 1-4 完成，Phase 5-6 進行中
-- Issue #7：GAS 後端導入（✅ **已實作**：PR #15 merged，6.6；待一次性部署前置 + 5b key 移除 → 關閉）
-- Issue #10：Phase 5 穩定期觀察（2026-08-19 → 09-02 前後）
-- Issue #11：Phase 6 收尾 — www 子域處理
-- Issue #12：Phase 6 收尾 — 關閉 GitHub Pages
-- Issue #13：Phase 6 收尾 — repo 設 private
-- Issue #14：Phase 6 收尾 — zone 移轉至 ivy0730 帳戶（長期建議）
+- Issue #6：本次平台遷移（Phase 0–7 零影響策略執行）
+- Issue #7：GAS 後端導入（✅ 已建立：D1=② D2=② D3=①，Phase 5 執行）

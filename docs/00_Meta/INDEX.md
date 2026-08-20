@@ -21,6 +21,11 @@ tcfc/
 │   │   ├── cloudflare-pages-migration-plan.md  Cloudflare Pages 遷移計劃（#6）
 │   │   ├── victory-league-architecture-reference.md  勝利聯賽架構參照（GAS 後端）
 │   │   └── gitflow-history.md            版本時間軸
+│   ├── backend/                          GAS 後端（#7：讀寫代理 + 白名單護欄）
+│   │   ├── 程式碼.js                      doGet schedule / doPost update_result
+│   │   ├── appsscript.json                部署設定（USER_DEPLOYING）
+│   │   ├── .clasp.json                    GAS scriptId（clasp create 後填入）
+│   │   └── README.md                      部署指南（一次性前置步驟）
 │   ├── fetch_raw_data/                   原始賽程資料工具
 │   │   ├── ReadMe.md                     使用說明
 │   │   ├── fetch.sh                      抓取腳本
@@ -66,7 +71,7 @@ tcfc/
 | GitHub | `realivy0730/tcfc` (public) |
 | 域名 | tcfc.org.tw |
 | 技術棧 | Vue 3 + Vite + TypeScript + SCSS |
-| 部署 | Cloudflare Pages（遷移中 #6：Phase 1-4 完成，Phase 5 穩定期觀察；GitHub Pages 待關閉） |
+| 部署 | Cloudflare Pages（遷移中 #6：Phase 1-4 完成，Phase 5 穩定期觀察；GitHub Pages 待關閉）+ GAS 後端（#7 已實作，待部署前置） |
 | 資料來源 | Google Sheets API |
 | 當前版本 | v0.0.9 |
 | 當前分支 | `feature/cloudflare-pages-migration-6` |
