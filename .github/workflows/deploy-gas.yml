@@ -1,0 +1,49 @@
+# .github/workflows/deploy-gas.yml
+# ==============================================================================
+# 🔐 Secret Architecture Note (Ref: ISSUE-096 / 本機 ~/credentials/tcfc-credentials-log.md)
+# Google Apps Script family:
+#   GOOGLE_SHEETS_CREDENTIALS — single JSON (clasp OAuth credentials from
+#   `clasp login`, i.e. ~/.clasprc.json content), written to ~/.clasprc.json
+#   for `clasp push`. NEVER echo its content to logs.
+# Cloudflare family stays separate (see deploy.yml). Do not merge families.
+# GAS script target id lives in backend/.clasp.json (committed, non-secret).
+# ==============================================================================
+name: Deploy Google Apps Script
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'backend/**'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gas
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Clasp
+        run: npm install -g @google/clasp
+
+      - name: Create ~/.clasprc.json
+        run: |
+          echo '${{ secrets.GOOGLE_SHEETS_CREDENTIALS }}' > ~/.clasprc.json
+
+      - name: Push to GAS
+        run: |
+          cd backend
+          clasp push -f

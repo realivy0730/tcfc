@@ -41,6 +41,8 @@ jobs:
         run: npm run build
         env:
           VITE_GOOGLE_SHEETS_API_KEY: ${{ secrets.VITE_GOOGLE_SHEETS_API_KEY }}
+          VITE_GAS_URL: ${{ secrets.VITE_GAS_URL }}
+          VITE_USE_GAS: ${{ secrets.VITE_USE_GAS || '' }}
 
       - name: Deploy to Cloudflare Pages
         run: npx wrangler pages deploy dist --project-name tcfc
