@@ -3,6 +3,8 @@
 TCFC 市長盃賽程 GAS 後端（`backend/程式碼.js`），參照勝利聯賽架構（`victory-league-architecture-reference.md`）。
 讀取（D1=②）與受控寫入（D2=② 白名單護欄）皆過 GAS；CI 由 `deploy-gas.yml` 自動部署（push `backend/**` 觸發）。
 
+> ✅ **部署狀態（2026-08-20 完成）**：scriptId 已填入 `.clasp.json`（`1LUmcnb__0fXtap1MueWrxm8ulM1d1jv-Pn6I2LsNpGOwlhgz0xJ2ogEt`）、Web App URL 已設為 GitHub secret `VITE_GAS_URL`、`AUTH_SECRET` 已寫入 Script Properties（由部署者執行 `setupAuth` 產生）。後續 push `backend/**` 即自動部署。
+
 ## 一次性前置步驟（需瀏覽器，約 10 分鐘）
 
 ### 1. 取得 clasp 憑證 → 存入 GitHub secret
@@ -13,6 +15,8 @@ clasp login   # 瀏覽器 OAuth 登入 ivy0730（部署者身份，寫入權限�
 cat ~/.clasprc.json
 ```
 
+`clasp login` 若在非互動環境無法貼碼，可用預設模式（自動開瀏覽器並在本機監聽捕獲授權）。
+
 把 `~/.clasprc.json` 的完整內容設為 GitHub secret **`GOOGLE_SHEETS_CREDENTIALS`**
 （Repo Settings → Secrets and variables → Actions）。此憑證等同 GAS 部署鑰匙，永不 commit。
 
@@ -22,6 +26,7 @@ cat ~/.clasprc.json
 cd backend
 clasp create --title "TCFC 市長盃 GAS" --type standalone
 # 成功後自動寫入 backend/.clasp.json：{"scriptId":"1Xxx...","rootDir":"."}
+# rootDir 若為空字串，請手動改為 "."（本 repo 已設）
 ```
 
 ### 3. 首次部署 → 取得 Web App URL → 存入 GitHub secret

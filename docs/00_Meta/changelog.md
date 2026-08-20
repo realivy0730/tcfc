@@ -4,6 +4,16 @@ tags: [Meta, changelog]
 version: "1.0"
 related_id: ["INDEX"]
 
+## [2026-08-20] — feat: GAS 後端部署上線 #7
+
+- GAS 專案建立（standalone，scriptId `1LUmcnb__0fXtap…`）+ 部署為網頁應用程式（USER_DEPLOYING + ANYONE_ANONYMOUS）。
+- 讀取端點實測：`action=schedule` 成功回傳 **913 列**（2024 公開組實測）。
+- Web App URL 已設為 GitHub secret `VITE_GAS_URL`；`GOOGLE_SHEETS_CREDENTIALS` 已設（clasp 部署憑證）。
+- `AUTH_SECRET` 由 `setupAuth` 產生並寫入 Script Properties（寫入端點護欄，已存本機 credentials）。
+- **已知限制**：寫入端點（POST）被 Google bot-check 擋 CLI 驗證——code review 通過、瀏覽器實作不受影響；讀取已完整驗證。
+- CI 首次正式執行：push `backend/**` 自動 `clasp push`（scriptId 非空即部署）；`deploy.yml` 注入 `VITE_GAS_URL` 後 production 前端優先走 GAS（異常自動降級直讀）。
+- 未竟（5b）：GAS 穩定後移除 bundle `VITE_GOOGLE_SHEETS_API_KEY` 與直讀降級 → 關閉 #7。
+
 ## [2026-08-19] — feat: GAS 後端導入 #7（PR #15）
 
 - **後端**：`backend/程式碼.js` 參數化 GAS（doGet `schedule`：sheetId+sheetName 讀 A2:K；doPost `update_result`：回填比數 + `AUTH_SECRET` 白名單護欄（D2=②）+ 天然冪等 + 比分驗證 + 自動記錄更新時間）；`appsscript.json`（USER_DEPLOYING + ANYONE_ANONYMOUS，勝利聯賽模式）。
